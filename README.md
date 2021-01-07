@@ -28,9 +28,7 @@ TypeScript官网： [https://www.tslang.cn/](https://www.tslang.cn/)
 
 dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 
-
-
-##组件说明（必须查看整个说明）
+## 组件说明（必须查看整个说明）
 组件文档、使用说明: [xxxxx/~doc](xxxxx/~doc)
 路径查看文档说明
 
