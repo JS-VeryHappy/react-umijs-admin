@@ -7,7 +7,7 @@ nav:
 # 文档使用样例
 此页面列举了 dumi 渲染各项 Markdown 样式以及 Demo 的效果。
 
-### 外部引入
+### 外部引入xxx
 <code src="./index.tsx" />
 
 ### 代码块嵌入
