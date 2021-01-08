@@ -10,7 +10,7 @@
 
 ## 项目架构
 
-Umi(React + AntD + Less + TypeScript )
+Umi(React + AntD + Less + TypeScript + dumi )
 
 Umi中文网： [https://umijs.org/zh-CN/docs/](https://umijs.org/zh-CN/docs)
 
