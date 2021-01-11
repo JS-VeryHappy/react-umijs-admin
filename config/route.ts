@@ -23,17 +23,11 @@ export default [
     },
   },
   {
+    locale: 'menu.home',
     path: '/',
     name: '首页',
     icon: 'AppleFilled',
     component: '@/pages/home/index',
-    access: 'checkAuth',
-  },
-  {
-    path: '/protable',
-    name: '表格测试',
-    icon: 'GithubFilled',
-    component: '@/pages/protable/',
     access: 'checkAuth',
   },
 ];

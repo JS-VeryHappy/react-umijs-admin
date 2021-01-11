@@ -140,22 +140,18 @@ export default defineConfig({
   // ssr: {},
   // //配置即可拥有 Ant Design 的 Layout
   layout: {
-    name: '后台管理系统',
-    locale: false,
-    navTheme: 'dark',
-    menu: { locale: false },
-    primaryColor: '#1890ff',
-    logo:
-      'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    // name: '后台管理系统'
+    locale: true,
   },
   // request请求配置
   request: {
     dataField: 'data',
   },
-  //国际化配置
-  // locale: {
-  //   default: 'zh-CN',
-  // },
+  // 国际化配置 https://umijs.org/zh-CN/plugins/plugin-locale
+  locale: {
+    default: 'zh-CN',
+    antd: true,
+  },
   /**
    * 替换压缩器为 esbuild
    */

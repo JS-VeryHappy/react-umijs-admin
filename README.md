@@ -26,7 +26,7 @@ Less官网： [http://lesscss.cn/](http://lesscss.cn/)
 
 TypeScript官网： [https://www.tslang.cn/](https://www.tslang.cn/)
 
-dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
+Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 
 
 

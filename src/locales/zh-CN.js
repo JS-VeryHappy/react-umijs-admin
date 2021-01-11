@@ -1,3 +1,4 @@
 export default {
-  WELCOME_TO_UMI_WORLD: '{name}，欢迎光临umi的世界,{age}',
+  'menu.home': '首页',
+  'layout.header.logout': '退出登录',
 };
