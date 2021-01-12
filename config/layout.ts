@@ -5,9 +5,7 @@ import RightContent from '@/components/RightContent';
 
 //获取本地配置
 //@ts-ignore
-const setting = localStorage.getItem('layoutSettings')
-  ? JSON.parse(localStorage.getItem('layoutSettings'))
-  : {};
+const setting = localStorage.getItem('layoutSettings')? JSON.parse(localStorage.getItem('layoutSettings')): {};
 
 /**
  * Layout 插件允许通过运行时的配置退出登陆、自定义 ErrorBoundary 等功能。
