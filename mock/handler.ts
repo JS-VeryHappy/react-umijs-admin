@@ -1,25 +1,44 @@
 import mockjs from 'mockjs';
 
+const waitTime = (time: number = 100) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, time);
+    });
+  };
+
 /**
  * mockjs 定义
- * https://www.jianshu.com/p/d812ce349265
+ * https://github.com/nuysoft/Mock/wiki/Getting-Started
  */
-const response = (data: any) => {
-    return mockjs.mock(data)
+export const response = (data: any) => {
+    return mockjs.mock(data);
 };
 
 /**
  * 返回普通对象
  * @param data 
  */
-export const list = (data: {}) => {
+export const objData = (data: {}) => {
     return response({
         data: data,
         code: '0',
         reason: '成功',
     })
 };
+/**
+ * 延迟执行返回
+ * @param req 
+ * @param res 
+ * @param data 
+ */
+export const objDataTimeout = async (req: any,res:any,data:any,timeout:number = 1000) => {
+   
+    await waitTime(timeout);
 
+    return  res.send(JSON.stringify(objData(data)));
+};
 
 interface pageOptionType {
     total: number,
@@ -33,7 +52,7 @@ interface pageOptionType {
  * 返回分页数据
  * @param list 
  */
-export const pagination = (list: []) => {
+export const paginationData = (list: []) => {
 
     const defaultOption: pageOptionType = {
         total: 20,
@@ -49,4 +68,3 @@ export const pagination = (list: []) => {
     return response(defaultOption);
 };
 
-export default response;
