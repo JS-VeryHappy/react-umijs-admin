@@ -36,7 +36,7 @@ function RightContent(Props: any) {
   const signOut = () => {
     setTimeout(() => {
       //请求服务退出登录 目前没有
-      history.push('/signIn');
+      history.push('/login');
     }, 100);
   };
 

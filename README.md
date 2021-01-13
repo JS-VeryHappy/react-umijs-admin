@@ -128,7 +128,7 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 ### 测试/开发登录路径
 
 
-/signIn
+/login
 
 
 

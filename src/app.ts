@@ -28,7 +28,7 @@ export function rootContainer(container: any, props) {
 export async function getInitialState() {
   $global.log('启动应用进入页面');
   if (
-    history.location.pathname !== '/signIn' &&
+    history.location.pathname !== '/login' &&
     history.location.pathname !== '/404'
   ) {
     let res = await isLogin();
@@ -69,8 +69,8 @@ export function onRouteChange({
     }
   }
   //如果是正式无法 手机登陆
-  if (process.env.UMI_ENV === 'pro' && location.pathname === '/signInM') {
-    history.push('/signIn');
+  if (process.env.UMI_ENV === 'pro' && location.pathname === '/loginM') {
+    history.push('/login');
     return;
   }
 

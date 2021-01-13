@@ -53,7 +53,7 @@ const requestConfig: RequestConfig = {
       if(response.status === 200){
         const data = await response.clone().json();
         if(data.code === '403'){
-          history.push('/signIn')
+          history.push('/login')
         }
 
       }

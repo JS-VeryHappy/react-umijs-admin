@@ -20,15 +20,15 @@ export async function qrLogin(data: qrLoginType) {
  * 钉钉密码登录
  *
  ***/
-interface pwdLoginType {
+interface loginType {
   // 手机号
   mobile: String;
   // 密码
   password: any;
 }
 
-export async function pwdLogin(data: pwdLoginType) {
-  return postBody('/api/user/pwdLogin', data)
+export async function login(data: loginType) {
+  return postBody('/api/user/login', data)
 }
 
 

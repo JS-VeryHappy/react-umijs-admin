@@ -34,7 +34,7 @@ export default {
     //可以这样渲染 内容部分公用部分
     childrenRender: (children: any) => {
       if (
-        history.location.pathname !== '/signIn' &&
+        history.location.pathname !== '/login' &&
         history.location.pathname !== '/404'
       ) {
         return React.createElement(

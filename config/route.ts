@@ -14,7 +14,7 @@ const routes: IBestAFSRoute[] = [
     },
   },
   {
-    path: '/signIn',
+    path: '/login',
     component: '@/pages/login/index',
     layout: {
       hideFooter: true,

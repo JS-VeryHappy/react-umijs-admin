@@ -1,5 +1,6 @@
-@import '~antd/es/style/themes/default.less';
 /*我是全局样式配置*/
+
+@import '~antd/es/style/themes/default.less';
 
 html,
 body,
@@ -30,6 +31,18 @@ ol {
   list-style: none;
 }
 
+.global-shadow-1-down{
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+  0 5px 12px 4px rgba(0, 0, 0, 0.09);
+}
+.global-shadow-2-down{
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+  0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+.global-shadow-3-down{
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05),
+  0 12px 48px 16px rgba(0, 0, 0, 0.03);
+}
 @media (max-width: @screen-xs) {
   .ant-table {
     width: 100%;
@@ -53,17 +66,3 @@ ol {
     min-height: 100vh;
   }
 }
-
-// .ant-layout{
-//   min-height: 100vh;
-//   background: #fff;
-// }
-// .ant-layout-content{
-//   /*min-height: 100vh;*/
-// }
-// .ant-layout-footer{
-//   background: #fff;
-// }
-// .ant-pro-page-container-warp{
-//   border-bottom: 1px solid #eee;
-// }

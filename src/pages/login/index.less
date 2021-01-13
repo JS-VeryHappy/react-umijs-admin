@@ -1,44 +1,30 @@
-.main{
-  min-height: 100vh;
-  background: #f7f8f9;
-  .sign{
-    position: fixed;
-    top: 21%;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    width: 877px;
-    height: 526px;
-    >div{
-      width: 100%;
-      height: 100%;
-      position: relative;
-      img{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-      }
-      .code{
-        position: absolute;
-        z-index: 3;
-        right: 87px;
-        top: 47px;
-        .title{
-          font-size: 16px;
-          font-weight: bold;
-          color: #108ee9;
-          text-align: center;
-          margin-bottom: 25px;
-        }
-      }
-      .box{
-        position: relative;
-        width: 250px;
-        height: 310px;
-        background: #eff0f1;
-        border-radius: 13px;
-      }
+.login{
+  height: 100vh;
+  background: url('../../assets/images/background.jpg') 50% fixed no-repeat;
+  background-size: cover;
+  .main{
+    padding:40px;
+    background:rgba(98, 120, 192, 0.3);
+    border-radius: 20px;
+    width: 408px;
+    .box{
+      width: 328px;
+    }
+    
+  }
+  :global{
+    .ant-form-item-label >label{
+      color: #fff;
+    }
+    .ant-form-item-label > label .ant-form-item-tooltip{
+       color: #fff;
+    }
+    .ant-form-large .ant-form-item-label > label{
+      height: 30px;
+    }
+    .ant-form-item{
+      margin-bottom: 4px;
     }
   }
 }
+
