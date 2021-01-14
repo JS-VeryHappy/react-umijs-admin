@@ -14,7 +14,11 @@ export default {
     },
     1000,
   ),
-  'POST /api/user/isLogin': getObj.bind(null, {
-    name: '周大仙',
-  }),
+  'POST /api/user/isLogin': getObj.bind(
+    null,
+    {
+      name: '周大仙',
+    },
+    0,
+  ),
 };

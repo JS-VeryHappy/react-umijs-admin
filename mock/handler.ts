@@ -18,7 +18,7 @@ export const response = (data: any) => {
  */
 export const getObj = async (
   data: any,
-  timeout: number = 0,
+  timeout: number,
   req: any,
   res: any,
 ) => {
@@ -53,7 +53,7 @@ interface pageOptionType {
 export const getPagination = async (
   data: any,
   timeout: number = 0,
-  option: pageOptionType | {} = {},
+  option: pageOptionType | {},
   req: any,
   res: any,
 ) => {
