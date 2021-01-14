@@ -22,7 +22,7 @@ export const routes: IBestAFSRoute[] =  [
     },
   },
   {
-    path: '/signIn',
+    path: '/login',
     component: '@/pages/login/index',
     layout:{
       hideFooter:true,
@@ -31,7 +31,7 @@ export const routes: IBestAFSRoute[] =  [
     },
   },
   {
-    path: '/signInM',
+    path: '/loginM',
     component: '@/pages/login/mobile',
     layout:{
       hideFooter:true,

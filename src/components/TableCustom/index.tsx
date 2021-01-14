@@ -12,7 +12,9 @@ import {
 } from './types';
 import './index.less';
 
-function TableCustom<ListItem>(props: TablePropsType<ListItem>) {
+function TableCustom<ListItem>(
+  props: TablePropsType<ListItem> & { children?: any[] },
+): React.ReactElement {
   const {
     needRowSelection,
     onFormValuesChange,
@@ -21,7 +23,13 @@ function TableCustom<ListItem>(props: TablePropsType<ListItem>) {
     fetchGetList,
     buttonGroup,
     paramsFormatter,
+    children,
   } = props;
+
+  // React.Children.forEach(children, (child) => {
+  //   console.log(child);
+  // })
+  console.log(123);
 
   const [dataSource, setDataSource] = useState<ListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

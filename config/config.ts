@@ -125,10 +125,10 @@ export default defineConfig({
   // 约定是到 model 组织方式，不用手动注册 model
   // 文件名即 namespace，model 内如果没有声明 namespace，会以文件名作为 namespace
   // 内置 dva-loading，直接 connect loading 字段使用即可
-  dva: {
-    immer: true, // 表示是否启用 immer 以方便修改 reducer
-    hmr: true, // 表示是否启用 dva model 的热更新
-  },
+  // dva: {
+  //   immer: true, // 表示是否启用 immer 以方便修改 reducer
+  //   hmr: true, // 表示是否启用 dva model 的热更新
+  // },
   // 是否启用按需加载，即是否把构建产物进行拆分，在需要的时候下载额外的 JS 再执行
   dynamicImport: {
     // 无需 level, webpackChunkName 引入 tsx时候看看 tsconfig.json配置了相关配置没
@@ -140,22 +140,18 @@ export default defineConfig({
   // ssr: {},
   // //配置即可拥有 Ant Design 的 Layout
   layout: {
-    name: '后台管理系统',
-    locale: false,
-    navTheme: 'dark',
-    menu: { locale: false },
-    primaryColor: '#1890ff',
-    logo:
-      'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    // name: '后台管理系统'
+    locale: true,
   },
   // request请求配置
   request: {
     dataField: 'data',
   },
-  //国际化配置
-  // locale: {
-  //   default: 'zh-CN',
-  // },
+  // 国际化配置 https://umijs.org/zh-CN/plugins/plugin-locale
+  locale: {
+    default: 'zh-CN',
+    antd: true,
+  },
   /**
    * 替换压缩器为 esbuild
    */

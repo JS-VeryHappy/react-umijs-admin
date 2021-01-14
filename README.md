@@ -10,7 +10,7 @@
 
 ## 项目架构
 
-Umi(React + AntD + Less + TypeScript )
+Umi(React + AntD + Less + TypeScript + dumi )
 
 Umi中文网： [https://umijs.org/zh-CN/docs/](https://umijs.org/zh-CN/docs)
 
@@ -26,7 +26,7 @@ Less官网： [http://lesscss.cn/](http://lesscss.cn/)
 
 TypeScript官网： [https://www.tslang.cn/](https://www.tslang.cn/)
 
-dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
+Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 
 ## 组件说明（必须查看整个说明）
 组件文档、使用说明: [xxxxx/~doc](xxxxx/~doc)
@@ -126,7 +126,7 @@ dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 ### 测试/开发登录路径
 
 
-/signIn
+/login
 
 
 

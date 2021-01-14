@@ -1,4 +1,4 @@
-import { RequestConfig,ErrorShowType,history } from 'umi';
+import { RequestConfig, ErrorShowType, history } from 'umi';
 import { message } from 'antd';
 
 const requestConfig: RequestConfig = {
@@ -8,28 +8,35 @@ const requestConfig: RequestConfig = {
     // 该配置只是用于错误处理，不会影响最终传递给页面的数据格式。
     adaptor: resData => {
       //如果是http状态码错误
-      if(resData.status && resData.error && resData.timestamp){
+      if (!resData) {
+        return {
+          success: false,
+          errorCode: 500,
+          errorMessage: '系统错误',
+          showType: ErrorShowType.ERROR_MESSAGE,
+        };
+      }
+      if (resData.status && resData.error && resData.timestamp) {
         return {
           success: false,
           errorCode: resData.status,
           errorMessage: `${resData.status} ${resData.error}`,
-          showType:ErrorShowType.ERROR_MESSAGE
+          showType: ErrorShowType.ERROR_MESSAGE,
         };
-      }else {
+      } else {
         //如果http 状态 200 内部状态判断
         let showType = ErrorShowType.ERROR_MESSAGE;
-        if(resData.code === '403'){
+        if (resData.code === '403') {
           showType = ErrorShowType.WARN_MESSAGE;
         }
         return {
-          data:resData.data,
+          data: resData.data,
           success: resData.code === '0',
           errorCode: resData.code,
-          errorMessage: resData.reason,
-          showType:showType
+          errorMessage: resData.reason || '系统错误',
+          showType: showType,
         };
       }
-
     },
   },
   middlewares: [
@@ -49,13 +56,11 @@ const requestConfig: RequestConfig = {
   ],
   responseInterceptors: [
     async function response(response, options) {
-
-      if(response.status === 200){
+      if (response.status === 200) {
         const data = await response.clone().json();
-        if(data.code === '403'){
-          history.push('/signIn')
+        if (data.code === '403') {
+          history.push('/login');
         }
-
       }
       return response;
     },
