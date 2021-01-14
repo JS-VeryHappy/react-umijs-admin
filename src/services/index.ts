@@ -24,14 +24,6 @@ export async function isLogin() {
 }
 
 /**
- * 获取字典
- *
- ***/
-export async function getOpthions() {
-  return postBody('/api/getOpthions');
-}
-
-/**
  * protable select测试
  */
 export function getSelect() {

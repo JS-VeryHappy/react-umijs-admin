@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { Form, message } from 'antd';
-import { getOpthions } from '@/services';
-import { FormChildrenConfigType, OptionsType, FormConfigType } from '@/components/ProFormCustom/types';
+import {
+  FormChildrenConfigType,
+  OptionsType,
+  FormConfigType,
+} from '@/components/ProFormCustom/types';
 
 function ProForm() {
-
   const [form] = Form.useForm();
 
   const [options, setOptions] = useState<OptionsType[]>([]);
@@ -13,10 +15,18 @@ function ProForm() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await getOpthions();
-      setOptions(data)
+      const data = [
+        {
+          label: '城市',
+          value: '城市',
+        },
+        {
+          label: '城市1',
+          value: '城市1',
+        },
+      ];
+      setOptions(data);
     })();
-
   }, []);
 
   let config: FormChildrenConfigType[] = [
@@ -24,14 +34,14 @@ function ProForm() {
       title: '联动',
       children: [
         {
-          mold: "ProFormText",
-          name: "note",
-          label: "note"
+          mold: 'ProFormText',
+          name: 'note',
+          label: 'note',
         },
         {
-          mold: "ProFormSelect",
-          name: "beginCityId",
-          label: "出发城市",
+          mold: 'ProFormSelect',
+          name: 'beginCityId',
+          label: '出发城市',
           placeholder: '请输入出发城市',
           options: [
             {
@@ -41,28 +51,27 @@ function ProForm() {
             {
               label: '城市2',
               value: 2,
-            }
-          ]
+            },
+          ],
         },
         {
-          mold: "ProFormSelect",
-          name: "beginAreaId",
-          label: "出发区域",
+          mold: 'ProFormSelect',
+          name: 'beginAreaId',
+          label: '出发区域',
           placeholder: '请输入出发城市',
           options: options,
-
         },
         {
           moldShow: show,
-          mold: "ProFormSelect",
-          name: "beginAreaId1",
-          label: "出发区域1",
+          mold: 'ProFormSelect',
+          name: 'beginAreaId1',
+          label: '出发区域1',
           placeholder: '请输入出发城市',
           options: options,
         },
-      ]
+      ],
     },
-  ]
+  ];
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -83,13 +92,13 @@ function ProForm() {
     if (hangedValues.beginCityId) {
       form.setFieldsValue({
         note: hangedValues.beginCityId,
-        beginAreaId: null
+        beginAreaId: null,
       });
       setOptions([
         {
           label: '测试',
-          value: 11111
-        }
+          value: 11111,
+        },
       ]);
       setShow(true);
     }
