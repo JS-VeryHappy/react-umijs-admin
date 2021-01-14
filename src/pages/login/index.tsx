@@ -57,7 +57,6 @@ function UserMobileLogin() {
               className={classnames(styles.main, 'global-shadow-3-down')}
             >
               <Col span={24}>
-                {' '}
                 <Title style={{ color: '#fff' }}>欢迎登录</Title>
               </Col>
               <Col span={24} className={styles.box}>
