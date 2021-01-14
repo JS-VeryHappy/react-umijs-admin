@@ -1,6 +1,6 @@
-import { FormInstance } from 'antd/lib/form';
+import { FormInstance, FormItemProps } from 'antd/lib/form';
 import { ReactNode } from 'react';
-
+import { ProFormItemProps } from '@ant-design/pro-form/lib/interface';
 /**
  * 验证规则
  * https://ant.design/components/form-cn/#Rule
@@ -35,7 +35,7 @@ export interface OptionsType {
  * formConfig 表单字段属性值
  * title: formConfig
  */
-export interface FormConfigType {
+export interface FormConfigType extends FormItemProps {
   /**
    * 表单字段类型
    */
@@ -124,7 +124,12 @@ export interface FormConfigType {
    */
   fieldProps?: any;
   /**
-   *
+   * - auto 使用组件默认的宽度
+   * - XS=104px 适用于短数字、短文本或选项。
+   * - S=216px 适用于较短字段录入、如姓名、电话、ID 等。
+   * - M=328px 标准宽度，适用于大部分字段长度。
+   * - L=440px 适用于较长字段录入，如长网址、标签组、文件路径等。
+   * - XL=552px 适用于长文本录入，如长链接、描述、备注等，通常搭配自适应多行输入框或定高文本域使用。
    * 表格宽度
    * @default s
    */
