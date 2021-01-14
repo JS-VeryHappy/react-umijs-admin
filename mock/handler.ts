@@ -1,70 +1,87 @@
 import mockjs from 'mockjs';
-
-const waitTime = (time: number = 100) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, time);
-    });
-  };
+import { waitTime } from '@/utils';
 
 /**
  * mockjs 定义
  * https://github.com/nuysoft/Mock/wiki/Getting-Started
  */
 export const response = (data: any) => {
-    return mockjs.mock(data);
+  return mockjs.mock(data);
 };
 
 /**
- * 返回普通对象
- * @param data 
+ *
+ * @param req 请求实例
+ * @param res 返回实例
+ * @param data 数据
+ * @param timeout 延迟
  */
-export const objData = (data: {}) => {
-    return response({
+export const getObj = async (
+  req: any,
+  res: any,
+  data: any,
+  timeout: number = 0,
+) => {
+  if (timeout) {
+    await waitTime(timeout);
+  }
+
+  return res.send(
+    JSON.stringify(
+      response({
         data: data,
         code: '0',
         reason: '成功',
-    })
-};
-/**
- * 延迟执行返回
- * @param req 
- * @param res 
- * @param data 
- */
-export const objDataTimeout = async (req: any,res:any,data:any,timeout:number = 1000) => {
-   
-    await waitTime(timeout);
-
-    return  res.send(JSON.stringify(objData(data)));
+      }),
+    ),
+  );
 };
 
 interface pageOptionType {
-    total: number,
-    list: [],
-    size: number,
-    nextPage: number,
-    prePage: number,
-    pageSize: number,
+  total: number;
+  list: [];
+  nextPage: number;
+  prePage: number;
+  pageSize: number;
 }
 /**
- * 返回分页数据
- * @param list 
+ * @param req 请求实例
+ * @param res 返回实例
+ * @param data 数据
+ * @param timeout 延迟
  */
-export const paginationData = (list: []) => {
+export const getPagination = async (
+  req: any,
+  res: any,
+  data: any,
+  timeout: number = 0,
+  option: pageOptionType | {} = {},
+) => {
+  const defaultOption: pageOptionType = {
+    ...{
+      total: 100,
+      list: [],
+      nextPage: 1,
+      prePage: 1,
+      pageSize: 20,
+    },
+    ...option,
+  };
 
-    const defaultOption: pageOptionType = {
-        total: 20,
-        list: [],
-        size: 20,
-        nextPage: 1,
-        prePage: 1,
-        pageSize: 20,
+  if (timeout) {
+    await waitTime(timeout);
+  }
+
+  let body: any = {};
+  try {
+    body = req.body;
+    if (body.page) {
+      defaultOption.prePage = body.page + 1;
+      defaultOption.nextPage = body.page + 2;
     }
+  } catch (error) {}
 
-    defaultOption.list = list;
+  defaultOption.list = data;
 
-    return response(defaultOption);
+  return response(defaultOption);
 };
-

@@ -1,20 +1,4 @@
-
-import {postBody,getQuery} from './handler'
-
-/**
- * 钉钉扫码码登录
- *
- ***/
-interface qrLoginType {
-  // 钉钉返回code
-  code: String;
-  // 钉钉返回state
-  state: String;
-}
-
-export async function qrLogin(data: qrLoginType) {
-  return getQuery('/api/user/qrLogin',data)
-}
+import { postBody, getQuery } from './handler';
 
 /**
  * 钉钉密码登录
@@ -28,16 +12,15 @@ interface loginType {
 }
 
 export async function login(data: loginType) {
-  return postBody('/api/user/login', data)
+  return postBody('/api/user/login', data);
 }
-
 
 /**
  * 获取用户信息
  *
  ***/
 export async function isLogin() {
-  return postBody('/api/user/isLogin')
+  return postBody('/api/user/isLogin');
 }
 
 /**
@@ -45,20 +28,19 @@ export async function isLogin() {
  *
  ***/
 export async function getOpthions() {
-  return postBody('/api/getOpthions')
+  return postBody('/api/getOpthions');
 }
-
 
 /**
  * protable select测试
  */
 export function getSelect() {
-  return getQuery('/api/protable/select')
+  return getQuery('/api/protable/select');
 }
 
 /**
  * protable list测试
  */
 export function getProTable(data: any) {
-  return postBody('/api/protable/list', data)
+  return postBody('/api/protable/list', data);
 }
