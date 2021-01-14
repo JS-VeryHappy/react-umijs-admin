@@ -34,6 +34,14 @@ const routes: IBestAFSRoute[] = [
         component: '@/pages/home/index',
         access: 'checkAuth',
       },
+      {
+        locale: 'menu.protable',
+        path: '/protable',
+        name: '表格',
+        icon: 'AppleFilled',
+        component: '@/pages/protable/index',
+        access: 'checkAuth',
+      },
     ],
   },
 ];
