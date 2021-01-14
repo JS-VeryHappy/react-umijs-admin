@@ -1,5 +1,5 @@
 import mockjs from 'mockjs';
-import { waitTime } from '@/utils';
+import { waitTime } from '../src/utils';
 
 /**
  * mockjs 定义
@@ -17,10 +17,10 @@ export const response = (data: any) => {
  * @param timeout 延迟
  */
 export const getObj = async (
-  req: any,
-  res: any,
   data: any,
   timeout: number = 0,
+  req: any,
+  res: any,
 ) => {
   if (timeout) {
     await waitTime(timeout);
@@ -51,11 +51,11 @@ interface pageOptionType {
  * @param timeout 延迟
  */
 export const getPagination = async (
-  req: any,
-  res: any,
   data: any,
   timeout: number = 0,
   option: pageOptionType | {} = {},
+  req: any,
+  res: any,
 ) => {
   const defaultOption: pageOptionType = {
     ...{

@@ -1,4 +1,4 @@
-import { objDataTimeout, objData } from './handler';
+import { getObj } from './handler';
 
 /**
  * mockjs 定义
@@ -478,8 +478,8 @@ const ListData = {
 };
 
 export default {
-  '/api/protable/select': objData(SelectData),
+  '/api/protable/select': getObj.bind(null, SelectData),
 
   // protable list测试
-  'POST /api/protable/list': objData(ListData),
+  'POST /api/protable/list': getObj.bind(null, ListData),
 };
