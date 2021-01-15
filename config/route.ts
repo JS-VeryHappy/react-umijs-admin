@@ -35,6 +35,20 @@ const routes: IBestAFSRoute[] = [
         access: 'checkAuth',
       },
       {
+        path: '/user',
+        locale: 'menu.user',
+        name: '用户中心',
+        icon: 'UserOutlined',
+        routes: [
+          {
+            locale: 'menu.user.info',
+            path: '/user/info',
+            name: '个人资料',
+            component: '@/pages/user/info/index',
+          },
+        ],
+      },
+      {
         locale: 'menu.protable',
         path: '/protable',
         name: '表格',

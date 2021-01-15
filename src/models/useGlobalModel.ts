@@ -17,13 +17,13 @@ export default function useGlobalModel() {
     dictionaries: [],
     layoutSettings: {
       title: 'Ant Design Pro',
-      navTheme: 'dark',
+      navTheme: 'light',
       layout: 'side',
       contentWidth: 'Fluid',
       splitMenus: false,
       primaryColor: '#1890ff',
-      fixSiderbar: false,
-      fixedHeader: false,
+      fixSiderbar: true,
+      fixedHeader: true,
     },
   });
 

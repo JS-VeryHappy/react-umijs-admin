@@ -1,5 +1,7 @@
 export default {
   'menu.home': 'home',
-  'layout.header.logout': 'logout',
+  'menu.user': 'user',
+  'menu.user.info': 'userinfo',
   'menu.protable': 'table',
+  'layout.header.logout': 'logout',
 };

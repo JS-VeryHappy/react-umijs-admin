@@ -4,7 +4,7 @@ import { login } from '@/services';
 import styles from './index.less';
 import ProFormCustom from '@/components/ProFormCustom';
 import { mobileConfig, accountConfig } from './define';
-import { Row, Col, Typography, Tabs, Space, Tooltip, message } from 'antd';
+import { Row, Col, Typography, Tabs, Space, Image, message } from 'antd';
 import classnames from 'classnames';
 import {
   AlipayCircleOutlined,
@@ -14,6 +14,8 @@ import {
   SlackOutlined,
 } from '@ant-design/icons';
 import { waitTime } from '@/utils';
+import code from '@/assets/images/code.jpg';
+import scan from '@/assets/images/scan.png';
 
 const { Title, Text, Link } = Typography;
 const { TabPane } = Tabs;
@@ -88,10 +90,8 @@ function UserMobileLogin() {
   const qrcodeDom = (
     <>
       <Row align="middle" justify="center">
-        <QrcodeOutlined style={{ fontSize: '250px', color: '#ccc' }} />
-        <Col span={24}>
-          <div style={{ color: '#fff', textAlign: 'center' }}>扫码登录</div>
-        </Col>
+        <Image width={160} preview={false} src={code} />
+        <Image width={160} preview={false} src={scan} />
       </Row>
     </>
   );
@@ -108,7 +108,7 @@ function UserMobileLogin() {
               <div className={styles.main}>
                 {/* <Tooltip title={type !== 'qrcode' ? '扫码登录' : '普通登录'} color="blue"> */}
                 <div
-                  className={styles.code}
+                  className={classnames(styles.code, type)}
                   onClick={() => {
                     tabOnChange('qrcode');
                   }}
