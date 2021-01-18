@@ -1,11 +1,81 @@
 .info {
   width: 100%;
-  max-width: 1140px;
+
   .top {
     padding: 20px;
     margin-bottom: 0 !important;
   }
+
   .divider {
     height: 100%;
+  }
+
+  .bg {
+    padding: 0;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+
+    :global {
+      .ant-card-body {
+        border-radius: @border-radius-base;
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        &:before {
+          background: url(https://desk-fd.zol-img.com.cn/t_s960x600c5/g6/M00/0E/06/ChMkKl_IWyyIDYvLAEy3wov6VUkAAGMCgEdo4cATLfa032.jpg)
+            100% 100% no-repeat;
+          background-size: cover;
+          display: block;
+          position: absolute;
+          z-index: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          // margin: 20px;
+          filter: blur(3px);
+        }
+      }
+    }
+  }
+
+  .timeline {
+    padding: 0 0 0 40px;
+
+    .timelineIcon {
+      font-size: 26px;
+      border-radius: 50px;
+      padding: 10px;
+      color: #fff;
+    }
+    :global {
+      .cyan {
+        font-size: 26px;
+        line-height: 30px;
+      }
+      .ant-timeline.ant-timeline-label
+        .ant-timeline-item-left
+        .ant-timeline-item-content {
+        left: calc(50% + 44px);
+        width: calc(50% - 54px);
+        font-size: 16px;
+      }
+      .ant-timeline.ant-timeline-label
+        .ant-timeline-item-right
+        .ant-timeline-item-content {
+        width: calc(50% - 42px);
+        font-size: 16px;
+      }
+      .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+        width: calc(50% - 42px);
+      }
+      .ant-timeline.ant-timeline-label
+        .ant-timeline-item-right
+        .ant-timeline-item-label {
+        left: calc(50% + 68px);
+      }
+    }
   }
 }

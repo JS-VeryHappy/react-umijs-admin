@@ -20,7 +20,7 @@ export default {
     //菜单显示模式
     layout: 'side',
     navTheme: 'light',
-    siderWidth: 208,
+    // siderWidth: 208,
     //发生错误后的回调（可做一些错误日志上报，打点等）。c
     onError: (err: any) => {
       $global.log(err);

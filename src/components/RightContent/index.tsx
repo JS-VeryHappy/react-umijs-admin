@@ -43,7 +43,17 @@ function RightContent(Props: any) {
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key="logout">
+        <Link to="/user/info">
+          <UserOutlined />
+          {intl.formatMessage({
+            id: 'layout.header.userinfo',
+            defaultMessage: '个人中心',
+          })}
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="logout">
         <a onClick={signOut}>
           <LogoutOutlined />
           {intl.formatMessage({
