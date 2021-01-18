@@ -36,3 +36,10 @@ export function getSelect() {
 export function getProTable(data: any) {
   return postBody('/api/protable/list', data);
 }
+
+/**
+ * workbench chart测试
+ */
+export function getChartData(data: any) {
+  return postBody('/api/workbench/chart', data);
+}

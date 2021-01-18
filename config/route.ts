@@ -35,6 +35,14 @@ const routes: IBestAFSRoute[] = [
         access: 'checkAuth',
       },
       {
+        locale: 'menu.workbench',
+        path: '/workbench',
+        name: '工作台',
+        icon: 'DashboardFilled',
+        component: '@/pages/workbench/index',
+        access: 'checkAuth',
+      },
+      {
         locale: 'menu.protable',
         path: '/protable',
         name: '表格',
