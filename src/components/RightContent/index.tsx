@@ -9,6 +9,7 @@ import {
 import { history, useModel, Link, SelectLang, useIntl } from 'umi';
 import styles from './index.less';
 import { Tooltip, Tag } from 'antd';
+import headimg from '@/assets/images/headimg.jpeg';
 
 interface LocalData {
   lang: string;
@@ -85,11 +86,7 @@ function RightContent(Props: any) {
             cursor: 'pointer',
           }}
         >
-          <Avatar
-            style={{ backgroundColor: '#87d068' }}
-            icon={<UserOutlined />}
-            size="small"
-          />
+          <Avatar src={headimg} size="small" />
           <span>{name}</span>
         </Space>
       </Dropdown>

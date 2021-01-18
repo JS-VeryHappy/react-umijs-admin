@@ -68,11 +68,6 @@ export function onRouteChange({
       return;
     }
   }
-  //如果是正式无法 手机登陆
-  if (process.env.UMI_ENV === 'pro' && location.pathname === '/loginM') {
-    history.push('/login');
-    return;
-  }
 
   //设置页面标题
   // if (matchedRoutes.length) {
@@ -95,14 +90,14 @@ export const layout = layoutConfig;
  */
 export const request = requestConfig;
 
-/**
- * dva配置
- */
-export const dva = {
-  config: {
-    onAction: createLogger(),
-    onError(e: any) {
-      message.error(e.message, 3);
-    },
-  },
-};
+// /**
+//  * dva配置
+//  */
+// export const dva = {
+//   config: {
+//     onAction: createLogger(),
+//     onError(e: any) {
+//       message.error(e.message, 3);
+//     },
+//   },
+// };
