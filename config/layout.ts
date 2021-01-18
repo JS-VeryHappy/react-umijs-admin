@@ -4,9 +4,9 @@ import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
 
 //获取本地配置
-//@ts-ignore
 const setting = localStorage.getItem('layoutSettings')
-  ? JSON.parse(localStorage.getItem('layoutSettings'))
+  ? //@ts-ignore
+    JSON.parse(localStorage.getItem('layoutSettings'))
   : {};
 
 /**
