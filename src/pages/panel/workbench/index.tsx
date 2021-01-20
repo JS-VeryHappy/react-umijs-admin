@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FireTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { Radar } from '@ant-design/charts';
 // import { DataSet } from '@antv/data-set';
-import { Card, Skeleton, Row, Col, Rate, Avatar, Image } from 'antd';
+import { Card, Skeleton, Row, Col, Rate, Avatar, Image, Space } from 'antd';
 import styles from './index.less';
 import { getChartData } from '@/services';
 import { Link, useRequest } from 'umi';
@@ -92,84 +92,78 @@ export default function WorkBench() {
             <Row wrap={true}>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
               </Col>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
               </Col>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
               </Col>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
               </Col>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
               </Col>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
-                  <p>
-                    <Avatar
-                      src={
-                        <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                      }
-                    />{' '}
-                    周大仙
-                  </p>
+                  <Avatar
+                    src={
+                      <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                  />{' '}
+                  周大仙
+                  <br />
                   <p>那是一种内在的东西，他们到达不了，也无法触及</p>
                   <span>顶尖级人物</span>
                 </div>
