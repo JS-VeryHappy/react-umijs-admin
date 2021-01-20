@@ -43,7 +43,7 @@ function RightContent(Props: any) {
 
   const menu = (
     <Menu>
-      <Menu.Item key="logout">
+      <Menu.Item key="userinfo">
         <Link to="/user/info">
           <UserOutlined />
           {intl.formatMessage({
