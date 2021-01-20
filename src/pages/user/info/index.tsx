@@ -127,11 +127,6 @@ function UserInfo() {
           </Col>
           <Col span={24}>
             <Card bordered={false} className={styles.timeline}>
-              <Space size="large" direction="vertical">
-                <Tag color="cyan" className="cyan">
-                  2021年
-                </Tag>
-              </Space>
               <Timeline mode="alternate">
                 <Timeline.Item
                   dot={

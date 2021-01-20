@@ -23,6 +23,10 @@ const routes: IBestAFSRoute[] = [
     },
   },
   {
+    path: '/',
+    redirect: '/panel/workbench',
+  },
+  {
     path: '/join',
     component: '@/pages/join/index',
     layout: {
@@ -36,20 +40,19 @@ const routes: IBestAFSRoute[] = [
     flatMenu: true, //隐藏父级 子集上提
     routes: [
       {
-        locale: 'menu.home',
-        path: '/',
-        name: '首页',
-        icon: 'AppleFilled',
-        component: '@/pages/home/index',
-        access: 'checkAuth',
-      },
-      {
-        locale: 'menu.workbench',
-        path: '/workbench',
-        name: '工作台',
+        path: '/panel',
+        locale: 'menu.panel',
+        name: '仪表盘',
         icon: 'DashboardFilled',
-        component: '@/pages/workbench/index',
-        access: 'checkAuth',
+        routes: [
+          {
+            exact: true,
+            locale: 'menu.panel.workbench',
+            path: '/panel/workbench',
+            name: '工作台',
+            component: '@/pages/panel/workbench/index',
+          },
+        ],
       },
       {
         path: '/user',
