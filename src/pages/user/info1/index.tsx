@@ -28,7 +28,7 @@ import headimg from '@/assets/images/headimg.jpeg';
 
 const { Title, Text } = Typography;
 
-function UserInfo() {
+function UserInfo1() {
   const { initialState } = useModel('@@initialState');
   const { name, email, position, desc, tags, phone, address } = initialState;
 
@@ -199,4 +199,4 @@ function UserInfo() {
   );
 }
 
-export default UserInfo;
+export default UserInfo1;

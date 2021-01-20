@@ -2,8 +2,8 @@
   width: 100%;
 
   .top {
-    padding: 20px;
     margin-bottom: 0 !important;
+    padding: 20px;
   }
 
   .divider {
@@ -11,29 +11,29 @@
   }
 
   .bg {
-    padding: 0;
-    height: 300px;
     width: 100%;
+    height: 300px;
+    padding: 0;
     overflow: hidden;
 
     :global {
       .ant-card-body {
-        border-radius: @border-radius-base;
-        height: 100%;
-        width: 100%;
         position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: @border-radius-base;
 
         &:before {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+          display: block;
           background: url(https://desk-fd.zol-img.com.cn/t_s960x600c5/g6/M00/0E/06/ChMkKl_IWyyIDYvLAEy3wov6VUkAAGMCgEdo4cATLfa032.jpg)
             100% 100% no-repeat;
           background-size: cover;
-          display: block;
-          position: absolute;
-          z-index: 0;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
           // margin: 20px;
           filter: blur(3px);
         }
@@ -45,10 +45,10 @@
     padding: 20px 0;
 
     .timelineIcon {
-      font-size: 26px;
-      border-radius: 50px;
       padding: 10px;
       color: #fff;
+      font-size: 26px;
+      border-radius: 50px;
     }
     :global {
       .cyan {
