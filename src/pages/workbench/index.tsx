@@ -5,14 +5,15 @@ import { Radar } from '@ant-design/charts';
 import { Card, Skeleton, Row, Col, Rate, Avatar, Image } from 'antd';
 import styles from './index.less';
 import { getChartData } from '@/services';
-import { useRequest } from 'umi';
+import { Link, useRequest } from 'umi';
+import { PropsType } from '@/components/ProFormCustom/Example/ProFormTypes';
 
 export default function WorkBench() {
   const [data, setData] = useState({});
   const { run: onFinish } = useRequest(async (values: any) => {
     try {
       let res = await getChartData(values);
-      setData(res);
+      setData(res.data);
     } catch (e) {
       console.log(e);
     }
@@ -61,7 +62,7 @@ export default function WorkBench() {
             style={{ marginBottom: 24 }}
             title="简介"
             bordered={false}
-            extra={<a href="#">加入我们</a>}
+            extra={<a href="/join">加入我们</a>}
             bodyStyle={{ padding: 0 }}
           >
             {/* {projectNotice.map((item) => (
@@ -87,6 +88,7 @@ export default function WorkBench() {
                   </Card>
                 </Card.Grid>
               ))} */}
+
             <Row wrap={true}>
               <Col xl={8} lg={8} md={8} sm={12} xs={24}>
                 <div className={styles.contentItem}>
@@ -187,11 +189,6 @@ export default function WorkBench() {
                 className={styles.activitiesList}
                 size="large"
               /> */}
-            <div className={styles.dynamicItem}>
-              <FireTwoTone twoToneColor="#ff0000" />
-              &nbsp;<span>周大神在 高逼格设计天团 新建项目 骗你来学计算机</span>
-              <p>一分钟前</p>
-            </div>
             <div className={styles.dynamicItem}>
               <FireTwoTone twoToneColor="#ff0000" />
               &nbsp;<span>周大神在 高逼格设计天团 新建项目 骗你来学计算机</span>

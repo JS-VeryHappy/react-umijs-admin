@@ -23,6 +23,15 @@ const routes: IBestAFSRoute[] = [
     },
   },
   {
+    path: '/join',
+    component: '@/pages/join/index',
+    layout: {
+      hideFooter: true,
+      hideMenu: true,
+      hideNav: true,
+    },
+  },
+  {
     component: '@/layouts/index',
     flatMenu: true, //隐藏父级 子集上提
     routes: [
