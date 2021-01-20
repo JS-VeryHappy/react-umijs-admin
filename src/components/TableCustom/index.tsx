@@ -206,6 +206,7 @@ function TableCustom<ListItem>(
     // @ts-ignore
     <ProTable<ListItem>
       className="table-custom"
+      // @ts-ignore
       form={form}
       loading={loading}
       dataSource={dataSource}

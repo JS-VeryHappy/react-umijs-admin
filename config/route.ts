@@ -61,10 +61,16 @@ const routes: IBestAFSRoute[] = [
         icon: 'UserOutlined',
         routes: [
           {
-            locale: 'menu.user.info',
-            path: '/user/info',
-            name: '个人资料',
-            component: '@/pages/user/info/index',
+            locale: 'menu.user.info1',
+            path: '/user/info1',
+            name: '个人资料1',
+            component: '@/pages/user/info1/index',
+          },
+          {
+            locale: 'menu.user.info2',
+            path: '/user/info2',
+            name: '个人资料2',
+            component: '@/pages/user/info2/index',
           },
         ],
       },
