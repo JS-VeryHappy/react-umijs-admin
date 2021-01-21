@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { Tabs } from 'antd';
-import NoticeList from './NoticeList';
+
+import NoticeList from '../NoticeList';
 
 const { TabPane } = Tabs;
 
-const Notice: React.FC<any> & { Tab: typeof NoticeList } = props => {
+const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const { children } = props;
 
   const panes: React.ReactNode[] = [];
@@ -26,14 +26,9 @@ const Notice: React.FC<any> & { Tab: typeof NoticeList } = props => {
     );
   });
 
-  return (
-    <div>
-      <p>Notice</p>
-      <Tabs>{panes}</Tabs>
-    </div>
-  );
+  return <Tabs>{panes}</Tabs>;
 };
 
-Notice.Tab = NoticeList;
+NoticeTabs.Tab = NoticeList;
 
-export default Notice;
+export default NoticeTabs;
