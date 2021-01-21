@@ -72,6 +72,12 @@ const routes: IBestAFSRoute[] = [
             name: '个人资料2',
             component: '@/pages/user/info2/index',
           },
+          {
+            locale: 'menu.user.message',
+            path: '/user/message',
+            name: '消息查看',
+            component: '@/pages/user/message/index',
+          },
         ],
       },
       {
