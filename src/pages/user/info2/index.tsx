@@ -1,35 +1,12 @@
 import React from 'react';
-import styles from './index.less';
-import { Row, Col, Typography, Space, Dropdown, Menu, Image } from 'antd';
-import {
-  EllipsisOutlined,
-  EditOutlined,
-  UploadOutlined,
-  ShareAltOutlined,
-  CopyOutlined,
-} from '@ant-design/icons';
-import ProCard from '@ant-design/pro-card';
+import { Row, Col } from 'antd';
+
 import HeaderCustom from './HeaderCustom';
 import AboutCustom from './AboutCustom';
 import ListCustom from './ListCustom';
 import PhotosCustom from './PhotosCustom';
 
-const { Title, Text } = Typography;
-
 function UserInfo2() {
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <EditOutlined />
-        Edit
-      </Menu.Item>
-      <Menu.Item>
-        <UploadOutlined />
-        Update
-      </Menu.Item>
-    </Menu>
-  );
-
   return (
     <>
       <Row justify="center" gutter={[0, 24]}>
