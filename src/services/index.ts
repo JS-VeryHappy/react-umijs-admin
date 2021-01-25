@@ -38,6 +38,13 @@ export function getProTable(data: any) {
 }
 
 /**
+ * workbench list测试
+ */
+export function getListData(data: any) {
+  return postBody('/api/workbench/list', data);
+}
+
+/**
  * workbench chart测试
  */
 export function getChartData(data: any) {
