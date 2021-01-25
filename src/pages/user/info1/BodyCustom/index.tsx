@@ -13,7 +13,17 @@ import {
 
 const { Title, Text } = Typography;
 
-function BodyCustom(props: any) {
+interface propsType {
+  name?: string;
+  email?: string;
+  position?: string;
+  desc?: string;
+  tags?: [];
+  phone?: string;
+  address?: string;
+}
+
+function BodyCustom(props: propsType) {
   const { name, email, position, desc, tags, phone, address } = props;
 
   return (
