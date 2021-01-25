@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Space } from 'antd';
+import { Dropdown, Space, Badge } from 'antd';
 import { MessageOutlined } from '@ant-design/icons';
 import { useModel } from 'umi';
 
@@ -18,6 +18,7 @@ interface NotificationData {
 
 const NoticeTip: React.FC<any> = props => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
 
   const {
     notification,
@@ -133,22 +134,22 @@ const NoticeTip: React.FC<any> = props => {
     };
   }, []);
 
+  // 消息中心微标数
+  useEffect(() => {
+    let arr = notification.concat(message, event);
+    arr = arr.filter((item: any) => !item.read);
+    setTotalCount(arr.length);
+  });
+
   // 显示切换
   const toggleVisible = () => setVisible(!visible);
-
-  const getMsgCount = (data: any) => {
-    return data.reduce((prev: any, cur: any) => {
-      let res = !cur.read ? 1 : 0;
-      return prev + res;
-    }, 0);
-  };
 
   const notice = (
     <div className={styles.notice}>
       <NoticeTabs>
         <Tab
           tabKey="notification"
-          title={`通知(${getMsgCount(notification)})`}
+          title="通知"
           data={notification}
           onClick={(item, index) =>
             changeReadState(setNotification, item, index)
@@ -156,13 +157,13 @@ const NoticeTip: React.FC<any> = props => {
         />
         <Tab
           tabKey="message"
-          title={`消息(${getMsgCount(message)})`}
+          title="消息"
           data={message}
           onClick={(item, index) => changeReadState(setMessage, item, index)}
         />
         <Tab
           tabKey="event"
-          title={`待办(${getMsgCount(event)})`}
+          title="待办"
           data={event}
           onClick={(item, index) => changeReadState(setEvent, item, index)}
         />
@@ -180,9 +181,11 @@ const NoticeTip: React.FC<any> = props => {
         className={styles.noticeIcon + ' notice-icon'}
         onClick={toggleVisible}
       >
-        <Space>
-          <MessageOutlined />
-        </Space>
+        <Badge count={totalCount}>
+          <Space>
+            <MessageOutlined />
+          </Space>
+        </Badge>
       </div>
     </Dropdown>
   );
