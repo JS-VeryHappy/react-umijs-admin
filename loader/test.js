@@ -1,4 +1,3 @@
-
 var source = `
 import React, { useState } from 'react';
 import styles from './index.less';
@@ -45,7 +44,11 @@ function Home() {
 export default Home;
 `;
 
-
-source = source.replace(/h1/g,'h3')
-
-console.log(source);
+var path =
+  '/Applications/MAMP/htdocs/myframework/react-umijs-admin/src/pages/user/info1/HeaderCustom/index.tsx';
+var reg = /.*Custom\/.*(\.tsx)$/g;
+if (reg.test(path)) {
+  console.log('====================================');
+  console.log(path);
+  console.log('====================================');
+}
