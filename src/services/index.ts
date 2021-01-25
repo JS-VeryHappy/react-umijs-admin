@@ -50,3 +50,10 @@ export function getListData(data: any) {
 export function getChartData(data: any) {
   return postBody('/api/workbench/chart', data);
 }
+
+/**
+ * meassage list测试
+ */
+export function getMessageList() {
+  return postBody('/api/message/list');
+}

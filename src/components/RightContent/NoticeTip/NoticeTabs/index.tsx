@@ -1,20 +1,22 @@
 import React from 'react';
-
 import { Tabs } from 'antd';
-import NoticeList from './NoticeList';
+// import {useModel} from 'umi'
+
+import './index.less';
+import NoticeList from '../NoticeList';
 
 const { TabPane } = Tabs;
 
-const Notice: React.FC<any> & { Tab: typeof NoticeList } = props => {
+const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const { children } = props;
 
   const panes: React.ReactNode[] = [];
+
   React.Children.forEach(children, (child: React.ReactElement, index) => {
     if (!child) {
       return;
     }
     const { data, tabKey, title, onClick } = child.props;
-
     panes.push(
       <TabPane tab={title} key={tabKey}>
         <NoticeList
@@ -26,14 +28,10 @@ const Notice: React.FC<any> & { Tab: typeof NoticeList } = props => {
     );
   });
 
-  return (
-    <div>
-      <p>Notice</p>
-      <Tabs>{panes}</Tabs>
-    </div>
-  );
+  // onTabClick={onTabClick}
+  return <Tabs>{panes}</Tabs>;
 };
 
-Notice.Tab = NoticeList;
+NoticeTabs.Tab = NoticeList;
 
-export default Notice;
+export default NoticeTabs;

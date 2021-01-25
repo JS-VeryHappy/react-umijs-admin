@@ -4,6 +4,7 @@ export default {
   'menu.user': '用户中心',
   'menu.user.info1': '个人资料1',
   'menu.user.info2': '个人资料2',
+  'menu.user.message': '消息查看',
   'menu.protable': '表格',
   'layout.header.logout': '退出登录',
   'layout.header.userinfo': '个人中心',
