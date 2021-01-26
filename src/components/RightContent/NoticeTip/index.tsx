@@ -5,6 +5,11 @@ import { useModel } from 'umi';
 
 import NoticeTabs from './NoticeTabs';
 import styles from './index.less';
+import {
+  getNoticeNotification,
+  getNoticeMessage,
+  getNoticeEvent,
+} from '@/services';
 
 const { Tab } = NoticeTabs;
 
@@ -30,80 +35,9 @@ const NoticeTip: React.FC<any> = props => {
   } = useModel('useNoticeModel');
   // 可以加入getInitialState
   useEffect(() => {
-    setTimeout(() => {
-      setNotification([
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
-          title: '你收到了 14 份新周报',
-          datetime: '3 年前',
-          read: false,
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
-          title: '你推荐的 曲妮妮 已通过第三轮面试',
-          datetime: '3 年前',
-          read: false,
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
-          title: '这种模板可以区分多种通知类型',
-          datetime: '3 年前',
-          read: false,
-        },
-      ]);
-      setMessage([
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-          title: '曲丽丽 评论了你',
-          datetime: '3 年前',
-          read: false,
-          description: '描述信息描述信息描述信息',
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-          title: '朱偏右 回复了你',
-          datetime: '3 年前',
-          read: false,
-          description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-          title: '标题',
-          datetime: '3 年前',
-          read: false,
-          description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
-        },
-      ]);
-      setEvent([
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
-          title: '你收到了 14 份新周报',
-          datetime: '3 年前',
-          read: false,
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
-          title: '你推荐的 曲妮妮 已通过第三轮面试',
-          datetime: '3 年前',
-          read: false,
-        },
-        {
-          avatar:
-            'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
-          title: '这种模板可以区分多种通知类型',
-          datetime: '3 年前',
-          read: false,
-        },
-      ]);
-    }, 3000);
+    getNoticeNotification().then(res => setNotification(res.data.list));
+    getNoticeMessage().then(res => setMessage(res.data.list));
+    getNoticeEvent().then(res => setEvent(res.data.list));
   }, []);
 
   // 切换已读状态
@@ -136,10 +70,11 @@ const NoticeTip: React.FC<any> = props => {
 
   // 消息中心微标数
   useEffect(() => {
-    let arr = notification.concat(message, event);
-    arr = arr.filter((item: any) => !item.read);
+    let arr = notification
+      .concat(message, event)
+      .filter((item: any) => !item.read);
     setTotalCount(arr.length);
-  });
+  }, [notification, message, event]);
 
   // 显示切换
   const toggleVisible = () => setVisible(!visible);

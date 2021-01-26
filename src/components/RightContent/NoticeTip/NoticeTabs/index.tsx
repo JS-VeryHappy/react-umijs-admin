@@ -10,21 +10,10 @@ const { TabPane } = Tabs;
 const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const { children } = props;
   const panes: React.ReactNode[] = [];
-  const {
-    notification,
-    message,
-    event,
-    setNotification,
-    setMessage,
-    setEvent,
-  } = useModel('useNoticeModel');
+  const { setNotification, setMessage, setEvent } = useModel('useNoticeModel');
 
-  const getMsgCount = (data: any) => {
-    return data.reduce((prev: any, cur: any) => {
-      let res = !cur.read ? 1 : 0;
-      return prev + res;
-    }, 0);
-  };
+  const getMsgCount = (data: any) =>
+    data.reduce((prev: any, cur: any) => prev + (!cur.read ? 1 : 0), 0);
 
   const onViewMore = (e: any) => {
     Message.info('no more ╮(￣▽ ￣)╭');
@@ -37,9 +26,7 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   };
 
   React.Children.forEach(children, (child: React.ReactElement, index) => {
-    if (!child) {
-      return;
-    }
+    if (!child) return;
     const { data, tabKey, title, onClick } = child.props;
     let tempTitle =
       getMsgCount(data) === 0 ? title : `${title}(${getMsgCount(data)})`;
@@ -51,15 +38,13 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
           showViewMore={true}
           viewMoreText="查看更多"
           onViewMore={onViewMore}
-          data={data || []}
+          data={data}
           onClick={onClick}
           {...child.props}
         ></NoticeList>
       </TabPane>,
     );
   });
-
-  // onTabClick={onTabClick}
   return <Tabs>{panes}</Tabs>;
 };
 

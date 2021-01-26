@@ -57,3 +57,24 @@ export function getChartData(data: any) {
 export function getMessageList() {
   return postBody('/api/message/list');
 }
+
+/**
+ * 消息中心 通知list
+ */
+export function getNoticeNotification() {
+  return postBody('/api/notice/notification');
+}
+
+/**
+ * 消息中心 消息list
+ */
+export function getNoticeMessage() {
+  return postBody('/api/notice/message');
+}
+
+/**
+ * 消息中心 待办list
+ */
+export function getNoticeEvent() {
+  return postBody('/api/notice/event');
+}
