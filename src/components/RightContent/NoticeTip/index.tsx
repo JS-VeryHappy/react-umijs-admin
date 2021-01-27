@@ -4,7 +4,7 @@ import { MessageOutlined } from '@ant-design/icons';
 import { useModel } from 'umi';
 
 import NoticeTabs from './NoticeTabs';
-import styles from './index.less';
+import './index.less';
 import {
   getNoticeNotification,
   getNoticeMessage,
@@ -35,9 +35,18 @@ const NoticeTip: React.FC<any> = props => {
   } = useModel('useNoticeModel');
   // 可以加入getInitialState
   useEffect(() => {
-    getNoticeNotification().then(res => setNotification(res.data.list));
-    getNoticeMessage().then(res => setMessage(res.data.list));
-    getNoticeEvent().then(res => setEvent(res.data.list));
+    getNoticeNotification().then(
+      res => setNotification(res.data.list),
+      err => console.log(err),
+    );
+    getNoticeMessage().then(
+      res => setMessage(res.data.list),
+      err => console.log(err),
+    );
+    getNoticeEvent().then(
+      res => setEvent(res.data.list),
+      err => console.log(err),
+    );
   }, []);
 
   // 切换已读状态
@@ -56,8 +65,8 @@ const NoticeTip: React.FC<any> = props => {
       notice = null;
     let closeNoticeTabs = function(event: any) {
       target = event.target;
-      icon = document.querySelector('.notice-icon');
-      notice = document.querySelector('.notice-dropdown');
+      icon = document.querySelector('.notice-tip__icon');
+      notice = document.querySelector('.notice-tip__dropdown');
       if (icon?.contains(target)) return;
       if (!notice?.contains(target)) setVisible(false);
     };
@@ -80,7 +89,7 @@ const NoticeTip: React.FC<any> = props => {
   const toggleVisible = () => setVisible(!visible);
 
   const notice = (
-    <div className={styles.notice}>
+    <div className="notice-tip">
       <NoticeTabs>
         <Tab
           tabKey="notification"
@@ -109,13 +118,10 @@ const NoticeTip: React.FC<any> = props => {
     <Dropdown
       overlay={notice}
       visible={visible}
-      overlayClassName="notice-dropdown"
+      overlayClassName="notice-tip__dropdown"
     >
       {/* 待优化 */}
-      <div
-        className={styles.noticeIcon + ' notice-icon'}
-        onClick={toggleVisible}
-      >
+      <div className="notice-tip__icon" onClick={toggleVisible}>
         <Badge count={totalCount}>
           <Space>
             <MessageOutlined />

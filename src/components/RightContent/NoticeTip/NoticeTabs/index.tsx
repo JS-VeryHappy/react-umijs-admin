@@ -7,6 +7,8 @@ import NoticeList from '../NoticeList';
 
 const { TabPane } = Tabs;
 
+const NOTICE_TYPE = ['notification', 'message', 'event'];
+
 const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const { children } = props;
   const panes: React.ReactNode[] = [];
@@ -19,10 +21,11 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
     Message.info('no more ╮(￣▽ ￣)╭');
   };
 
+  // 待优化
   const onClear = (type: any) => {
-    if (type === 0) setNotification([]);
-    else if (type === 1) setMessage([]);
-    else if (type === 2) setEvent([]);
+    if (type === 'notification') setNotification([]);
+    else if (type === 'message') setMessage([]);
+    else if (type === 'event') setEvent([]);
   };
 
   React.Children.forEach(children, (child: React.ReactElement, index) => {
@@ -34,7 +37,7 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
       <TabPane tab={tempTitle} key={tabKey}>
         <NoticeList
           clearText="清空"
-          onClear={() => onClear(index)}
+          onClear={() => onClear(NOTICE_TYPE[index])}
           showViewMore={true}
           viewMoreText="查看更多"
           onViewMore={onViewMore}
