@@ -107,4 +107,54 @@ export default {
     },
     3000,
   ),
+  'POST /api/workbench/group': getObj.bind(
+    null,
+    {
+      list: [
+        {
+          url:
+            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=339776857,3862571302&fm=26&gp=0.jpg',
+          name: '司马懿',
+          description: '有个蠢货四季都在扇扇子',
+          tag: '近法',
+        },
+        {
+          url:
+            'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1220309745,340208091&fm=11&gp=0.jpg',
+          name: '典韦',
+          description: '让我忘记疯狂',
+          tag: '重战',
+        },
+        {
+          url:
+            'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2934485787,3779147842&fm=26&gp=0.jpg',
+          name: '蔡文姬',
+          description: '喜欢的宠物是阿典',
+          tag: '法辅',
+        },
+        {
+          url:
+            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1825415128,3020510221&fm=26&gp=0.jpg',
+          name: '曹操',
+          description: '苏醒了，猎杀时刻',
+          tag: '轻战',
+        },
+        {
+          url:
+            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3515962438,268417503&fm=11&gp=0.jpg',
+          name: '甄姬',
+          description: '人家抒发唉声时不要随便破坏氛围好吗',
+          tag: '远法',
+        },
+        {
+          url:
+            'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1709526763,3102966611&fm=15&gp=0.jpg',
+          name: '夏侯惇',
+          description: '……',
+          tag: '物坦',
+        },
+      ],
+    },
+    2000,
+  ),
 };

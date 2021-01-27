@@ -152,11 +152,11 @@ export default function WorkBench() {
             <Skeleton loading={!loadingList} active paragraph={{ rows: 3 }}>
               <div className={styles.rate}>
                 可信度：
-                <Rate allowHalf defaultValue={0.5} />
+                <Rate allowHalf defaultValue={0.5} disabled={true} />
               </div>
             </Skeleton>
           </Card>
-          <Card style={{ marginBottom: 24 }} bordered={false} title="沙雕指数">
+          <Card style={{ marginBottom: 24 }} bordered={false} title="划水指数">
             <Skeleton loading={!loading} active paragraph={{ rows: 10 }}>
               <Line {...config} />
             </Skeleton>

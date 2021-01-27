@@ -52,6 +52,13 @@ export function getChartData(data: any) {
 }
 
 /**
+ * workbench group测试
+ */
+export function getGroupData(data: any) {
+  return postBody('/api/workbench/group', data);
+}
+
+/**
  * meassage list测试
  */
 export function getMessageList() {
