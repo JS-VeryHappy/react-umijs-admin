@@ -5,6 +5,8 @@ import routes from './route';
 import dumi from './dumi';
 import theme from './theme';
 
+const OpenBrowser = require('open-browser-webpack-plugin');
+
 export default defineConfig({
   /**
    * https://umijs.org/zh-CN/docs/fast-refresh
@@ -95,6 +97,10 @@ export default defineConfig({
         $global: [resolve(`src/utils/globalUtils.ts`), 'default'],
       }),
     );
+
+    config
+      .plugin('$open-browser-webpack-plugin')
+      .use(new OpenBrowser({ url: 'http://127.0.0.1:8080' }));
 
     //配置一个自定义loader
     // config.module
