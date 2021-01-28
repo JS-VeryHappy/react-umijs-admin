@@ -21,18 +21,19 @@ export type NoticeIconTabProps = {
   onViewMore?: (e: any) => void;
 };
 
-const NoticeList: React.FC<NoticeIconTabProps> = ({
-  data = [],
-  onClick,
-  onClear,
-  title,
-  onViewMore,
-  emptyText,
-  showClear = true,
-  clearText,
-  viewMoreText,
-  showViewMore = false,
-}) => {
+const NoticeList = (props: NoticeIconTabProps): React.ReactElement => {
+  let {
+    data = [],
+    onClick,
+    onClear,
+    title,
+    onViewMore,
+    emptyText,
+    showClear = true,
+    clearText,
+    viewMoreText,
+    showViewMore = false,
+  } = props;
   return (
     <div>
       <List

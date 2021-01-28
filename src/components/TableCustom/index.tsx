@@ -35,8 +35,9 @@ function TableCustom<ListItem>(
     collapseRender: (collapsed: boolean, showCollapseButton?: any) => {
       return <div></div>;
     },
+    // { searchText: string; resetText: string }
     optionRender: (
-      searchConfig: { searchText: string; resetText: string },
+      searchConfig: Record<string, any>,
       formProps: { form: any },
     ) => {
       let { searchText, resetText } = searchConfig;
