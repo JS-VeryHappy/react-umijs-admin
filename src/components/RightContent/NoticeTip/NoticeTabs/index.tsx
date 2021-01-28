@@ -6,7 +6,6 @@ import './index.less';
 import NoticeList from '../NoticeList';
 
 const { TabPane } = Tabs;
-
 const NOTICE_TYPE = ['notification', 'message', 'event'];
 
 const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {

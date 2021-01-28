@@ -13,15 +13,7 @@ import {
 
 const { Tab } = NoticeTabs;
 
-interface NotificationData {
-  avatar?: string;
-  title?: string;
-  datetime?: string;
-  read: boolean;
-  description?: string;
-}
-
-const NoticeTip: React.FC<any> = props => {
+const NoticeTip = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [totalCount, setTotalCount] = useState<number>(0);
 
@@ -50,12 +42,10 @@ const NoticeTip: React.FC<any> = props => {
   }, []);
 
   // 切换已读状态
-  const changeReadState = (handler: any, item: any, index: number) => {
-    if (item.read) return;
-    handler((item: any[]) => {
-      item[index].read = true;
-      return [...item];
-    });
+  const changeReadState = (item: any, index: number) => {
+    if (item.read) return item;
+    item[index].read = true;
+    return [...item];
   };
 
   // 全局点击事件, 用于判断面板是否关闭
@@ -96,20 +86,20 @@ const NoticeTip: React.FC<any> = props => {
           title="通知"
           data={notification}
           onClick={(item, index) =>
-            changeReadState(setNotification, item, index)
+            setNotification(changeReadState(item, index))
           }
         />
         <Tab
           tabKey="message"
           title="消息"
           data={message}
-          onClick={(item, index) => changeReadState(setMessage, item, index)}
+          onClick={(item, index) => setMessage(changeReadState(item, index))}
         />
         <Tab
           tabKey="event"
           title="待办"
           data={event}
-          onClick={(item, index) => changeReadState(setEvent, item, index)}
+          onClick={(item, index) => setEvent(changeReadState(item, index))}
         />
       </NoticeTabs>
     </div>

@@ -26,11 +26,6 @@ function TableCustom<ListItem>(
     children,
   } = props;
 
-  // React.Children.forEach(children, (child) => {
-  //   console.log(child);
-  // })
-  console.log(123);
-
   const [dataSource, setDataSource] = useState<ListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [columns, setColumns] = useState<ProColumns<ListItem>[]>(props.columns);
