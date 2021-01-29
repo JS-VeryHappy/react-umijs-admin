@@ -59,6 +59,12 @@ const routes: IBestAFSRoute[] = [
             name: '数据1',
             component: '@/pages/panel/dashBoard/index',
           },
+          {
+            locale: 'menu.panel.spot',
+            path: '/panel/spot',
+            name: '视图',
+            component: '@/pages/panel/spot/index',
+          },
         ],
       },
       {
