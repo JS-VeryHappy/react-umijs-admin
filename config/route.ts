@@ -62,8 +62,14 @@ const routes: IBestAFSRoute[] = [
           {
             locale: 'menu.panel.spot',
             path: '/panel/spot',
-            name: '视图',
+            name: '变型转换',
             component: '@/pages/panel/spot/index',
+          },
+          {
+            locale: 'menu.panel.chart',
+            path: '/panel/chart',
+            name: '图表',
+            component: '@/pages/panel/chart/index',
           },
         ],
       },
