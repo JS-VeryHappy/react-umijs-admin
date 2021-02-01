@@ -16,9 +16,7 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const getMsgCount = (data: any) =>
     data.reduce((prev: any, cur: any) => prev + (!cur.read ? 1 : 0), 0);
 
-  const onViewMore = (e: any) => {
-    Message.info('no more ╮(￣▽ ￣)╭');
-  };
+  const onViewMore = (e: any) => Message.info('no more ╮(￣▽ ￣)╭');
 
   // 待优化
   const onClear = (type: any) => {
