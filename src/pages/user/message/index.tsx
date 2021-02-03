@@ -23,7 +23,7 @@ import {
 const { TabPane } = Tabs;
 const { Text } = Typography;
 
-const Message = () => {
+function Message() {
   const [tabPos, setTabPosition] = useState('top');
 
   let [tabs, setTabs] = useState([
@@ -121,7 +121,9 @@ const Message = () => {
     },
   ]);
 
-  // const input1 = useRef(null);
+  const [iptVal, setIptVal] = useState('');
+
+  const inputRef = useRef(null);
 
   const onChecked = (item: any) => {
     // console.log(item);
@@ -177,8 +179,6 @@ const Message = () => {
   };
 
   const onPressEnter = (event: any) => {
-    // console.log(input1);
-
     let arr = data2;
 
     arr.push({
@@ -190,6 +190,8 @@ const Message = () => {
     setData2([...arr]);
 
     // 清除内容
+    // @ts-ignore
+    inputRef.current.state.value = '';
   };
 
   const onDelete = (e: any, index: number) => {
@@ -237,7 +239,11 @@ const Message = () => {
               )}
             />
 
-            <Input placeholder="Enter todo..." onPressEnter={onPressEnter} />
+            <Input
+              ref={inputRef}
+              placeholder="Enter todo..."
+              onPressEnter={onPressEnter}
+            />
           </Card>
         </Col>
         <Col xl={12} lg={24} md={24} sm={24} xs={24}>
@@ -246,6 +252,6 @@ const Message = () => {
       </Row>
     </>
   );
-};
+}
 
 export default Message;
