@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory, useRequest } from 'umi';
+import { getDoardData } from '@/services';
 
 import { Row, Col, Typography, Divider, Card, Button, Table } from 'antd';
 import { TableOutlined, LineChartOutlined } from '@ant-design/icons';
@@ -9,16 +11,21 @@ import styles from './index.less';
 const { Title, Text, Paragraph } = Typography;
 
 function DashBoard() {
-  const data = [
-    { key: '1', year: '1992', value: 4, address: '看风景看风景卡·' },
-    { key: '2', year: '1993', value: 3.5, address: '看风景看风景卡·' },
-    { key: '3', year: '1994', value: 5, address: '看风景看风景卡·' },
-    { key: '4', year: '1995', value: 4.9, address: '看风景看风景卡·' },
-    { key: '5', year: '1996', value: 6, address: '看风景看风景卡·' },
-    { key: '6', year: '1997', value: 7, address: '看风景看风景卡·' },
-    { key: '7', year: '1998', value: 9, address: '看风景看风景卡·' },
-    { key: '8', year: '1999', value: 13, address: '看风景看风景卡·' },
-  ];
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+
+  // },[])
+
+  const { run: onFinish } = useRequest(async () => {
+    try {
+      let res = await getDoardData();
+
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
   const config = {
     data,

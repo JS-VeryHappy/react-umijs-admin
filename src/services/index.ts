@@ -62,6 +62,12 @@ export function getGroupData(data: any) {
 export function getMessageList() {
   return postBody('/api/message/list');
 }
+/**
+ * board 测试
+ */
+export function getDoardData() {
+  return postBody('/api/board/data');
+}
 
 /**
  * 消息中心 通知list
