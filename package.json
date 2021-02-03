@@ -48,6 +48,7 @@
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
     "omit.js": "^2.0.2",
+    "open-browser-webpack-plugin": "^0.0.5",
     "prettier": "^1.19.1",
     "qs": "^6.7.0",
     "react": "^16.14.0",

@@ -43,6 +43,7 @@ export default function WorkBench() {
       },
     },
   };
+  const { Meta } = Card;
   const loading = Object.keys(data).length;
   const loadingList = Object.keys(listData).length;
   return (
@@ -141,6 +142,68 @@ export default function WorkBench() {
               />
             </Skeleton>
           </Card>
+          <Row gutter={24}>
+            <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+              <Skeleton loading={!loadingList} active paragraph={{ rows: 6 }}>
+                <Card
+                  hoverable
+                  bodyStyle={{ padding: 20 }}
+                  style={{ marginBottom: 20 }}
+                  cover={
+                    <img
+                      alt="图片加载中"
+                      src="http://v.bootstrapmb.com/2019/7/ti2ib5398/demo-3/app-assets/img/photos/7.jpeg"
+                    />
+                  }
+                >
+                  <Meta
+                    title="Lonesome Boat"
+                    description="Sweet halvah dragée jelly-o halvah carrot cake oat cake. Donut jujubes jelly chocolate cake marzipan chocolate chocolate bar."
+                  ></Meta>
+                </Card>
+              </Skeleton>
+            </Col>
+            <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+              <Skeleton loading={!loadingList} active paragraph={{ rows: 6 }}>
+                <Card
+                  hoverable
+                  bodyStyle={{ padding: 20 }}
+                  style={{ marginBottom: 20 }}
+                  cover={
+                    <img
+                      alt="图片加载中"
+                      src="http://v.bootstrapmb.com/2019/7/ti2ib5398/demo-3/app-assets/img/photos/4.jpeg"
+                    />
+                  }
+                >
+                  <Meta
+                    title="Rain and Dew"
+                    description="Topping dessert marshmallow gummi bears chupa chups marzipan."
+                  ></Meta>
+                </Card>
+              </Skeleton>
+            </Col>
+            <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+              <Skeleton loading={!loadingList} active paragraph={{ rows: 6 }}>
+                <Card
+                  hoverable
+                  bodyStyle={{ padding: 20 }}
+                  style={{ marginBottom: 20 }}
+                  cover={
+                    <img
+                      alt="图片加载中"
+                      src="http://v.bootstrapmb.com/2019/7/ti2ib5398/demo-3/app-assets/img/photos/15.jpg"
+                    />
+                  }
+                >
+                  <Meta
+                    title="Star River"
+                    description="Bear claw sesame snaps gummies chocolate."
+                  ></Meta>
+                </Card>
+              </Skeleton>
+            </Col>
+          </Row>
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
           <Card
@@ -152,11 +215,11 @@ export default function WorkBench() {
             <Skeleton loading={!loadingList} active paragraph={{ rows: 3 }}>
               <div className={styles.rate}>
                 可信度：
-                <Rate allowHalf defaultValue={0.5} />
+                <Rate allowHalf defaultValue={0.5} disabled={true} />
               </div>
             </Skeleton>
           </Card>
-          <Card style={{ marginBottom: 24 }} bordered={false} title="沙雕指数">
+          <Card style={{ marginBottom: 24 }} bordered={false} title="划水指数">
             <Skeleton loading={!loading} active paragraph={{ rows: 10 }}>
               <Line {...config} />
             </Skeleton>

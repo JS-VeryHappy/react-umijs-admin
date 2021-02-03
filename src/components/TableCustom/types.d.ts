@@ -38,7 +38,9 @@ interface TablePropsType<T> {
    * @description 列表数据API
    *
    */
-  fetchGetList: <U extends T>(requestParams: U) => Promise<RequestResponse<any>>;
+  fetchGetList: <U extends T>(
+    requestParams: U,
+  ) => Promise<RequestResponse<Record<any, any>>>;
   /**
    * @description 搜索表单下方按钮组配置
    *
@@ -50,13 +52,6 @@ interface TablePropsType<T> {
    */
   paramsFormatter?: (params: any) => any;
 }
-
-interface GetList {
-  code: number;
-  data: any;
-  reason: string;
-}
-
 /**
  * 列定义接口(继承于ProColumnType)
  */
@@ -77,7 +72,7 @@ interface ButtonGroupType {
   /**
    * @description 点击回调
    */
-  handler: (event: any) => void;
+  handler: (event: Record<any, any>) => void;
 }
 
 /**

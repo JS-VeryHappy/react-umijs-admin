@@ -52,6 +52,25 @@ const routes: IBestAFSRoute[] = [
             name: '工作台',
             component: '@/pages/panel/workbench/index',
           },
+          {
+            exact: true,
+            locale: 'menu.panel.dashBoard',
+            path: '/panel/dashBoard',
+            name: '数据1',
+            component: '@/pages/panel/dashBoard/index',
+          },
+          // {
+          //   locale: 'menu.panel.spot',
+          //   path: '/panel/spot',
+          //   name: '变型转换',
+          //   component: '@/pages/panel/spot/index',
+          // },
+          {
+            locale: 'menu.panel.chart',
+            path: '/panel/chart',
+            name: '图表',
+            component: '@/pages/panel/chart/index',
+          },
         ],
       },
       {

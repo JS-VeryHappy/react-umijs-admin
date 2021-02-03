@@ -26,11 +26,6 @@ function TableCustom<ListItem>(
     children,
   } = props;
 
-  // React.Children.forEach(children, (child) => {
-  //   console.log(child);
-  // })
-  console.log(123);
-
   const [dataSource, setDataSource] = useState<ListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [columns, setColumns] = useState<ProColumns<ListItem>[]>(props.columns);
@@ -40,8 +35,9 @@ function TableCustom<ListItem>(
     collapseRender: (collapsed: boolean, showCollapseButton?: any) => {
       return <div></div>;
     },
+    // { searchText: string; resetText: string }
     optionRender: (
-      searchConfig: { searchText: string; resetText: string },
+      searchConfig: Record<string, any>,
       formProps: { form: any },
     ) => {
       let { searchText, resetText } = searchConfig;

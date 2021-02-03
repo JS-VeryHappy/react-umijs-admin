@@ -33,6 +33,7 @@ import {
   Scatter,
 } from '@ant-design/charts';
 import ProCard from '@ant-design/pro-card';
+import style from './index.less';
 
 export default function Join() {
   const { Text, Title } = Typography;
@@ -608,6 +609,7 @@ export default function Join() {
           <ProCard title="迷之提问" style={{ color: 'rgb(98,148,249)' }}>
             <Timeline mode="left">
               <Timeline.Item
+                className={style.timeLineItem}
                 label="问题一 "
                 dot={
                   <QuestionCircleFilled

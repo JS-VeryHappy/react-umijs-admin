@@ -3,19 +3,6 @@ import { List, Avatar } from 'antd';
 import styles from './NoticeList.less';
 import classNames from 'classnames';
 
-// export type NoticeIconData = {
-//   avatar?: string | React.ReactNode;
-//   title?: React.ReactNode;
-//   description?: React.ReactNode;
-//   datetime?: React.ReactNode;
-//   extra?: React.ReactNode;
-//   style?: React.CSSProperties;
-//   key?: string | number;
-//   read?: boolean;
-// }
-
-type NoticeIconData = any;
-
 export type NoticeIconTabProps = {
   count?: number;
   name?: string;
@@ -24,28 +11,29 @@ export type NoticeIconTabProps = {
   style?: React.CSSProperties;
   title?: string; // 底部标题
   tabKey: string;
-  data: NoticeIconData[];
-  onClick?: (item: NoticeIconData, index: number) => void;
+  data: any[];
+  onClick?: (item: any, index: number) => void;
   onClear?: () => void;
   emptyText?: string;
   clearText?: string;
   viewMoreText?: string;
-  list?: NoticeIconData[];
+  list?: any[];
   onViewMore?: (e: any) => void;
 };
 
-const NoticeList: React.FC<NoticeIconTabProps> = ({
-  data = [],
-  onClick,
-  onClear,
-  title,
-  onViewMore,
-  emptyText,
-  showClear = true,
-  clearText,
-  viewMoreText,
-  showViewMore = false,
-}) => {
+const NoticeList = (props: NoticeIconTabProps): React.ReactElement => {
+  let {
+    data = [],
+    onClick,
+    onClear,
+    title,
+    onViewMore,
+    emptyText,
+    showClear = true,
+    clearText,
+    viewMoreText,
+    showViewMore = false,
+  } = props;
   return (
     <div>
       <List

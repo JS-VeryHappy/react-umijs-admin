@@ -26,9 +26,7 @@ export async function isLogin() {
 /**
  * protable select测试
  */
-export function getSelect() {
-  return getQuery('/api/protable/select');
-}
+export const getSelect = () => getQuery('/api/protable/select');
 
 /**
  * protable list测试
@@ -52,8 +50,30 @@ export function getChartData(data: any) {
 }
 
 /**
+ * workbench group测试
+ */
+export function getGroupData(data: any) {
+  return postBody('/api/workbench/group', data);
+}
+
+/**
  * meassage list测试
  */
 export function getMessageList() {
   return postBody('/api/message/list');
 }
+
+/**
+ * 消息中心 通知list
+ */
+export const getNoticeNotification = () => postBody('/api/notice/notification');
+
+/**
+ * 消息中心 消息list
+ */
+export const getNoticeMessage = () => postBody('/api/notice/message');
+
+/**
+ * 消息中心 待办list
+ */
+export const getNoticeEvent = () => postBody('/api/notice/event');
