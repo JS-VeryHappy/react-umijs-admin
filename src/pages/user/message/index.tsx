@@ -241,15 +241,14 @@ function Message() {
                   <List
                     itemLayout="horizontal"
                     dataSource={list}
-                    renderItem={(item, index) => (
+                    renderItem={(item: any, index) => (
                       <List.Item>
                         <div>
-                          {/* @ts-ignore */}
                           <Title level={4}>{item.title}</Title>
                           <Tag color="#f50">Ant Design</Tag>
                           <Paragraph>
                             {/* @ts-ignore */}
-                            <blockquote>{item.constent}</blockquote>
+                            <blockquote>{item.content}</blockquote>
                           </Paragraph>
                         </div>
                       </List.Item>
