@@ -18,10 +18,12 @@ import {
   Checkbox,
   Typography,
   Space,
+  Tag,
+  Skeleton,
 } from 'antd';
 
 const { TabPane } = Tabs;
-const { Text } = Typography;
+const { Text, Title, Paragraph } = Typography;
 
 function Message() {
   const [tabPos, setTabPosition] = useState('top');
@@ -57,43 +59,36 @@ function Message() {
     { name: '回收站', key: 'delete', data: [] },
   ]);
 
-  const [initLoading, setInitLoading] = useState(false);
+  const [initLoading, setInitLoading] = useState(true);
+
+  // const [loading,setLoading] = useState(false)
 
   const [list, setList] = useState([]);
 
-  const { run: onFinish } = useRequest(async (values: any) => {
-    try {
-      let res = await getMessageList();
+  // const getListData = async () => {
+  //   setLoading(true);
+  //   let {data} = await getMessageList();
+  //   // @ts-ignore
+  //   data && setList([...data]);
 
-      setInitLoading(true);
-      setList(res.data);
+  //   setLoading(false);
+  // };
+
+  const {} = useRequest(async (values: any) => {
+    try {
+      let res = await getMessageList(values);
+      setList(res.data.list);
     } catch (err) {
       console.log(err);
     }
   });
 
-  const [data, setData] = useState([
-    {
-      title: 'Ant Design Title 1',
-      isReaded: false,
-      isDeleted: false,
-    },
-    {
-      title: 'Ant Design Title 2',
-      isReaded: false,
-      isDeleted: false,
-    },
-    {
-      title: 'Ant Design Title 3',
-      isReaded: false,
-      isDeleted: false,
-    },
-    {
-      title: 'Ant Design Title 4',
-      isReaded: false,
-      isDeleted: false,
-    },
-  ]);
+  const loading = Object.keys(list).length;
+
+  // useEffect(() => {
+  //   console.log("useEffect");
+
+  // }, []);
 
   let checkedData = [];
   let delData = [];
@@ -120,8 +115,6 @@ function Message() {
       isDelete: false,
     },
   ]);
-
-  const [iptVal, setIptVal] = useState('');
 
   const inputRef = useRef(null);
 
@@ -174,22 +167,17 @@ function Message() {
     arr.forEach(i => {
       if (i.id === item.id) i.isDelete = !i.isDelete;
     });
-
     setData2([...arr]);
   };
 
   const onPressEnter = (event: any) => {
     let arr = data2;
-
     arr.push({
       id: Math.random(),
       name: event.target.value,
       isDelete: false,
     });
-
     setData2([...arr]);
-
-    // 清除内容
     // @ts-ignore
     inputRef.current.state.value = '';
   };
@@ -230,7 +218,6 @@ function Message() {
                   <Checkbox onChange={e => onChangeStatus(e, item)}>
                     <Text delete={item.isDelete}>{item.name}</Text>
                   </Checkbox>
-
                   <CloseOutlined
                     style={{ cursor: 'pointer' }}
                     onClick={e => onDelete(e, index)}
@@ -238,7 +225,6 @@ function Message() {
                 </List.Item>
               )}
             />
-
             <Input
               ref={inputRef}
               placeholder="Enter todo..."
@@ -246,8 +232,39 @@ function Message() {
             />
           </Card>
         </Col>
+
         <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-          <Card title="STATUS">aaa</Card>
+          <Skeleton loading={!loading} active>
+            <Card title="STATUS">
+              <Tabs tabPosition="left">
+                <TabPane tab="Tab 1" key="1">
+                  <List
+                    itemLayout="horizontal"
+                    dataSource={list}
+                    renderItem={(item, index) => (
+                      <List.Item>
+                        <div>
+                          {/* @ts-ignore */}
+                          <Title level={4}>{item.title}</Title>
+                          <Tag color="#f50">Ant Design</Tag>
+                          <Paragraph>
+                            {/* @ts-ignore */}
+                            <blockquote>{item.constent}</blockquote>
+                          </Paragraph>
+                        </div>
+                      </List.Item>
+                    )}
+                  />
+                </TabPane>
+                <TabPane tab="Tab 2" key="2">
+                  Content of Tab 2
+                </TabPane>
+                <TabPane tab="Tab 3" key="3">
+                  Content of Tab 3
+                </TabPane>
+              </Tabs>
+            </Card>
+          </Skeleton>
         </Col>
       </Row>
     </>

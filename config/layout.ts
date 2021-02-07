@@ -43,7 +43,13 @@ export default {
       ) {
         return React.createElement(
           PageContainer,
-          { fixedHeader: false },
+          {
+            fixedHeader: false,
+            header: {
+              // title: "",
+              // breadcrumb: []
+            },
+          },
           children,
         );
       }

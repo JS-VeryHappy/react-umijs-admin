@@ -59,8 +59,8 @@ export function getGroupData(data: any) {
 /**
  * meassage list测试
  */
-export function getMessageList() {
-  return postBody('/api/message/list');
+export function getMessageList(data: any) {
+  return postBody('/api/message/list', data);
 }
 /**
  * board 测试
