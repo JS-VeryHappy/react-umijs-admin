@@ -11,4 +11,5 @@ export default {
   'menu.protable': '表格',
   'layout.header.logout': '退出登录',
   'layout.header.userinfo': '个人中心',
+  'menu.panel.hookTest': 'hookTest',
 };

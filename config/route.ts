@@ -71,6 +71,12 @@ const routes: IBestAFSRoute[] = [
             name: '图表',
             component: '@/pages/panel/chart/index',
           },
+          {
+            locale: 'menu.panel.hookTest',
+            path: '/panel/test',
+            name: '自定义hook测试',
+            component: '@/pages/test1',
+          },
         ],
       },
       {
