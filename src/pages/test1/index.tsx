@@ -4,8 +4,8 @@ import { useWatch } from '@/utils/hook';
 export default () => {
   const [count, setCount] = useState(0);
   const stop = useWatch<number>(count, old => {
-    console.log('newValue: ', count);
-    console.log('oldValue: ', old);
+    console.log('count --- newValue: ', count);
+    console.log('count --- oldValue: ', old);
   });
 
   useEffect(() => {
@@ -19,5 +19,10 @@ export default () => {
     }
   }, []);
 
-  return <div>useWatch测试</div>;
+  return (
+    <div>
+      useWatch测试
+      <p> count --- {count}</p>
+    </div>
+  );
 };
