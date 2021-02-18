@@ -36,8 +36,8 @@ function UserInfo1() {
 
   return (
     <>
-      <Row justify="center" gutter={[0, 24]}>
-        <div className={styles.info}>
+      <div className={styles.info}>
+        <Row justify="center" gutter={[0, 24]}>
           <Col span={24}>
             <HeaderCustom name={name} desc={desc} headimg={headimg} />
           </Col>
@@ -47,8 +47,8 @@ function UserInfo1() {
           <Col span={24}>
             <TimelineCustom />
           </Col>
-        </div>
-      </Row>
+        </Row>
+      </div>
     </>
   );
 }

@@ -165,4 +165,9 @@ export default defineConfig({
 
   //加载dumi文档配置
   ...dumi,
+
+  autotipsComponents: {
+    enable: true,
+    exclude: ['/Example'],
+  },
 });

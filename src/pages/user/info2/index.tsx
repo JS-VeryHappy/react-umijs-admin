@@ -12,7 +12,7 @@ function UserInfo2() {
       <Row justify="center" gutter={[0, 24]}>
         <HeaderCustom />
       </Row>
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, 16]} style={{ marginTop: '12px' }}>
         <Col xs={0} sm={6} md={6} lg={6} xl={6}>
           <AboutCustom />
         </Col>
