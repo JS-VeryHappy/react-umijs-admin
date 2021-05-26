@@ -77,21 +77,6 @@ function RightContent(Props: any) {
 
   return (
     <div className={className}>
-      {process.env.UMI_ENV === 'local' && (
-        <Tooltip title="使用文档">
-          <a
-            style={{
-              color: 'inherit',
-            }}
-            target="_blank"
-            href="/~docs"
-            rel="noopener noreferrer"
-            className={styles.action}
-          >
-            <QuestionCircleOutlined />
-          </a>
-        </Tooltip>
-      )}
       <NoticeTip></NoticeTip>
 
       <Dropdown overlay={menu}>
