@@ -11,4 +11,5 @@ export default {
   'menu.protable': 'Table',
   'layout.header.logout': 'Logout',
   'layout.header.userinfo': 'Profile',
+  'menu.panel.hookTest': 'hookTest',
 };
