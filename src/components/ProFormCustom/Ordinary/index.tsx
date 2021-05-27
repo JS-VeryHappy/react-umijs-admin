@@ -1,12 +1,12 @@
 import React from 'react';
-import { PropsType } from '../types';
+import type { PropsType } from '../types';
 import ProForm, { ModalForm, DrawerForm } from '@ant-design/pro-form';
 import ComponentCustom from '../component';
 import { Form } from 'antd';
 import { setFormDefault, setFinishFailed, defaultConfig } from '../define';
 
 function ProFormCustom(props: PropsType) {
-  let {
+  const {
     labelAlign,
     size,
     onSubmit,
@@ -23,7 +23,7 @@ function ProFormCustom(props: PropsType) {
   $global.log('进入表单开始渲染');
   const onFinish = async (data: any) => {
     try {
-      let param: any = {};
+      const param: any = {};
 
       setFormDefault(param, formConfig, data);
 
@@ -34,7 +34,7 @@ function ProFormCustom(props: PropsType) {
   };
   const onFormCancel = async () => {
     try {
-      //如果是表单并且有取消回调
+      // 如果是表单并且有取消回调
       // @ts-ignore
       if (modal.onCancel && typeof modal.onCancel === 'function') {
         // @ts-ignore
@@ -49,8 +49,8 @@ function ProFormCustom(props: PropsType) {
     setFinishFailed(err);
   };
 
-  //处理按钮配置
-  let formSubmitter = {
+  // 处理按钮配置
+  const formSubmitter = {
     searchConfig:
       (submitter && submitter.searchConfig) ||
       (defaultConfig.submitter && defaultConfig.submitter.searchConfig),
@@ -75,8 +75,8 @@ function ProFormCustom(props: PropsType) {
     delete formSubmitter.render;
   }
 
-  //处理弹窗配置
-  let modalConfig: any = {};
+  // 处理弹窗配置
+  const modalConfig: any = {};
   if (modal) {
     if (modal.title) {
       modalConfig.title = modal.title;
@@ -103,7 +103,7 @@ function ProFormCustom(props: PropsType) {
 
   let CustomProForm: any = ProForm;
 
-  //处理弹窗类型
+  // 处理弹窗类型
   if (modal) {
     if (modal.mode === 'Drawer') {
       CustomProForm = DrawerForm;

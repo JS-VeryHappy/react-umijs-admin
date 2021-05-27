@@ -1,4 +1,5 @@
-import { FormChildrenConfigType, FormConfigType, PropsType } from './types';
+import type { PropsType } from './types';
+import { FormChildrenConfigType, FormConfigType } from './types';
 import { message } from 'antd';
 
 /**
@@ -33,7 +34,7 @@ const getChildrenParam = function(param: any, data: any, children: any) {
  * @param mode
  */
 const setFormDefault = function(param: any, formConfig: any, data: any, mode: string = 'ordinary') {
-  //处理回传参数默认值
+  // 处理回传参数默认值
   if (formConfig.length > 0) {
     formConfig.forEach((config: any, gindex: number) => {
       let children = [];
@@ -58,7 +59,7 @@ const setFormDefault = function(param: any, formConfig: any, data: any, mode: st
  * @param err
  */
 const setFinishFailed = function(err: any) {
-  let { errorFields } = err;
+  const { errorFields } = err;
   if (errorFields[0]) {
     message.error(errorFields[0].errors[0]);
   }

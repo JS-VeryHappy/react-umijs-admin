@@ -28,7 +28,7 @@ const { Text, Title, Paragraph } = Typography;
 function Message() {
   const [tabPos, setTabPosition] = useState('top');
 
-  let [tabs, setTabs] = useState([
+  const [tabs, setTabs] = useState([
     {
       name: '未读',
       key: 'new',
@@ -76,7 +76,7 @@ function Message() {
 
   const {} = useRequest(async (values: any) => {
     try {
-      let res = await getMessageList(values);
+      const res = await getMessageList(values);
       setList(res.data.list);
     } catch (err) {
       console.log(err);
@@ -90,10 +90,10 @@ function Message() {
 
   // }, []);
 
-  let checkedData = [];
-  let delData = [];
+  const checkedData = [];
+  const delData = [];
 
-  let [data2, setData2] = useState([
+  const [data2, setData2] = useState([
     {
       id: 1,
       name: 'Announcement for holiday',
@@ -163,7 +163,7 @@ function Message() {
   };
 
   const onChangeStatus = (event: any, item: any) => {
-    let arr = data2;
+    const arr = data2;
     arr.forEach(i => {
       if (i.id === item.id) i.isDelete = !i.isDelete;
     });
@@ -171,7 +171,7 @@ function Message() {
   };
 
   const onPressEnter = (event: any) => {
-    let arr = data2;
+    const arr = data2;
     arr.push({
       id: Math.random(),
       name: event.target.value,
@@ -183,7 +183,7 @@ function Message() {
   };
 
   const onDelete = (e: any, index: number) => {
-    let arr = data2;
+    const arr = data2;
 
     arr.splice(index, 1);
     setData2([...arr]);
@@ -195,7 +195,7 @@ function Message() {
         <Tabs tabPosition="top" onChange={onChangeTab}>
           {tabs.map((tab, index) => {
             return (
-              <TabPane tab={tab.name + '(' + tab.data.length + ')'} key={index}>
+              <TabPane tab={`${tab.name  }(${  tab.data.length  })`} key={index}>
                 {initLoading && tab.data.length ? ListCont(tab.data) : <Empty />}
               </TabPane>
             );

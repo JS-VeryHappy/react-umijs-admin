@@ -28,14 +28,14 @@ export function rootContainer(container: any, props) {
 export async function getInitialState() {
   $global.log('启动应用进入页面');
   if (history.location.pathname !== '/login' && history.location.pathname !== '/404') {
-    let res = await isLogin();
+    const res = await isLogin();
     return res.data;
   }
 
   return {};
 }
 
-//修改路由 可以根据后台或者权限动态设置路由  启动应用执行一次
+// 修改路由 可以根据后台或者权限动态设置路由  启动应用执行一次
 export function patchRoutes({ routes }: any) {
   $global.log('我可以调整路由');
   // routes.unshift({
@@ -45,23 +45,23 @@ export function patchRoutes({ routes }: any) {
   // });
 }
 
-//在初始加载和路由切换时做一些事情。每次切换都会执行
+// 在初始加载和路由切换时做一些事情。每次切换都会执行
 export function onRouteChange({ routes, matchedRoutes, location, action }: any) {
-  //测试发现 umijs 约定式404 无法主动触发、所以自定义写了一个 配出文档查看路由
+  // 测试发现 umijs 约定式404 无法主动触发、所以自定义写了一个 配出文档查看路由
   if (
     routes.length &&
     location.pathname.indexOf('~docs') === -1 &&
     location.pathname.indexOf('~demos') === -1
   ) {
-    let routeStr = JSON.stringify(routesConfig);
-    let has = routeStr.indexOf(`"path":"${location.pathname}"`);
+    const routeStr = JSON.stringify(routesConfig);
+    const has = routeStr.indexOf(`"path":"${location.pathname}"`);
     if (has === -1) {
       history.push('/404');
       return;
     }
   }
 
-  //设置页面标题
+  // 设置页面标题
   // if (matchedRoutes.length) {
   //    let title  = matchedRoutes[matchedRoutes.length - 1].route.title || false;
   //    if(title){

@@ -63,14 +63,14 @@ function InputTooltipCustom(Props: InputTooltipCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange(e.target.value);
     } else {
-      message.info('切换值' + e.target.value);
+      message.info(`切换值${  e.target.value}`);
     }
   };
 
   /**
    * 如果直接使用下Input的默认值 文档说明看起好看一点
    */
-  let defaultFieldProps = fieldProps
+  const defaultFieldProps = fieldProps
     ? {}
     : {
         style: {

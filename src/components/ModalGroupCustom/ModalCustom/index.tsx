@@ -1,4 +1,5 @@
-import React, { useState, useContext, ReactNode, useEffect } from 'react';
+import type { ReactNode} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, message } from 'antd';
 
 interface ModalCustomType {
@@ -14,19 +15,19 @@ interface ModalCustomType {
    * 标题
    * @description 不传属性 则隐藏顶部 | 传字符串则显示 | ReactNode自定义顶部
    */
-  title?: String | ReactNode;
+  title?: string | ReactNode;
   /**
    * 确定按钮文字
    * @description 值为false隐藏按钮
    * @default '确定'
    */
-  confirmText?: String | Boolean;
+  confirmText?: string | boolean;
   /**
    * 取消按钮文字
    * @description 值为false隐藏按钮
    * @default '取消'
    */
-  cancelText?: String | Boolean;
+  cancelText?: string | boolean;
   /**
    * 宽度
    * @default 520
@@ -105,7 +106,7 @@ function ModalCustom(Props: ModalCustomType) {
     }
   };
 
-  let footer = () => {
+  const footer = () => {
     if (cancelText === false && confirmText === false) {
       return null;
     }

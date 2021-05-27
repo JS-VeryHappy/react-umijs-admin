@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ProTable from '@ant-design/pro-table';
 import { Space, Button } from 'antd';
-import { FormInstance } from 'antd/lib/form';
+import type { FormInstance } from 'antd/lib/form';
 
-import { TablePropsType, ActionType, ButtonGroupType, PaginationConfig, ProColumns } from './types';
+import type { TablePropsType, ActionType, ButtonGroupType, PaginationConfig, ProColumns } from './types';
 import './index.less';
 
 function TableCustom<ListItem>(
@@ -31,8 +31,8 @@ function TableCustom<ListItem>(
     },
     // { searchText: string; resetText: string }
     optionRender: (searchConfig: Record<string, any>, formProps: { form: any }) => {
-      let { searchText, resetText } = searchConfig;
-      let { form } = formProps;
+      const { searchText, resetText } = searchConfig;
+      const { form } = formProps;
       return [
         <Button
           key="search"
@@ -103,7 +103,7 @@ function TableCustom<ListItem>(
    * @param params
    */
   const tableAlertRender = (params: any) => {
-    let { selectedRowKeys, selectedRows, onCleanSelected } = params;
+    const { selectedRowKeys, selectedRows, onCleanSelected } = params;
     return (
       <Space size={24}>
         <span>
@@ -138,7 +138,7 @@ function TableCustom<ListItem>(
   const getListData = async () => {
     setLoading(true);
     // 获取表单字段并将分页参数合并得到请求参数requestParams
-    let res = await fetchGetList(getRequestParams(formRef.current?.getFieldsValue(), pagination));
+    const res = await fetchGetList(getRequestParams(formRef.current?.getFieldsValue(), pagination));
     setDataSource(res.data.list);
     setLoading(false);
   };
@@ -149,13 +149,11 @@ function TableCustom<ListItem>(
    * @param pagination 分页配置
    */
   const getRequestParams = (fileds: ListItem, pagination: PaginationConfig) => {
-    let tempFileds = JSON.parse(JSON.stringify(fileds));
-    for (let key in fileds) {
+    const tempFileds = JSON.parse(JSON.stringify(fileds));
+    for (const key in fileds) {
       if (fileds[key] === undefined) tempFileds[key] = null;
     }
-    let requestParams = Object.assign({}, fileds, {
-      pageInfo: { page: pagination.current, count: pagination.pageSize },
-    });
+    let requestParams = { ...fileds, pageInfo: { page: pagination.current, count: pagination.pageSize },};
     if (typeof paramsFormatter === 'function') {
       requestParams = paramsFormatter(requestParams);
     }

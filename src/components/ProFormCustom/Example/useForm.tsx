@@ -6,10 +6,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { message } from 'antd';
-import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
+import type { FormChildrenConfigType } from '@/components/ProFormCustom/types';
 
 function ProForm() {
-  let config: FormChildrenConfigType[] = [
+  const config: FormChildrenConfigType[] = [
     {
       children: [
         {
@@ -163,7 +163,7 @@ function ProForm() {
     // SelectInputCustom: [1,"2222aaa"]
   };
 
-  //监听表单变化
+  // 监听表单变化
   const onValuesChange = (hangedValues: any, values: any) => {
     message.success('监听值变化');
   };

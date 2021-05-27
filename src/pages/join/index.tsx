@@ -216,7 +216,7 @@ export default function Join() {
     //   }
     // }]
   };
-  var uvBillData = [
+  const uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -268,7 +268,7 @@ export default function Join() {
       type: 'bill',
     },
   ];
-  var transformData = [
+  const transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -345,7 +345,7 @@ export default function Join() {
       name: 'c',
     },
   ];
-  var DualAxesConfig = {
+  const DualAxesConfig = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],

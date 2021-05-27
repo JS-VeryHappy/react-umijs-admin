@@ -19,7 +19,7 @@ function DashBoard() {
 
   const { run: onFinish } = useRequest(async () => {
     try {
-      let res = await getDoardData();
+      const res = await getDoardData();
 
       setData(res.data);
     } catch (err) {

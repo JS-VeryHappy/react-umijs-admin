@@ -3,7 +3,8 @@
  * 我是dva数据写法
  */
 // @ts-ignore
-import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
+import type { Effect, Reducer, Subscription } from 'umi';
+import { ImmerReducer } from 'umi';
 import { isLogin } from '@/services';
 
 export interface GlobalUserModelType {

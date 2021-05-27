@@ -37,7 +37,7 @@ class ErrorBoundary extends React.Component {
     // @ts-ignore
     const { children } = this.props;
     // @ts-ignore
-    const props = children.props;
+    const {props} = children;
     // @ts-ignore
     const newChildren = React.cloneElement(children, {
       ...props,

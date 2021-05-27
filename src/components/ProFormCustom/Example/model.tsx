@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { message, Button } from 'antd';
-import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
+import type { FormChildrenConfigType } from '@/components/ProFormCustom/types';
 import { PlusOutlined } from '@ant-design/icons';
 
 function ProForm() {
   const [visible, setVisible] = useState(false);
 
-  let config: FormChildrenConfigType[] = [
+  const config: FormChildrenConfigType[] = [
     {
       children: [
         {
@@ -51,8 +51,8 @@ function ProForm() {
         modal={{
           title: '弹窗表单',
           width: 500,
-          //自定义关联配置
-          visible: visible,
+          // 自定义关联配置
+          visible,
           onCancel: () => {
             console.log(visible);
             setVisible(false);
@@ -67,7 +67,7 @@ function ProForm() {
         modal={{
           title: '弹窗表单',
           width: 500,
-          //内联按钮专用
+          // 内联按钮专用
           trigger: btn,
         }}
         formConfig={config}
@@ -80,7 +80,7 @@ function ProForm() {
           mode: 'Drawer',
           title: 'Drawer',
           width: 500,
-          //内联按钮专用
+          // 内联按钮专用
           trigger: Drawer,
         }}
         formConfig={config}

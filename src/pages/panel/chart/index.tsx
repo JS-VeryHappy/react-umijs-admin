@@ -46,7 +46,7 @@ export default function Chart() {
         console.log(e);
       });
   };
-  var scatterConfig = {
+  const scatterConfig = {
     appendPadding: 10,
     data: scatterData,
     xField: 'Revenue (Millions)',
@@ -64,7 +64,7 @@ export default function Chart() {
       line: { style: { stroke: '#aaa' } },
     },
   };
-  var uvBillData = [
+  const uvBillData = [
     {
       time: '2019-03',
       value: 350,
@@ -116,7 +116,7 @@ export default function Chart() {
       type: '头发',
     },
   ];
-  var transformData = [
+  const transformData = [
     {
       time: '2019-03',
       count: 800,
@@ -193,7 +193,7 @@ export default function Chart() {
       name: 'bug',
     },
   ];
-  var DualAxesConfig = {
+  const DualAxesConfig = {
     data: [uvBillData, transformData],
     xField: 'time',
     yField: ['value', 'count'],
@@ -315,7 +315,7 @@ export default function Chart() {
       transaction: 'success',
     },
   ];
-  var progressConfig = {
+  const progressConfig = {
     height: 60,
     width: 60,
     autoFit: false,

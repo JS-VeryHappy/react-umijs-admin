@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ProFormAll from '@ant-design/pro-form';
-import { PropsType, FormConfigType, FormChildrenConfigType } from './types';
-import { GroupProps } from '@ant-design/pro-form/lib/interface';
+import type { PropsType, FormConfigType, FormChildrenConfigType } from './types';
+import type { GroupProps } from '@ant-design/pro-form/lib/interface';
 import * as CustomAll from '@/components/BasicsBusinessCustom';
 import classnames from 'classnames';
 import { ProFormField } from '@ant-design/pro-form';
@@ -15,16 +15,16 @@ import ProCard from '@ant-design/pro-card';
  * @param ProFormAll
  */
 const getComponent = function(field: string, ProFormAll: any) {
-  let nameArr = field.split('.');
+  const nameArr = field.split('.');
   if (nameArr.length >= 2) {
     let obj = ProFormAll[nameArr[0]];
     for (let i = 1; i < nameArr.length - 1; i++) {
       obj = obj[nameArr[i]];
     }
     return obj[nameArr[nameArr.length - 1]];
-  } else {
+  } 
     return ProFormAll[field];
-  }
+  
 };
 
 /**
@@ -33,27 +33,27 @@ const getComponent = function(field: string, ProFormAll: any) {
  * @param intl
  */
 const setCustomParams = function(props: any, intl: any) {
-  //设置统一className
+  // 设置统一className
   // @ts-ignore
-  props['className'] = classnames(props?.className, {
+  props.className = classnames(props?.className, {
     // @ts-ignore
     [`pro-field-${props.width}`]: props.width && WIDTH_SIZE_ENUM[props.width],
   });
-  //如果有参数fieldProps
+  // 如果有参数fieldProps
   if (!props.fieldProps) {
     props.fieldProps = {};
   }
-  //如果有参数fieldProps.className
+  // 如果有参数fieldProps.className
   if (props.fieldProps.className) {
-    props.fieldProps.className = classnames(props['className'], {
+    props.fieldProps.className = classnames(props.className, {
       // @ts-ignore
       [`${props.fieldProps.className}`]: props.fieldProps.className,
     });
   } else {
-    props.fieldProps.className = props['className'];
+    props.fieldProps.className = props.className;
   }
 
-  //如果有参数fieldProps.placeholder
+  // 如果有参数fieldProps.placeholder
   if (!props.fieldProps.placeholder) {
     props.fieldProps.placeholder = intl.getMessage('tableForm.inputPlaceholder', '请输入');
   }
@@ -67,16 +67,16 @@ const setCustomParams = function(props: any, intl: any) {
   if (props.allowClear) {
     props.fieldProps.allowClear = props.allowClear;
   } else {
-    //如果组件以Input
+    // 如果组件以Input
     if (props.mold.indexOf('Input') !== -1) {
       props.fieldProps.allowClear = true;
     }
   }
 
-  //如果卡片组件需要特殊处理
+  // 如果卡片组件需要特殊处理
   if (props.mold === 'ProCard') {
     // @ts-ignore
-    let fieldProps = props.fieldProps;
+    const {fieldProps} = props;
     props = {
       ...props,
       ...fieldProps,
@@ -108,18 +108,18 @@ const getChildrenDom = function(
     return;
   }
   children.forEach((child: any, cindex: any) => {
-    let childDom = getComponent(child.mold, allComponent);
+    const childDom = getComponent(child.mold, allComponent);
     let childProps = {
       width: 's',
-      key: cindex + `-level${level}-children-custom`,
+      key: `${cindex  }-level${level}-children-custom`,
       ...child,
     };
     childProps = setCustomParams(childProps, intl);
 
-    let childs: [] = [];
+    const childs: [] = [];
     getChildrenDom(isCustom, intl, allComponent, childs, child.children, level + 1);
 
-    let arr = React.createElement(
+    const arr = React.createElement(
       childDom,
       {
         ...childProps,
@@ -147,46 +147,46 @@ const WIDTH_SIZE_ENUM = {
 function ComponentCustom(props: PropsType) {
   const intl = useIntl();
 
-  let { formConfig, form } = props;
-  //合并pro-form 和 自己自定义的组件
-  let allComponent = { ...CustomAll, ...ProFormAll, ProCard };
+  const { formConfig, form } = props;
+  // 合并pro-form 和 自己自定义的组件
+  const allComponent = { ...CustomAll, ...ProFormAll, ProCard };
 
-  let items: React.FunctionComponentElement<GroupProps>[] = [];
+  const items: React.FunctionComponentElement<GroupProps>[] = [];
 
   if (formConfig.length > 0) {
     formConfig.forEach((config: FormChildrenConfigType, gindex: number) => {
-      let childrenItem: any = [];
+      const childrenItem: any = [];
 
       config.children.forEach((item: FormConfigType, index: number) => {
-        //是否是自动的组件
+        // 是否是自动的组件
         let isCustom = false;
         if (!getComponent(item.mold, ProFormAll)) {
           isCustom = true;
         }
 
-        //设置默认值
+        // 设置默认值
         if (item.moldShow === undefined) {
           item.moldShow = true;
         }
 
-        //如果显示才渲染子组件
+        // 如果显示才渲染子组件
         if (item.moldShow) {
           delete item.moldShow;
 
-          let dom = getComponent(item.mold, allComponent);
-          let props = { width: 's', key: index + '-custom', ...item };
+          const dom = getComponent(item.mold, allComponent);
+          let props = { width: 's', key: `${index  }-custom`, ...item };
 
-          let children: any = [];
+          const children: any = [];
 
-          //获取递归组件
+          // 获取递归组件
           getChildrenDom(isCustom, intl, allComponent, children, item.children, 1);
 
-          //如果是自定义组件
+          // 如果是自定义组件
           if (isCustom) {
-            //如果是自定义组件 组装额外props
+            // 如果是自定义组件 组装额外props
             props = setCustomParams(props, intl);
 
-            //向所有自定义组件外部插入一层ProFormField包裹
+            // 向所有自定义组件外部插入一层ProFormField包裹
             // @ts-ignore
             childrenItem.push(
               React.createElement(
@@ -221,7 +221,7 @@ function ComponentCustom(props: PropsType) {
           allComponent.default.Group,
           {
             title: config.title || undefined,
-            key: gindex + '-group-custom',
+            key: `${gindex  }-group-custom`,
           },
           childrenItem,
         ),

@@ -1,4 +1,4 @@
-import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
+import type { FormChildrenConfigType } from '@/components/ProFormCustom/types';
 import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-design/icons';
 import React from 'react';
 import { message } from 'antd';
@@ -36,7 +36,7 @@ export const mobileConfig = (onGetCaptcha: Function) => {
             prefix: React.createElement(MailTwoTone),
           },
           rules: [{ required: true, message: '请输入验证码' }],
-          onGetCaptcha: onGetCaptcha,
+          onGetCaptcha,
           captchaProps: {
             size: 'large',
           },

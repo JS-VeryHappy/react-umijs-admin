@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ProStepsFormCustom } from '@/components/ProFormCustom';
 import { message } from 'antd';
-import { FormStepsChildrenConfigType } from '@/components/ProFormCustom/types';
+import type { FormStepsChildrenConfigType } from '@/components/ProFormCustom/types';
 
 function ProForm() {
-  let config: FormStepsChildrenConfigType[] = [
+  const config: FormStepsChildrenConfigType[] = [
     {
       title: '第一步',
       name: 'a',

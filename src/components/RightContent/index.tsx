@@ -6,7 +6,7 @@ import {
   UserOutlined,
   MessageOutlined,
 } from '@ant-design/icons';
-//@ts-ignore
+// @ts-ignore
 import { history, useModel, Link, SelectLang, useIntl } from 'umi';
 import styles from './index.less';
 import { Tooltip, Tag } from 'antd';
@@ -38,7 +38,7 @@ function RightContent(Props: any) {
 
   const signOut = () => {
     setTimeout(() => {
-      //请求服务退出登录 目前没有
+      // 请求服务退出登录 目前没有
       history.push('/login');
     }, 100);
   };

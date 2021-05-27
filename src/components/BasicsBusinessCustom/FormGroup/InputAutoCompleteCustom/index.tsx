@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 import { message } from 'antd';
-import { OptionsType } from '@/components/ProFormCustom/types';
+import type { OptionsType } from '@/components/ProFormCustom/types';
 
 interface InputAutoCompleteCustomType {
   /**
@@ -53,14 +53,14 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange(value);
     } else {
-      message.info('Input切换值' + value);
+      message.info(`Input切换值${  value}`);
     }
   };
 
   /**
    * 如果直接使用下Input的默认值 文档说明看起好看一点
    */
-  let defaultFieldProps = fieldProps
+  const defaultFieldProps = fieldProps
     ? {}
     : {
         style: {
@@ -70,7 +70,7 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
         allowClear: true,
       };
 
-  let selectOptions = fieldProps
+  const selectOptions = fieldProps
     ? options || []
     : [
         {

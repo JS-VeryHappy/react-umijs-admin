@@ -3,10 +3,10 @@ import { postBody, getQuery } from './handler';
 /**
  * 钉钉密码登录
  *
- ***/
+ ** */
 interface loginType {
   // 手机号
-  mobile: String;
+  mobile: string;
   // 密码
   password: any;
 }
@@ -18,7 +18,7 @@ export async function login(data: loginType) {
 /**
  * 获取用户信息
  *
- ***/
+ ** */
 export async function isLogin() {
   return postBody('/api/user/isLogin');
 }

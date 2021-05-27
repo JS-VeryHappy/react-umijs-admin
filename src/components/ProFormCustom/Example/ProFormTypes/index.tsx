@@ -1,5 +1,5 @@
 import React from 'react';
-import * as all from '../../types';
+import type * as all from '../../types';
 
 export function OptionsType(props: all.OptionsType) {}
 

@@ -29,7 +29,7 @@ function UserMobileLogin() {
   const { run: onFinish } = useRequest(
     async (values: any) => {
       try {
-        let res = await login(values);
+        const res = await login(values);
         message.success('登录成功');
         setInitialState(res.data);
         setTimeout(() => {

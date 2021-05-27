@@ -5,10 +5,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { message } from 'antd';
-import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
+import type { FormChildrenConfigType } from '@/components/ProFormCustom/types';
 
 function ProForm() {
-  let config: FormChildrenConfigType[] = [
+  const config: FormChildrenConfigType[] = [
     {
       children: [
         {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { Form, message } from 'antd';
-import {
+import type {
   FormChildrenConfigType,
-  OptionsType,
+  OptionsType} from '@/components/ProFormCustom/types';
+import {
   FormConfigType,
 } from '@/components/ProFormCustom/types';
 
@@ -29,7 +30,7 @@ function ProForm() {
     })();
   }, []);
 
-  let config: FormChildrenConfigType[] = [
+  const config: FormChildrenConfigType[] = [
     {
       title: '联动',
       children: [
@@ -59,7 +60,7 @@ function ProForm() {
           name: 'beginAreaId',
           label: '出发区域',
           placeholder: '请输入出发城市',
-          options: options,
+          options,
         },
         {
           moldShow: show,
@@ -67,7 +68,7 @@ function ProForm() {
           name: 'beginAreaId1',
           label: '出发区域1',
           placeholder: '请输入出发城市',
-          options: options,
+          options,
         },
       ],
     },
@@ -86,7 +87,7 @@ function ProForm() {
     // SelectInputCustom: [1,"2222aaa"]
   };
 
-  //监听表单变化
+  // 监听表单变化
   const onValuesChange = (hangedValues: any, values: any) => {
     message.success('监听值变化');
     if (hangedValues.beginCityId) {

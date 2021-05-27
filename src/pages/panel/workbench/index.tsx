@@ -11,8 +11,8 @@ export default function WorkBench() {
   const [listData, setListData] = useState([]);
   const {} = useRequest(async (values: any) => {
     try {
-      let res = await getChartData(values);
-      let res1 = await getListData(values);
+      const res = await getChartData(values);
+      const res1 = await getListData(values);
       setData(res.data.list);
       setListData(res1.data.list);
     } catch (e) {
@@ -20,7 +20,7 @@ export default function WorkBench() {
     }
   });
   const config = {
-    data: data,
+    data,
     xField: 'time',
     yField: 'number',
     seriesField: 'item',

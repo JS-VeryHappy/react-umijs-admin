@@ -1,6 +1,6 @@
 // 我是约定@umijs/plugin-model写法、可以写很多全局状态管理
 import { useState, useCallback, useEffect } from 'react';
-import { ProSettings } from '@ant-design/pro-layout';
+import type { ProSettings } from '@ant-design/pro-layout';
 
 interface DictionariesItem {
   label: string;
@@ -41,11 +41,11 @@ export default function useGlobalModel() {
   // }, [globalInfo.layoutSettings])
   useEffect(() => {
     if (localStorage.getItem('layoutSettings')) {
-      //@ts-ignore
-      let layoutSettings = JSON.parse(localStorage.getItem('layoutSettings'));
+      // @ts-ignore
+      const layoutSettings = JSON.parse(localStorage.getItem('layoutSettings'));
       setGlobalInfo({
         ...globalInfo,
-        layoutSettings: layoutSettings,
+        layoutSettings,
       });
     }
   }, []);
@@ -53,7 +53,7 @@ export default function useGlobalModel() {
   const setGlobalDictionaries = useCallback(dictionaries => {
     return setGlobalInfo({
       ...globalInfo,
-      dictionaries: dictionaries,
+      dictionaries,
     });
   }, []);
 
@@ -68,10 +68,10 @@ export default function useGlobalModel() {
   const getGlobalInfo = (field: string) => {
     if (!field) {
       return globalInfo;
-    } else {
+    } 
       // @ts-ignore
       return globalInfo[field];
-    }
+    
   };
 
   return {

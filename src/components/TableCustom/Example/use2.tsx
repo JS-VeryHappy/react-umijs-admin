@@ -1,6 +1,6 @@
 import React from 'react';
 import { Space } from 'antd';
-import { ProColumns } from '@/components/TableCustom/types';
+import type { ProColumns } from '@/components/TableCustom/types';
 import TableCustom from '@/components/TableCustom';
 import { getProTable } from '@/services';
 

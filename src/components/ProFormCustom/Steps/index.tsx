@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
-import { StepsPropsType } from '../types';
+import type { StepsPropsType } from '../types';
 import { StepsForm } from '@ant-design/pro-form';
 import { Modal, Drawer } from 'antd';
 import ComponentCustom from '../component';
 import { setFormDefault, setFinishFailed, defaultConfig } from '../define';
 
 function ProStepsFormCustom(props: StepsPropsType) {
-  let {
+  const {
     labelAlign,
     size,
     onSubmit,
@@ -21,27 +21,27 @@ function ProStepsFormCustom(props: StepsPropsType) {
 
   $global.log('进入表单开始渲染');
 
-  //全部完成回调
+  // 全部完成回调
   const onFinish = async (data: any) => {
     try {
-      let param: any = {};
+      const param: any = {};
 
       setFormDefault(param, formConfig, data, 'steps');
 
       await onSubmit(param);
 
-      //如果返回 false, 就不会跳转下一步。
+      // 如果返回 false, 就不会跳转下一步。
       return true;
     } catch (e) {
       console.log(e);
     }
   };
-  //每次下一步前执行回调
+  // 每次下一步前执行回调
   const onStepFinish = async (data: any) => {
-    //如果返回 false, 就不会跳转下一步。
+    // 如果返回 false, 就不会跳转下一步。
     return true;
   };
-  //每次切换成功回调
+  // 每次切换成功回调
   const onCurrentChange = async (current: number) => {
     try {
     } catch (e) {
@@ -51,8 +51,8 @@ function ProStepsFormCustom(props: StepsPropsType) {
   const onFinishFailed = async (err: any) => {
     setFinishFailed(err);
   };
-  //处理弹窗配置
-  let modalConfig: any = {};
+  // 处理弹窗配置
+  const modalConfig: any = {};
   if (modal) {
     if (modal.title) {
       modalConfig.title = modal.title;
@@ -77,9 +77,9 @@ function ProStepsFormCustom(props: StepsPropsType) {
     }
   }
 
-  //处理弹窗类型
+  // 处理弹窗类型
   let CustomModal: any = Modal;
-  //处理弹窗类型
+  // 处理弹窗类型
   if (modal) {
     if (modal.mode === 'Drawer') {
       CustomModal = Drawer;
@@ -104,10 +104,10 @@ function ProStepsFormCustom(props: StepsPropsType) {
         }
       >
         {formConfig.map((i, key) => {
-          let iprops = { ...i, formConfig: i.stepsChildren };
+          const iprops = { ...i, formConfig: i.stepsChildren };
           return (
             <StepsForm.StepForm
-              key={key + '-step-custom'}
+              key={`${key  }-step-custom`}
               name={i.name}
               title={i.title}
               layout={layout || defaultConfig.layout}

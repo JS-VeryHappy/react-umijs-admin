@@ -41,10 +41,10 @@ const NoticeTip = () => {
 
   // 全局点击事件, 用于判断面板是否关闭
   useEffect(() => {
-    let target = null,
-      icon = null,
-      notice = null;
-    let closeNoticeTabs = function(event: any) {
+    let target = null;
+      let icon = null;
+      let notice = null;
+    const closeNoticeTabs = function(event: any) {
       target = event.target;
       icon = document.querySelector('.notice-tip__icon');
       notice = document.querySelector('.notice-tip__dropdown');
@@ -60,7 +60,7 @@ const NoticeTip = () => {
 
   // 消息中心微标数
   useEffect(() => {
-    let arr = notification.concat(message, event).filter((item: any) => !item.read);
+    const arr = notification.concat(message, event).filter((item: any) => !item.read);
     setTotalCount(arr.length);
   }, [notification, message, event]);
 

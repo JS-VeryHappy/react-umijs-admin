@@ -27,7 +27,7 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   React.Children.forEach(children, (child: React.ReactElement, index) => {
     if (!child) return;
     const { data, tabKey, title, onClick } = child.props;
-    let tempTitle = getMsgCount(data) === 0 ? title : `${title}(${getMsgCount(data)})`;
+    const tempTitle = getMsgCount(data) === 0 ? title : `${title}(${getMsgCount(data)})`;
     panes.push(
       <TabPane tab={tempTitle} key={tabKey}>
         <NoticeList

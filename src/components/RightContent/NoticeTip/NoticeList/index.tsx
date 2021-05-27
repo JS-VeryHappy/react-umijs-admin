@@ -22,7 +22,7 @@ export type NoticeIconTabProps = {
 };
 
 const NoticeList = (props: NoticeIconTabProps): React.ReactElement => {
-  let {
+  const {
     data = [],
     onClick,
     onClear,

@@ -9,9 +9,9 @@ export default function(props: {
 }) {
   $global.log('我是全局layouts钩子。');
 
-  //图形界面来设置 layout 的配置。不建议在正式环境中使用
+  // 图形界面来设置 layout 的配置。不建议在正式环境中使用
   const { globalInfo, setLayoutSettings } = useModel('useGlobalModel');
-  const loadingRef = useRef<Boolean>(false);
+  const loadingRef = useRef<boolean>(false);
 
   const onSettingChange = (changeSetting: any) => {
     if (loadingRef.current) {

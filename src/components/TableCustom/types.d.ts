@@ -1,5 +1,6 @@
-import { ProColumnType, ProColumns } from '@ant-design/pro-table';
-import { RequestResponse } from 'umi-request';
+import type { ProColumnType} from '@ant-design/pro-table';
+import { ProColumns } from '@ant-design/pro-table';
+import type { RequestResponse } from 'umi-request';
 
 /**
  * TableCustom接口

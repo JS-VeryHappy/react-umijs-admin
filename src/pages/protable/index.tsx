@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Tag, Button } from 'antd';
 
-import { ProColumns } from '@/components/TableCustom/types';
+import type { ProColumns } from '@/components/TableCustom/types';
 
 import TableCustom from '@/components/TableCustom';
 import AddButtonCustom from '@/components/BasicsBusinessCustom/ButtonGroup/AddButtonCustom';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { Form, message } from 'antd';
-import {
+import type {
   FormChildrenConfigType,
   OptionsType,
   FormConfigType,
@@ -9,9 +9,9 @@ import {
 
 function ProForm() {
   const [options, setOptions] = useState<OptionsType[]>([]);
-  //定义一个实例变量 实例完成后 不会受状态更新影响先有的值
+  // 定义一个实例变量 实例完成后 不会受状态更新影响先有的值
   const intervalRef = useRef<FormConfigType[]>([]);
-  //使用一个状态来触发更新
+  // 使用一个状态来触发更新
   const [update, setUpdate] = useState<number>(0);
 
   useEffect(() => {
@@ -31,16 +31,16 @@ function ProForm() {
   }, []);
 
   const handledOnClick = () => {
-    let length = intervalRef.current.length;
+    const {length} = intervalRef.current;
     intervalRef.current.push({
       mold: 'ProFormText',
       name: `ProFormText.${length}`,
-      label: 'ProFormText' + length,
+      label: `ProFormText${  length}`,
       rules: [{ required: true, message: '请输入正确值' }],
     });
     setUpdate(update + 1);
   };
-  let config: FormChildrenConfigType[] = [
+  const config: FormChildrenConfigType[] = [
     {
       title: '自定义组件1',
       children: [
@@ -76,7 +76,7 @@ function ProForm() {
           mold: 'InputSelectCustom',
           label: 'Input组合Select',
           name: 'InputSelectCustom',
-          options: options,
+          options,
           rules: [
             { required: true, message: '填写内容' },
             {
@@ -123,7 +123,7 @@ function ProForm() {
     // SelectInputCustom: [1,"2222aaa"]
   };
 
-  //监听表单变化
+  // 监听表单变化
   const onValuesChange = (hangedValues: any, values: any) => {
     message.success('监听值变化');
   };

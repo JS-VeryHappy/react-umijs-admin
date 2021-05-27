@@ -1,5 +1,5 @@
-import { FormInstance, FormItemProps } from 'antd/lib/form';
-import { ReactNode } from 'react';
+import type { FormInstance, FormItemProps } from 'antd/lib/form';
+import type { ReactNode } from 'react';
 import { ProFormItemProps } from '@ant-design/pro-form/lib/interface';
 /**
  * 验证规则
