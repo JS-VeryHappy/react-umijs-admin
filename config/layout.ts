@@ -2,13 +2,12 @@ import React from 'react';
 import { history, Link } from 'umi';
 import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
-import type { RunTimeLayoutConfig } from 'umi';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 
 //获取本地配置
 const setting = localStorage.getItem('layoutSettings')
   ? //@ts-ignore
-  JSON.parse(localStorage.getItem('layoutSettings'))
+    JSON.parse(localStorage.getItem('layoutSettings'))
   : {};
 
 /**
@@ -63,22 +62,31 @@ export default (config: any) => {
         return children;
       },
       //配置开发模式下文档地址
-      links: process.env.UMI_ENV === 'local'
-        ? [
-          React.createElement(Link, {
-            to: '/~docs',
-            target: "_blank"
-          }, [
-            React.createElement(BookOutlined, {
-              key: "icon"
-            }),
-            React.createElement("span", {
-              key: 'text'
-            }, "业务组件文档"),
-          ])
-        ]
-        : [],
+      links:
+        process.env.UMI_ENV === 'local'
+          ? [
+              React.createElement(
+                Link,
+                {
+                  to: '/~docs',
+                  target: "_blank",
+                },
+                [
+                  React.createElement(BookOutlined, {
+                    key: 'icon',
+                  }),
+                  React.createElement(
+                    'span',
+                    {
+                      key: 'text',
+                    },
+                    '业务组件文档',
+                  ),
+                ],
+              ),
+            ]
+          : [],
     },
     ...setting,
-  }
+  };
 };

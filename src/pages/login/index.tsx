@@ -35,7 +35,7 @@ function UserMobileLogin() {
         setTimeout(() => {
           history.push('/');
         }, 0);
-      } catch (e) { }
+      } catch (e) {}
     },
     {
       manual: true,

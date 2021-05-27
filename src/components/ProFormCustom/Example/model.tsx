@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { message, Button } from 'antd';
@@ -12,18 +11,18 @@ function ProForm() {
     {
       children: [
         {
-          mold: "ProFormText",
-          name: "jobnumber",
-          label: "工号",
+          mold: 'ProFormText',
+          name: 'jobnumber',
+          label: '工号',
           tooltip: '我是提示消息不无法解析html<br>hahahahah',
-          placeholder: "今天是个好日子",
+          placeholder: '今天是个好日子',
           fieldProps: {
-            maxLength: 10
-          }
-        }
-      ]
-    }
-  ]
+            maxLength: 10,
+          },
+        },
+      ],
+    },
+  ];
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -50,14 +49,14 @@ function ProForm() {
       </Button>
       <ProFormCustom
         modal={{
-          title: "弹窗表单",
+          title: '弹窗表单',
           width: 500,
           //自定义关联配置
           visible: visible,
           onCancel: () => {
             console.log(visible);
             setVisible(false);
-          }
+          },
         }}
         formConfig={config}
         onSubmit={onSubmit}
@@ -66,10 +65,10 @@ function ProForm() {
       <br />
       <ProFormCustom
         modal={{
-          title:"弹窗表单",
-          width:500,
+          title: '弹窗表单',
+          width: 500,
           //内联按钮专用
-          trigger:btn,
+          trigger: btn,
         }}
         formConfig={config}
         onSubmit={onSubmit}
@@ -79,7 +78,7 @@ function ProForm() {
       <ProFormCustom
         modal={{
           mode: 'Drawer',
-          title: "Drawer",
+          title: 'Drawer',
           width: 500,
           //内联按钮专用
           trigger: Drawer,
@@ -87,7 +86,6 @@ function ProForm() {
         formConfig={config}
         onSubmit={onSubmit}
       />
-  
     </>
   );
 }

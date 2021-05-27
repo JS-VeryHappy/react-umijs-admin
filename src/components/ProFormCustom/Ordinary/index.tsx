@@ -17,9 +17,8 @@ function ProFormCustom(props: PropsType) {
     layout,
     requiredMark,
     modal,
-    submitter
+    submitter,
   } = props;
-
 
   $global.log('进入表单开始渲染');
   const onFinish = async (data: any) => {
@@ -34,7 +33,6 @@ function ProFormCustom(props: PropsType) {
     }
   };
   const onFormCancel = async () => {
-
     try {
       //如果是表单并且有取消回调
       // @ts-ignore
@@ -42,22 +40,30 @@ function ProFormCustom(props: PropsType) {
         // @ts-ignore
         modal.onCancel();
       }
-
     } catch (e) {
       console.log(e);
     }
   };
   // @ts-ignore
-  const onFinishFailed = async (err) => {
+  const onFinishFailed = async err => {
     setFinishFailed(err);
   };
 
   //处理按钮配置
   let formSubmitter = {
-    searchConfig: submitter && submitter.searchConfig || defaultConfig.submitter && defaultConfig.submitter.searchConfig,
-    resetButtonProps: submitter && submitter.resetButtonProps ? submitter.resetButtonProps : defaultConfig.submitter && defaultConfig.submitter.resetButtonProps,
-    submitButtonProps: submitter && submitter.submitButtonProps || defaultConfig.submitter && defaultConfig.submitter.submitButtonProps,
-    render: submitter && submitter.render || defaultConfig.submitter && defaultConfig.submitter.render,
+    searchConfig:
+      (submitter && submitter.searchConfig) ||
+      (defaultConfig.submitter && defaultConfig.submitter.searchConfig),
+    resetButtonProps:
+      submitter && submitter.resetButtonProps
+        ? submitter.resetButtonProps
+        : defaultConfig.submitter && defaultConfig.submitter.resetButtonProps,
+    submitButtonProps:
+      (submitter && submitter.submitButtonProps) ||
+      (defaultConfig.submitter && defaultConfig.submitter.submitButtonProps),
+    render:
+      (submitter && submitter.render) ||
+      (defaultConfig.submitter && defaultConfig.submitter.render),
   };
   if (!formSubmitter.resetButtonProps) {
     delete formSubmitter.resetButtonProps;
@@ -68,7 +74,7 @@ function ProFormCustom(props: PropsType) {
   if (!formSubmitter.render) {
     delete formSubmitter.render;
   }
- 
+
   //处理弹窗配置
   let modalConfig: any = {};
   if (modal) {
@@ -76,7 +82,8 @@ function ProFormCustom(props: PropsType) {
       modalConfig.title = modal.title;
     } else {
       modalConfig.title = defaultConfig.modal?.title;
-    } if (modal.width) {
+    }
+    if (modal.width) {
       modalConfig.width = modal.width;
     } else {
       modalConfig.width = defaultConfig.modal?.width;

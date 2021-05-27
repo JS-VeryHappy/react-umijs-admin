@@ -10,7 +10,7 @@ function ProForm() {
         {
           mold: 'ProCard',
           fieldProps: {
-            title:"卡片1",
+            title: '卡片1',
             bordered: true,
             headerBordered: true,
             collapsible: true,
@@ -18,13 +18,13 @@ function ProForm() {
               marginBottom: 16,
               minWidth: 920,
               maxWidth: '100%',
-            }
+            },
           },
-          children:[
+          children: [
             {
               mold: 'ProCard',
               fieldProps: {
-                title:"卡片2",
+                title: '卡片2',
                 bordered: true,
                 headerBordered: true,
                 collapsible: true,
@@ -32,13 +32,13 @@ function ProForm() {
                   marginBottom: 16,
                   minWidth: 620,
                   maxWidth: '100%',
-                }
+                },
               },
-              children:[
+              children: [
                 {
                   mold: 'ProCard',
                   fieldProps: {
-                    title:"卡片3",
+                    title: '卡片3',
                     bordered: true,
                     headerBordered: true,
                     collapsible: true,
@@ -46,24 +46,24 @@ function ProForm() {
                       marginBottom: 16,
                       minWidth: 320,
                       maxWidth: '100%',
-                    }
+                    },
                   },
-                  children:[
+                  children: [
                     {
                       mold: 'ProFormText',
                       name: 'name11',
-                      label: 'name11'
+                      label: 'name11',
                     },
-                  ]
-                }
-              ]
-            }
-          ]
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           mold: 'ProCard',
           fieldProps: {
-            title:"卡片11",
+            title: '卡片11',
             bordered: true,
             headerBordered: true,
             collapsible: true,
@@ -71,32 +71,28 @@ function ProForm() {
               marginBottom: 16,
               minWidth: 320,
               maxWidth: '100%',
-            }
+            },
           },
-          children:[
+          children: [
             {
               mold: 'ProFormText',
               name: 'name111',
-              label: 'name111'
+              label: 'name111',
             },
-          ]
-        }
+          ],
+        },
       ],
     },
-  ]
+  ];
 
   const onSubmit = async (data: any) => {
     console.log(data);
     message.success('调用成功');
   };
 
-
   return (
     <>
-      <ProFormCustom
-        formConfig={config}
-        onSubmit={onSubmit}
-      />
+      <ProFormCustom formConfig={config} onSubmit={onSubmit} />
     </>
   );
 }

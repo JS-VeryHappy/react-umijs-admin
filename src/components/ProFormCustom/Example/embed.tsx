@@ -12,31 +12,27 @@ function ProForm() {
     {
       children: [
         {
-          mold: "ProFormText",
-          name: "jobnumber",
-          label: "工号",
+          mold: 'ProFormText',
+          name: 'jobnumber',
+          label: '工号',
           tooltip: '我是提示消息不无法解析html<br>hahahahah',
-          placeholder: "今天是个好日子",
+          placeholder: '今天是个好日子',
           fieldProps: {
-            maxLength: 10
-          }
-        }
-      ]
-    }
-  ]
+            maxLength: 10,
+          },
+        },
+      ],
+    },
+  ];
 
   const onSubmit = async (data: any) => {
     console.log(data);
     message.success('调用成功');
   };
 
-
   return (
     <>
-      <ProFormCustom
-        formConfig={config}
-        onSubmit={onSubmit}
-      />
+      <ProFormCustom formConfig={config} onSubmit={onSubmit} />
     </>
   );
 }

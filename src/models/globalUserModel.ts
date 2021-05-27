@@ -24,8 +24,7 @@ const globalUserModel: GlobalUserModelType = {
     info: {},
   },
   effects: {
-    * queryUserInfo({ payload }, { call, put }) {
-
+    *queryUserInfo({ payload }, { call, put }) {
       const res = yield call(isLogin, payload);
       // put函数是用来发送action的
       yield put({
@@ -42,7 +41,6 @@ const globalUserModel: GlobalUserModelType = {
         ...payload,
       };
     },
-
   },
   subscriptions: {
     setup({ dispatch, history }) {

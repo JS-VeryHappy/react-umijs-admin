@@ -5,12 +5,12 @@
  */
 
 // @ts-ignore
-const log = function log(...msg){
-  if(process.env.NODE_ENV !== 'pro'){
+const log = function log(...msg) {
+  if (process.env.NODE_ENV !== 'pro') {
     console.log(...msg);
   }
 };
 
 export default {
-  log
+  log,
 };

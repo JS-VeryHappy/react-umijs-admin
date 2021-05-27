@@ -5,10 +5,9 @@
 
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import ModalCustom from '@/components/ModalGroupCustom/ModalCustom'
+import ModalCustom from '@/components/ModalGroupCustom/ModalCustom';
 
 function UseModalExample() {
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -32,7 +31,6 @@ function UseModalExample() {
       </ModalCustom>
     </div>
   );
-};
+}
 
 export default UseModalExample;
-

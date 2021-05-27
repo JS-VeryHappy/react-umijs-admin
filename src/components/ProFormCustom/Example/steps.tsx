@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {ProStepsFormCustom} from '@/components/ProFormCustom';
+import { ProStepsFormCustom } from '@/components/ProFormCustom';
 import { message } from 'antd';
 import { FormStepsChildrenConfigType } from '@/components/ProFormCustom/types';
 
@@ -14,7 +14,7 @@ function ProForm() {
             {
               mold: 'ProFormText',
               name: 'name1',
-              label: 'name1'
+              label: 'name1',
             },
           ],
         },
@@ -29,7 +29,7 @@ function ProForm() {
             {
               mold: 'ProFormText',
               name: 'name2',
-              label: 'name2'
+              label: 'name2',
             },
           ],
         },
@@ -44,7 +44,7 @@ function ProForm() {
             {
               mold: 'ProFormText',
               name: 'name3',
-              label: 'name3'
+              label: 'name3',
             },
           ],
         },
@@ -57,13 +57,9 @@ function ProForm() {
     message.success('调用成功');
   };
 
-
   return (
     <>
-      <ProStepsFormCustom
-        formConfig={config}
-        onSubmit={onSubmit}
-      />
+      <ProStepsFormCustom formConfig={config} onSubmit={onSubmit} />
     </>
   );
 }

@@ -1,10 +1,9 @@
-import React,{ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 import { StepsPropsType } from '../types';
 import { StepsForm } from '@ant-design/pro-form';
-import { Modal,Drawer } from 'antd';
+import { Modal, Drawer } from 'antd';
 import ComponentCustom from '../component';
 import { setFormDefault, setFinishFailed, defaultConfig } from '../define';
-
 
 function ProStepsFormCustom(props: StepsPropsType) {
   let {
@@ -43,9 +42,8 @@ function ProStepsFormCustom(props: StepsPropsType) {
     return true;
   };
   //每次切换成功回调
-  const onCurrentChange = async (current:number) => {
+  const onCurrentChange = async (current: number) => {
     try {
-
     } catch (e) {
       console.log(e);
     }
@@ -54,36 +52,36 @@ function ProStepsFormCustom(props: StepsPropsType) {
     setFinishFailed(err);
   };
   //处理弹窗配置
-  let modalConfig:any = {};
-  if(modal){
-    if(modal.title){
-      modalConfig.title = modal.title
-    }else {
+  let modalConfig: any = {};
+  if (modal) {
+    if (modal.title) {
+      modalConfig.title = modal.title;
+    } else {
       modalConfig.title = defaultConfig.modal?.title;
     }
-    if(modal.width){
+    if (modal.width) {
       modalConfig.width = modal.width;
-    }else {
+    } else {
       modalConfig.width = defaultConfig.modal?.width;
     }
 
-    if(modal.visible){
+    if (modal.visible) {
       modalConfig.visible = modal.visible;
     }
-    if(modal.onCancel){
-      if(modal.mode && modal.mode === 'Drawer'){
+    if (modal.onCancel) {
+      if (modal.mode && modal.mode === 'Drawer') {
         modalConfig.onClose = modal.onCancel;
-      }else {
+      } else {
         modalConfig.onCancel = modal.onCancel;
       }
     }
   }
 
   //处理弹窗类型
-  let CustomModal:any = Modal;
+  let CustomModal: any = Modal;
   //处理弹窗类型
   if (modal) {
-    if(modal.mode === 'Drawer'){
+    if (modal.mode === 'Drawer') {
       CustomModal = Drawer;
     }
   }
@@ -93,43 +91,43 @@ function ProStepsFormCustom(props: StepsPropsType) {
       <StepsForm
         onFinish={onFinish}
         onCurrentChange={onCurrentChange}
-        stepsFormRender={modal ? (dom, submitter) => {
-          return (
-            <CustomModal
-              {...modalConfig}
-              footer={submitter}
-              destroyOnClose
-            >
-              {dom}
-            </CustomModal>
-          );
-        }:undefined}
-      >
-        {
-          formConfig.map((i, key) => {
-            let iprops = { ...i, formConfig: i.stepsChildren };
-            return (
-              <StepsForm.StepForm
-                key={key + '-step-custom'}
-                name={i.name}
-                title={i.title}
-                layout={layout || defaultConfig.layout}
-                form={form}
-                labelAlign={labelAlign || defaultConfig.labelAlign}
-                size={size || defaultConfig.size}
-                requiredMark={requiredMark || defaultConfig.requiredMark}
-                onFinish={onStepFinish}
-                onFinishFailed={onFinishFailed}
-                initialValues={initialValues || defaultConfig.initialValues}
-                onValuesChange={onValuesChange}
-              >
-                <ComponentCustom {...iprops} />
-              </StepsForm.StepForm>
-            );
-          })
+        stepsFormRender={
+          modal
+            ? (dom, submitter) => {
+                return (
+                  <CustomModal
+                    {...modalConfig}
+                    footer={submitter}
+                    destroyOnClose
+                  >
+                    {dom}
+                  </CustomModal>
+                );
+              }
+            : undefined
         }
-
-
+      >
+        {formConfig.map((i, key) => {
+          let iprops = { ...i, formConfig: i.stepsChildren };
+          return (
+            <StepsForm.StepForm
+              key={key + '-step-custom'}
+              name={i.name}
+              title={i.title}
+              layout={layout || defaultConfig.layout}
+              form={form}
+              labelAlign={labelAlign || defaultConfig.labelAlign}
+              size={size || defaultConfig.size}
+              requiredMark={requiredMark || defaultConfig.requiredMark}
+              onFinish={onStepFinish}
+              onFinishFailed={onFinishFailed}
+              initialValues={initialValues || defaultConfig.initialValues}
+              onValuesChange={onValuesChange}
+            >
+              <ComponentCustom {...iprops} />
+            </StepsForm.StepForm>
+          );
+        })}
       </StepsForm>
     </>
   );

@@ -8,7 +8,6 @@ import { ProFormField } from '@ant-design/pro-form';
 import { useIntl } from '@ant-design/pro-provider';
 import ProCard from '@ant-design/pro-card';
 
-
 /**
  * 处理字段多层级的情况
  * 例如：ProFormText.Password
@@ -56,7 +55,10 @@ const setCustomParams = function(props: any, intl: any) {
 
   //如果有参数fieldProps.placeholder
   if (!props.fieldProps.placeholder) {
-    props.fieldProps.placeholder = intl.getMessage('tableForm.inputPlaceholder', '请输入');
+    props.fieldProps.placeholder = intl.getMessage(
+      'tableForm.inputPlaceholder',
+      '请输入',
+    );
   }
 
   if (props.disabled) {
@@ -80,7 +82,7 @@ const setCustomParams = function(props: any, intl: any) {
     let fieldProps = props.fieldProps;
     props = {
       ...props,
-      ...fieldProps
+      ...fieldProps,
     };
     delete props.fieldProps;
   }
@@ -97,21 +99,43 @@ const setCustomParams = function(props: any, intl: any) {
  * @param children //子集
  * @param level //层级
  */
-const getChildrenDom = function(isCustom:boolean,intl:any,allComponent: any, dom: any = [], children: any, level: number = 1) {
+const getChildrenDom = function(
+  isCustom: boolean,
+  intl: any,
+  allComponent: any,
+  dom: any = [],
+  children: any,
+  level: number = 1,
+) {
   if (!children || children.length <= 0) {
     return;
   }
   children.forEach((child: any, cindex: any) => {
     let childDom = getComponent(child.mold, allComponent);
-    let childProps = { width: 's', key: cindex + `-level${level}-children-custom`, ...child };
+    let childProps = {
+      width: 's',
+      key: cindex + `-level${level}-children-custom`,
+      ...child,
+    };
     childProps = setCustomParams(childProps, intl);
 
     let childs: [] = [];
-    getChildrenDom(isCustom,intl,allComponent, childs, child.children, level + 1);
+    getChildrenDom(
+      isCustom,
+      intl,
+      allComponent,
+      childs,
+      child.children,
+      level + 1,
+    );
 
-    let arr = React.createElement(childDom, {
-      ...childProps,
-    }, childs);
+    let arr = React.createElement(
+      childDom,
+      {
+        ...childProps,
+      },
+      childs,
+    );
 
     dom.push(arr);
   });
@@ -130,14 +154,10 @@ const WIDTH_SIZE_ENUM = {
   xl: 552,
 };
 
-
 function ComponentCustom(props: PropsType) {
   const intl = useIntl();
 
-  let {
-    formConfig,
-    form,
-  } = props;
+  let { formConfig, form } = props;
   //合并pro-form 和 自己自定义的组件
   let allComponent = { ...CustomAll, ...ProFormAll, ProCard };
 
@@ -145,9 +165,7 @@ function ComponentCustom(props: PropsType) {
 
   if (formConfig.length > 0) {
     formConfig.forEach((config: FormChildrenConfigType, gindex: number) => {
-
       let childrenItem: any = [];
-
 
       config.children.forEach((item: FormConfigType, index: number) => {
         //是否是自动的组件
@@ -163,7 +181,6 @@ function ComponentCustom(props: PropsType) {
 
         //如果显示才渲染子组件
         if (item.moldShow) {
-
           delete item.moldShow;
 
           let dom = getComponent(item.mold, allComponent);
@@ -172,7 +189,14 @@ function ComponentCustom(props: PropsType) {
           let children: any = [];
 
           //获取递归组件
-          getChildrenDom(isCustom,intl,allComponent, children, item.children, 1);
+          getChildrenDom(
+            isCustom,
+            intl,
+            allComponent,
+            children,
+            item.children,
+            1,
+          );
 
           //如果是自定义组件
           if (isCustom) {
@@ -181,35 +205,48 @@ function ComponentCustom(props: PropsType) {
 
             //向所有自定义组件外部插入一层ProFormField包裹
             // @ts-ignore
-            childrenItem.push(React.createElement(ProFormField, {
-              ...props,
-            }, React.createElement(dom, {
-              ...props,
-            }, children)));
+            childrenItem.push(
+              React.createElement(
+                ProFormField,
+                {
+                  ...props,
+                },
+                React.createElement(
+                  dom,
+                  {
+                    ...props,
+                  },
+                  children,
+                ),
+              ),
+            );
           } else {
-            childrenItem.push(React.createElement(dom, {
-              ...props,
-            }, children));
+            childrenItem.push(
+              React.createElement(
+                dom,
+                {
+                  ...props,
+                },
+                children,
+              ),
+            );
           }
-
         }
-
       });
-      items.push(React.createElement(allComponent.default.Group, {
-        title: config.title || undefined,
-        key: gindex + '-group-custom',
-      }, childrenItem));
-
+      items.push(
+        React.createElement(
+          allComponent.default.Group,
+          {
+            title: config.title || undefined,
+            key: gindex + '-group-custom',
+          },
+          childrenItem,
+        ),
+      );
     });
   }
 
-  return (
-    <>
-      {
-        items.map((dom: any) => dom)
-      }
-    </>
-  );
+  return <>{items.map((dom: any) => dom)}</>;
 }
 
 export default ComponentCustom;

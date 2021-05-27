@@ -79,43 +79,41 @@ const rightOptions: ProColumns<ProportionItem>[] = [
       index: number,
       action: any,
     ) => {
-      
-      return (
-        <div></div>
-      );
+      return <div></div>;
     },
   },
 ];
 
-const buttonGroup = [{
-  type: 'import',
-  // name: '导入',
-  handler: (event: any) => {
-    console.log('导入', event);
-    
-  }
-}, {
-  type: 'export',
-  // name: '导出',
-  handler: (event: any) => {
-    console.log('kiana', event);
-    
-  }
-}, {
-  type: 'xxx',
-  name: 'kiana',
-  handler: (event: any) => {
-    console.log('kiana', event);
-    
-  }
-}]
+const buttonGroup = [
+  {
+    type: 'import',
+    // name: '导入',
+    handler: (event: any) => {
+      console.log('导入', event);
+    },
+  },
+  {
+    type: 'export',
+    // name: '导出',
+    handler: (event: any) => {
+      console.log('kiana', event);
+    },
+  },
+  {
+    type: 'xxx',
+    name: 'kiana',
+    handler: (event: any) => {
+      console.log('kiana', event);
+    },
+  },
+];
 
 const paramsFormatter = (params: any) => {
   return {
     ...params,
-    xxxxxxxxxxxxxxxxxxx: 124
-  }
-}
+    xxxxxxxxxxxxxxxxxxx: 124,
+  };
+};
 
 const ProTable = () => {
   return (

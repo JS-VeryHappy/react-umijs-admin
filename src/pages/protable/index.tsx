@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Tag, Button } from 'antd';
 
-
 import { ProColumns } from '@/components/TableCustom/types';
 
 import TableCustom from '@/components/TableCustom';
-import AddButtonCustom from "@/components/BasicsBusinessCustom/ButtonGroup/AddButtonCustom"
+import AddButtonCustom from '@/components/BasicsBusinessCustom/ButtonGroup/AddButtonCustom';
 
-import { getSelect,getProTable } from '@/services';
+import { getSelect, getProTable } from '@/services';
 import './index.less';
 
 interface ProportionItem {
@@ -126,8 +125,14 @@ const columns: ProColumns<ProportionItem>[] = [
     // search: false,
     // width: ,
     renderFormItem: (item, props, form) => {
-      return <AddButtonCustom onClick={() => {console.log(12344)}}></AddButtonCustom>
-    }
+      return (
+        <AddButtonCustom
+          onClick={() => {
+            console.log(12344);
+          }}
+        ></AddButtonCustom>
+      );
+    },
   },
 ];
 
@@ -144,49 +149,47 @@ const rightOptions: ProColumns<ProportionItem>[] = [
       index: number,
       action: any,
     ) => {
-      return (
-        <div ></div>
-      );
+      return <div></div>;
     },
   },
 ];
 
-
 // const columns123: ProColumns<ProportionItem>[] = [{a: 1}]
 
 const protable = () => {
-  const buttonGroup = [{
-    type: 'import',
-    // name: '导入',
-    handler: (event: any) => {
-      console.log('导入', event);
-      
-    }
-  }, {
-    type: 'export',
-    // name: '导出',
-    handler: (event: any) => {
-      console.log('kiana', event);
-      
-    }
-  }, {
-    type: 'xxx',
-    name: 'kiana',
-    handler: (event: any) => {
-      console.log('kiana', event);
-      
-    }
-  }]
+  const buttonGroup = [
+    {
+      type: 'import',
+      // name: '导入',
+      handler: (event: any) => {
+        console.log('导入', event);
+      },
+    },
+    {
+      type: 'export',
+      // name: '导出',
+      handler: (event: any) => {
+        console.log('kiana', event);
+      },
+    },
+    {
+      type: 'xxx',
+      name: 'kiana',
+      handler: (event: any) => {
+        console.log('kiana', event);
+      },
+    },
+  ];
 
   const paramsFormatter = (params: any) => {
     return {
       ...params,
-      xxx: 124
-    }
-  }
+      xxx: 124,
+    };
+  };
 
   // 15308047727
-  
+
   // loading={loading}
   // dataSource={dataSource}
   // onSubmit={onSubmit}

@@ -1,29 +1,28 @@
 /**
  * title: 手动处理隐藏
- * desc: 
+ * desc:
  */
 
 import React, { useState } from 'react';
-import { Button,message } from 'antd';
-import ModalCustom from '@/components/ModalGroupCustom/ModalCustom'
+import { Button, message } from 'antd';
+import ModalCustom from '@/components/ModalGroupCustom/ModalCustom';
 
 function UseManualModaExample() {
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
   const handleOk = async () => {
-    message.success('点击确定')
+    message.success('点击确定');
     setIsModalVisible(false);
   };
   const handleCancel = () => {
-    message.success('点击取消')
+    message.success('点击取消');
     setIsModalVisible(false);
   };
   const handleClose = () => {
-    message.success('点击X或者遮罩')
+    message.success('点击X或者遮罩');
     setIsModalVisible(false);
   };
   return (
@@ -44,7 +43,6 @@ function UseManualModaExample() {
       </ModalCustom>
     </div>
   );
-};
+}
 
 export default UseManualModaExample;
-

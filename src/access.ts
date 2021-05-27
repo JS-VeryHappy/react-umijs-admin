@@ -7,14 +7,14 @@ export default function(initialState: any) {
   // const {  role } = initialState;
 
   return {
-    checkAuth:(access:any)=>{
-      if(access.path === '/noAuth'){
-         return false;
+    checkAuth: (access: any) => {
+      if (access.path === '/noAuth') {
+        return false;
       }
       return true;
     },
     authShow: true,
-    canUpdateFoo:false,
+    canUpdateFoo: false,
     canDeleteFoo: (cid: number) => {
       return cid === 1;
     },

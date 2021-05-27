@@ -5,10 +5,9 @@
 
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import ModalCustom from '@/components/ModalGroupCustom/ModalCustom'
+import ModalCustom from '@/components/ModalGroupCustom/ModalCustom';
 
 function UseModalExample() {
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -23,7 +22,7 @@ function UseModalExample() {
       <span>1</span>
       <span>(我可以自定义标题顶部))</span>
     </>
-  )
+  );
   return (
     <div>
       <Button type="primary" onClick={showModal}>
@@ -41,7 +40,6 @@ function UseModalExample() {
       </ModalCustom>
     </div>
   );
-};
+}
 
 export default UseModalExample;
-

@@ -8,45 +8,41 @@ function ProForm() {
     {
       children: [
         {
-          mold: "ProFormText",
-          name: "jobnumber",
-          label: "工号",
-          rules:[
+          mold: 'ProFormText',
+          name: 'jobnumber',
+          label: '工号',
+          rules: [
             { required: true, message: '请输入正确工号1' },
             {
-              validator(rule:any, value:any){
+              validator(rule: any, value: any) {
                 if (!value || value > 5) {
                   return Promise.resolve();
                 }
                 return Promise.reject('请输入正确工号2');
-              }
+              },
             },
-            (event:any) => ({
-              validator(rule:any, value:any) {
-                if (!value || value < 5 || value > 10 ) {
+            (event: any) => ({
+              validator(rule: any, value: any) {
+                if (!value || value < 5 || value > 10) {
                   return Promise.resolve();
                 }
                 return Promise.reject('请输入正确工号3');
-              }
+              },
             }),
-          ]
-        }
-      ]
-    }
-  ]
+          ],
+        },
+      ],
+    },
+  ];
 
   const onSubmit = async (data: any) => {
     console.log(data);
     message.success('调用成功');
   };
 
-
   return (
     <>
-      <ProFormCustom
-        formConfig={config}
-        onSubmit={onSubmit}
-      />
+      <ProFormCustom formConfig={config} onSubmit={onSubmit} />
     </>
   );
 }
