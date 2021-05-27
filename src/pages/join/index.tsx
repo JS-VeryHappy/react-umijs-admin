@@ -576,7 +576,7 @@ export default function Join() {
             style={{ color: '#a1b2fa', borderRadius: '2%' }}
             extra={
               <Dropdown overlay={menu}>
-                <a style={{ color: '#a1b2fa' }} onClick={e => e.preventDefault()}>
+                <a style={{ color: '#a1b2fa' }} onClick={(e) => e.preventDefault()}>
                   标准
                   <DownOutlined />
                 </a>

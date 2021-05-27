@@ -28,7 +28,6 @@ const NoticeList = (props: NoticeIconTabProps): React.ReactElement => {
     onClear,
     title,
     onViewMore,
-    emptyText,
     showClear = true,
     clearText,
     viewMoreText,
@@ -88,7 +87,7 @@ const NoticeList = (props: NoticeIconTabProps): React.ReactElement => {
         ) : null}
         {showViewMore ? (
           <div
-            onClick={e => {
+            onClick={(e) => {
               if (onViewMore) {
                 onViewMore(e);
               }

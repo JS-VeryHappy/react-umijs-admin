@@ -3,7 +3,7 @@ import { Typography, Space, Dropdown, Menu } from 'antd';
 import { EllipsisOutlined, EditOutlined, UploadOutlined } from '@ant-design/icons';
 import ProCard from '@ant-design/pro-card';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 function AboutCustom() {
   const menu = (

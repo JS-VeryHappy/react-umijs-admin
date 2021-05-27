@@ -40,9 +40,9 @@ export default function Chart() {
   }, []);
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
-      .then(response => response.json())
-      .then(json => setScatterData(json))
-      .catch(e => {
+      .then((response) => response.json())
+      .then((json) => setScatterData(json))
+      .catch((e) => {
         console.log(e);
       });
   };

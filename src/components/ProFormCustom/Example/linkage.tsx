@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProFormCustom from '@/components/ProFormCustom';
 import { Form, message } from 'antd';
-import type {
-  FormChildrenConfigType,
-  OptionsType} from '@/components/ProFormCustom/types';
-import {
-  FormConfigType,
-} from '@/components/ProFormCustom/types';
+import type { FormChildrenConfigType, OptionsType } from '@/components/ProFormCustom/types';
 
 function ProForm() {
   const [form] = Form.useForm();

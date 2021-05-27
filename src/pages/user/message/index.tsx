@@ -147,7 +147,7 @@ function Message() {
           </List.Item>
         )}
         pagination={{
-          onChange: page => {
+          onChange: (page) => {
             console.log(page);
           },
           pageSize: 3,
@@ -164,7 +164,7 @@ function Message() {
 
   const onChangeStatus = (event: any, item: any) => {
     const arr = data2;
-    arr.forEach(i => {
+    arr.forEach((i) => {
       if (i.id === item.id) i.isDelete = !i.isDelete;
     });
     setData2([...arr]);
@@ -195,7 +195,7 @@ function Message() {
         <Tabs tabPosition="top" onChange={onChangeTab}>
           {tabs.map((tab, index) => {
             return (
-              <TabPane tab={`${tab.name  }(${  tab.data.length  })`} key={index}>
+              <TabPane tab={`${tab.name}(${tab.data.length})`} key={index}>
                 {initLoading && tab.data.length ? ListCont(tab.data) : <Empty />}
               </TabPane>
             );
@@ -211,10 +211,13 @@ function Message() {
               dataSource={data2}
               renderItem={(item, index) => (
                 <List.Item>
-                  <Checkbox onChange={e => onChangeStatus(e, item)}>
+                  <Checkbox onChange={(e) => onChangeStatus(e, item)}>
                     <Text delete={item.isDelete}>{item.name}</Text>
                   </Checkbox>
-                  <CloseOutlined style={{ cursor: 'pointer' }} onClick={e => onDelete(e, index)} />
+                  <CloseOutlined
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => onDelete(e, index)}
+                  />
                 </List.Item>
               )}
             />

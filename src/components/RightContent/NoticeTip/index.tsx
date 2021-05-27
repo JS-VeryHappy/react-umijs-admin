@@ -13,22 +13,21 @@ const NoticeTip = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [totalCount, setTotalCount] = useState<number>(0);
 
-  const { notification, message, event, setNotification, setMessage, setEvent } = useModel(
-    'useNoticeModel',
-  );
+  const { notification, message, event, setNotification, setMessage, setEvent } =
+    useModel('useNoticeModel');
   // 可以加入getInitialState
   useEffect(() => {
     getNoticeNotification().then(
-      res => setNotification(res.data.list),
-      err => console.log(err),
+      (res) => setNotification(res.data.list),
+      (err) => console.log(err),
     );
     getNoticeMessage().then(
-      res => setMessage(res.data.list),
-      err => console.log(err),
+      (res) => setMessage(res.data.list),
+      (err) => console.log(err),
     );
     getNoticeEvent().then(
-      res => setEvent(res.data.list),
-      err => console.log(err),
+      (res) => setEvent(res.data.list),
+      (err) => console.log(err),
     );
   }, []);
 
@@ -42,9 +41,9 @@ const NoticeTip = () => {
   // 全局点击事件, 用于判断面板是否关闭
   useEffect(() => {
     let target = null;
-      let icon = null;
-      let notice = null;
-    const closeNoticeTabs = function(event: any) {
+    let icon = null;
+    let notice = null;
+    const closeNoticeTabs = function (event: any) {
       target = event.target;
       icon = document.querySelector('.notice-tip__icon');
       notice = document.querySelector('.notice-tip__dropdown');
@@ -52,7 +51,7 @@ const NoticeTip = () => {
       if (!notice?.contains(target)) setVisible(false);
     };
     document.addEventListener('click', closeNoticeTabs);
-    return function() {
+    return function () {
       target = icon = notice = null;
       document.removeEventListener('click', closeNoticeTabs);
     };

@@ -1,4 +1,4 @@
-import type { ProColumnType} from '@ant-design/pro-table';
+import type { ProColumnType } from '@ant-design/pro-table';
 import { ProColumns } from '@ant-design/pro-table';
 import type { RequestResponse } from 'umi-request';
 

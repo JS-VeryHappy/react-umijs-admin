@@ -8,7 +8,7 @@ import { message } from 'antd';
  * @param data
  * @param children
  */
-const getChildrenParam = function(param: any, data: any, children: any) {
+const getChildrenParam = function (param: any, data: any, children: any) {
   if (!children || children.length <= 0) {
     return;
   }
@@ -33,7 +33,12 @@ const getChildrenParam = function(param: any, data: any, children: any) {
  * @param data
  * @param mode
  */
-const setFormDefault = function(param: any, formConfig: any, data: any, mode: string = 'ordinary') {
+const setFormDefault = function (
+  param: any,
+  formConfig: any,
+  data: any,
+  mode: string = 'ordinary',
+) {
   // 处理回传参数默认值
   if (formConfig.length > 0) {
     formConfig.forEach((config: any, gindex: number) => {
@@ -58,7 +63,7 @@ const setFormDefault = function(param: any, formConfig: any, data: any, mode: st
  * 处理错误信息
  * @param err
  */
-const setFinishFailed = function(err: any) {
+const setFinishFailed = function (err: any) {
   const { errorFields } = err;
   if (errorFields[0]) {
     message.error(errorFields[0].errors[0]);

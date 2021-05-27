@@ -50,14 +50,14 @@ export default function useGlobalModel() {
     }
   }, []);
 
-  const setGlobalDictionaries = useCallback(dictionaries => {
+  const setGlobalDictionaries = useCallback((dictionaries) => {
     return setGlobalInfo({
       ...globalInfo,
       dictionaries,
     });
   }, []);
 
-  const setLayoutSettings = useCallback(settings => {
+  const setLayoutSettings = useCallback((settings) => {
     localStorage.setItem('layoutSettings', JSON.stringify(settings));
     return setGlobalInfo({
       ...globalInfo,
@@ -68,10 +68,9 @@ export default function useGlobalModel() {
   const getGlobalInfo = (field: string) => {
     if (!field) {
       return globalInfo;
-    } 
-      // @ts-ignore
-      return globalInfo[field];
-    
+    }
+    // @ts-ignore
+    return globalInfo[field];
   };
 
   return {

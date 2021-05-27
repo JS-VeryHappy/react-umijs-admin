@@ -7,7 +7,7 @@ import NoticeList from '../NoticeList';
 const { TabPane } = Tabs;
 const NOTICE_TYPE = ['notification', 'message', 'event'];
 
-const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
+const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = (props) => {
   const { children } = props;
   const panes: React.ReactNode[] = [];
   const { setNotification, setMessage, setEvent } = useModel('useNoticeModel');
@@ -15,7 +15,7 @@ const NoticeTabs: React.FC<any> & { Tab: typeof NoticeList } = props => {
   const getMsgCount = (data: any) =>
     data.reduce((prev: any, cur: any) => prev + (!cur.read ? 1 : 0), 0);
 
-  const onViewMore = (e: any) => Message.info('no more ╮(￣▽ ￣)╭');
+  const onViewMore = () => Message.info('no more ╮(￣▽ ￣)╭');
 
   // 待优化
   const onClear = (type: any) => {

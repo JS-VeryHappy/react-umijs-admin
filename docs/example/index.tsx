@@ -43,7 +43,7 @@ function AddButtonCustom(Props: AddButtonCustomType) {
         type={bntType || 'dashed'}
         onClick={
           onClick ||
-          function() {
+          function () {
             message.info('点击按钮');
           }
         }

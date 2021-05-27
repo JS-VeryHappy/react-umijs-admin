@@ -164,7 +164,7 @@ export default defineConfig({
   esbuild: {},
 
   //加载dumi文档配置
-  ...dumi,
+  // ...dumi,
 
   autotipsComponents: {
     enable: true,

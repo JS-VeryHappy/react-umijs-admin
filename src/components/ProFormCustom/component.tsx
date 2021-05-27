@@ -14,7 +14,7 @@ import ProCard from '@ant-design/pro-card';
  * @param field
  * @param ProFormAll
  */
-const getComponent = function(field: string, ProFormAll: any) {
+const getComponent = function (field: string, ProFormAll: any) {
   const nameArr = field.split('.');
   if (nameArr.length >= 2) {
     let obj = ProFormAll[nameArr[0]];
@@ -22,9 +22,8 @@ const getComponent = function(field: string, ProFormAll: any) {
       obj = obj[nameArr[i]];
     }
     return obj[nameArr[nameArr.length - 1]];
-  } 
-    return ProFormAll[field];
-  
+  }
+  return ProFormAll[field];
 };
 
 /**
@@ -32,7 +31,7 @@ const getComponent = function(field: string, ProFormAll: any) {
  * @param props
  * @param intl
  */
-const setCustomParams = function(props: any, intl: any) {
+const setCustomParams = function (props: any, intl: any) {
   // 设置统一className
   // @ts-ignore
   props.className = classnames(props?.className, {
@@ -76,7 +75,7 @@ const setCustomParams = function(props: any, intl: any) {
   // 如果卡片组件需要特殊处理
   if (props.mold === 'ProCard') {
     // @ts-ignore
-    const {fieldProps} = props;
+    const { fieldProps } = props;
     props = {
       ...props,
       ...fieldProps,
@@ -96,7 +95,7 @@ const setCustomParams = function(props: any, intl: any) {
  * @param children //子集
  * @param level //层级
  */
-const getChildrenDom = function(
+const getChildrenDom = function (
   isCustom: boolean,
   intl: any,
   allComponent: any,
@@ -111,7 +110,7 @@ const getChildrenDom = function(
     const childDom = getComponent(child.mold, allComponent);
     let childProps = {
       width: 's',
-      key: `${cindex  }-level${level}-children-custom`,
+      key: `${cindex}-level${level}-children-custom`,
       ...child,
     };
     childProps = setCustomParams(childProps, intl);
@@ -147,7 +146,7 @@ const WIDTH_SIZE_ENUM = {
 function ComponentCustom(props: PropsType) {
   const intl = useIntl();
 
-  const { formConfig, form } = props;
+  const { formConfig } = props;
   // 合并pro-form 和 自己自定义的组件
   const allComponent = { ...CustomAll, ...ProFormAll, ProCard };
 
@@ -174,7 +173,7 @@ function ComponentCustom(props: PropsType) {
           delete item.moldShow;
 
           const dom = getComponent(item.mold, allComponent);
-          let props = { width: 's', key: `${index  }-custom`, ...item };
+          let props = { width: 's', key: `${index}-custom`, ...item };
 
           const children: any = [];
 
@@ -221,7 +220,7 @@ function ComponentCustom(props: PropsType) {
           allComponent.default.Group,
           {
             title: config.title || undefined,
-            key: `${gindex  }-group-custom`,
+            key: `${gindex}-group-custom`,
           },
           childrenItem,
         ),

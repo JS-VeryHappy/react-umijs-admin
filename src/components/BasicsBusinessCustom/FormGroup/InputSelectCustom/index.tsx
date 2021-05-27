@@ -61,7 +61,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange([selectValue, e.target.value]);
     } else {
-      message.info(`Input切换值${  e.target.value}`);
+      message.info(`Input切换值${e.target.value}`);
     }
   };
   /**
@@ -73,7 +73,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange([value, inputValue]);
     } else {
-      message.info(`Select切换值${  value}`);
+      message.info(`Select切换值${value}`);
     }
   };
   /**
@@ -105,9 +105,9 @@ function InputSelectCustom(Props: InputSelectCustomType) {
   return (
     <>
       {readonly ? (
-        `${value && value[0] ? selectOptions.find((i: any) => i.value === value[0])?.label : '' 
-        }-${ 
-        value && value[1] ? value[1] : ''}`
+        `${value && value[0] ? selectOptions.find((i: any) => i.value === value[0])?.label : ''}-${
+          value && value[1] ? value[1] : ''
+        }`
       ) : (
         <Input.Group compact>
           <Form.Item noStyle>

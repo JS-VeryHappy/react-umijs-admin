@@ -31,11 +31,11 @@ function ProForm() {
   }, []);
 
   const handledOnClick = () => {
-    const {length} = intervalRef.current;
+    const { length } = intervalRef.current;
     intervalRef.current.push({
       mold: 'ProFormText',
       name: `ProFormText.${length}`,
-      label: `ProFormText${  length}`,
+      label: `ProFormText${length}`,
       rules: [{ required: true, message: '请输入正确值' }],
     });
     setUpdate(update + 1);

@@ -1,5 +1,5 @@
-import type { ReactNode} from 'react';
-import React, { useState, useContext, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, message } from 'antd';
 
 interface ModalCustomType {

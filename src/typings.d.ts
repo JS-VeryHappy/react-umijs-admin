@@ -9,6 +9,6 @@ declare module '*.svg' {
   export default url;
 }
 declare const $global: {
-  //打印方法
+  // 打印方法
   log: Function;
 };

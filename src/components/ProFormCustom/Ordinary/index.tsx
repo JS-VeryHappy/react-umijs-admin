@@ -45,7 +45,7 @@ function ProFormCustom(props: PropsType) {
     }
   };
   // @ts-ignore
-  const onFinishFailed = async err => {
+  const onFinishFailed = async (err) => {
     setFinishFailed(err);
   };
 

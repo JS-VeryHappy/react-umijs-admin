@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { useModel } from 'umi';
 import { message } from 'antd';
 
-export default function(props: {
+export default function (props: {
   location: { pathname: string };
   children: {} | null | undefined;
 }) {

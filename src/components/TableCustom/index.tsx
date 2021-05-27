@@ -3,7 +3,13 @@ import ProTable from '@ant-design/pro-table';
 import { Space, Button } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
 
-import type { TablePropsType, ActionType, ButtonGroupType, PaginationConfig, ProColumns } from './types';
+import type {
+  TablePropsType,
+  ActionType,
+  ButtonGroupType,
+  PaginationConfig,
+  ProColumns,
+} from './types';
 import './index.less';
 
 function TableCustom<ListItem>(
@@ -153,7 +159,10 @@ function TableCustom<ListItem>(
     for (const key in fileds) {
       if (fileds[key] === undefined) tempFileds[key] = null;
     }
-    let requestParams = { ...fileds, pageInfo: { page: pagination.current, count: pagination.pageSize },};
+    let requestParams = {
+      ...fileds,
+      pageInfo: { page: pagination.current, count: pagination.pageSize },
+    };
     if (typeof paramsFormatter === 'function') {
       requestParams = paramsFormatter(requestParams);
     }

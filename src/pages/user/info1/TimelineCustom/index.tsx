@@ -3,7 +3,7 @@ import styles from './index.less';
 import { Card, Typography, Space, Timeline } from 'antd';
 import { AppstoreAddOutlined, AlertOutlined, BankOutlined } from '@ant-design/icons';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 function TimelineCustom(props: any) {
   return (

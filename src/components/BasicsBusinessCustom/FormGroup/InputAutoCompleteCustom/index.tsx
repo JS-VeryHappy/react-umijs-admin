@@ -8,7 +8,7 @@ interface InputAutoCompleteCustomType {
    * antd 按钮props 参数
    * 和antd 参数一样
    */
-  fieldProps?: {} | undefined;
+  fieldProps?: object | undefined;
   /**
    * select选择数据
    * @default []
@@ -53,7 +53,7 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange(value);
     } else {
-      message.info(`Input切换值${  value}`);
+      message.info(`Input切换值${value}`);
     }
   };
 

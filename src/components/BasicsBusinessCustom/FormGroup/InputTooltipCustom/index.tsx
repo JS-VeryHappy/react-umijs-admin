@@ -63,7 +63,7 @@ function InputTooltipCustom(Props: InputTooltipCustomType) {
     if (onChange && typeof onChange === 'function') {
       onChange(e.target.value);
     } else {
-      message.info(`切换值${  e.target.value}`);
+      message.info(`切换值${e.target.value}`);
     }
   };
 

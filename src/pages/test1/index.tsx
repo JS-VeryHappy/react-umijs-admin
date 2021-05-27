@@ -3,14 +3,14 @@ import { useWatch } from '@/utils/hook';
 
 export default () => {
   const [count, setCount] = useState(0);
-  const stop = useWatch<number>(count, old => {
+  const stop = useWatch<number>(count, (old) => {
     console.log('count --- newValue: ', count);
     console.log('count --- oldValue: ', old);
   });
 
   useEffect(() => {
     for (let i = 0; i < 10; i++) {
-      (function(i) {
+      (function (i) {
         setTimeout(() => {
           setCount(i);
           if (i === 10) stop();

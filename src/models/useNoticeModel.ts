@@ -5,9 +5,9 @@ const useNoticeModel = () => {
   const [message, _setMessage] = useState<any[]>([]);
   const [event, _setEvent] = useState<any[]>([]);
 
-  const setNotification = useCallback(item => _setNotification(item), []);
-  const setMessage = useCallback(item => _setMessage(item), []);
-  const setEvent = useCallback(item => _setEvent(item), []);
+  const setNotification = useCallback((item) => _setNotification(item), []);
+  const setMessage = useCallback((item) => _setMessage(item), []);
+  const setEvent = useCallback((item) => _setEvent(item), []);
 
   return {
     notification,

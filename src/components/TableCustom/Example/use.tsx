@@ -56,7 +56,7 @@ const columns: ProColumns<ProportionItem>[] = [
     key: 'decideTimeValue',
     width: 120,
     dataIndex: 'decideTimeValue',
-    render: (_, row) => <Space>{123}</Space>,
+    render: () => <Space>{123}</Space>,
   },
   {
     title: '销售渠道',

@@ -107,7 +107,7 @@ function ProStepsFormCustom(props: StepsPropsType) {
           const iprops = { ...i, formConfig: i.stepsChildren };
           return (
             <StepsForm.StepForm
-              key={`${key  }-step-custom`}
+              key={`${key}-step-custom`}
               name={i.name}
               title={i.title}
               layout={layout || defaultConfig.layout}

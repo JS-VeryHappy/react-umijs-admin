@@ -3,7 +3,7 @@
 
 import { history } from 'umi';
 
-export default function(initialState: any) {
+export default function (initialState: any) {
   // const {  role } = initialState;
 
   return {
