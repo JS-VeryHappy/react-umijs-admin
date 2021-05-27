@@ -33,7 +33,6 @@ import {
   Scatter,
 } from '@ant-design/charts';
 import ProCard from '@ant-design/pro-card';
-import style from './index.less';
 
 export default function Join() {
   const { Text, Title } = Typography;

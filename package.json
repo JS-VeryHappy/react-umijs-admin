@@ -15,12 +15,21 @@
     "test:coverage": "umi-test --coverage",
     "test:inspect-brk": "node --inspect-brk ./node_modules/.bin/umi test",
     "analyze": "cross-env ANALYZE=1 umi build",
-    "serve": "serve ./dist"
+    "serve": "serve ./dist",
+    "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:prettier": "prettier --check \"src/**/*\" --end-of-line auto",
+    "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less"
   },
   "gitHooks": {
     "commit-msg": "node ./node_modules/@umijs/fabric/dist/verifyCommit.js"
   },
   "lint-staged": {
+    "*.less": "stylelint --syntax less",
+    "*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
     ],
@@ -74,16 +83,21 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-umi": "^1.6.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^32.0.1",
     "mockjs": "^1.1.0",
     "prettier": "^1.19.1",
     "puppeteer-core": "^5.5.0",
     "redux-logger": "^3.0.6",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.0.5",
     "umi-plugin-autotips-components": "^1.0.7"
   },

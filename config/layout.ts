@@ -69,7 +69,7 @@ export default (config: any) => {
                 Link,
                 {
                   to: '/~docs',
-                  target: "_blank",
+                  target: '_blank',
                 },
                 [
                   React.createElement(BookOutlined, {

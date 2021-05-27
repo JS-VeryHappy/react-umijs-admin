@@ -7,7 +7,6 @@ import TableCustom from '@/components/TableCustom';
 import AddButtonCustom from '@/components/BasicsBusinessCustom/ButtonGroup/AddButtonCustom';
 
 import { getSelect, getProTable } from '@/services';
-import './index.less';
 
 interface ProportionItem {
   deptName?: string;

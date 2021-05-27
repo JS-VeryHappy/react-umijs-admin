@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs, message as Message } from 'antd';
 import { useModel } from 'umi';
 
-import './index.less';
 import NoticeList from '../NoticeList';
 
 const { TabPane } = Tabs;
