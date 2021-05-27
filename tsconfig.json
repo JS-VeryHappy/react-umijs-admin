@@ -15,20 +15,6 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "mock/**/*",
-    "src/**/*",
-    ".umirc.ts",
-    "typings.d.ts",
-    "config/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "scripts",
-    "src/.umi/*",
-    "webpack",
-    "jest"
-  ]
+  "include": ["mock/**/*", "src/**/*", ".umirc.ts", "typings.d.ts", "config/**/*"],
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }

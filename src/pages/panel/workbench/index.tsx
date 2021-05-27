@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FireTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { Line } from '@ant-design/charts';
-import {
-  Card,
-  Skeleton,
-  Row,
-  Col,
-  Rate,
-  Avatar,
-  Image,
-  Space,
-  Carousel,
-  List,
-} from 'antd';
+import { Card, Skeleton, Row, Col, Rate, Avatar, Image, Space, Carousel, List } from 'antd';
 import styles from './index.less';
 import { getChartData, getListData } from '@/services';
 import { Link, useRequest } from 'umi';
@@ -121,12 +110,7 @@ export default function WorkBench() {
             title="动态"
             style={{ marginBottom: 20 }}
           >
-            <Skeleton
-              loading={!loadingList}
-              active
-              avatar
-              paragraph={{ rows: 8 }}
-            >
+            <Skeleton loading={!loadingList} active avatar paragraph={{ rows: 8 }}>
               <List
                 itemLayout="horizontal"
                 dataSource={listData}

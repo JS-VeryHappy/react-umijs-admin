@@ -105,9 +105,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
   return (
     <>
       {readonly ? (
-        (value && value[0]
-          ? selectOptions.find((i: any) => i.value === value[0])?.label
-          : '') +
+        (value && value[0] ? selectOptions.find((i: any) => i.value === value[0])?.label : '') +
         '-' +
         (value && value[1] ? value[1] : '')
       ) : (

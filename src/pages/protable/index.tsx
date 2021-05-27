@@ -142,12 +142,7 @@ const rightOptions: ProColumns<ProportionItem>[] = [
     key: 'option3',
     valueType: 'option',
     fixed: 'right',
-    render: (
-      text: React.ReactNode,
-      record: any,
-      index: number,
-      action: any,
-    ) => {
+    render: (text: React.ReactNode, record: any, index: number, action: any) => {
       return <div></div>;
     },
   },

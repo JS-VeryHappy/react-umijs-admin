@@ -27,10 +27,7 @@ export function rootContainer(container: any, props) {
 // 全局初始化调用约定方法、可以作为全局进入登陆使用 返回登陆后的用户数据。启动应用执行一次
 export async function getInitialState() {
   $global.log('启动应用进入页面');
-  if (
-    history.location.pathname !== '/login' &&
-    history.location.pathname !== '/404'
-  ) {
+  if (history.location.pathname !== '/login' && history.location.pathname !== '/404') {
     let res = await isLogin();
     return res.data;
   }
@@ -49,12 +46,7 @@ export function patchRoutes({ routes }: any) {
 }
 
 //在初始加载和路由切换时做一些事情。每次切换都会执行
-export function onRouteChange({
-  routes,
-  matchedRoutes,
-  location,
-  action,
-}: any) {
+export function onRouteChange({ routes, matchedRoutes, location, action }: any) {
   //测试发现 umijs 约定式404 无法主动触发、所以自定义写了一个 配出文档查看路由
   if (
     routes.length &&

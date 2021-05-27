@@ -45,15 +45,7 @@ interface InputTooltipCustomType {
 function InputTooltipCustom(Props: InputTooltipCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
 
-  const {
-    onClick,
-    fieldProps,
-    tooltipText,
-    tooltipTitle,
-    readonly,
-    onChange,
-    value,
-  } = Props;
+  const { onClick, fieldProps, tooltipText, tooltipTitle, readonly, onChange, value } = Props;
 
   useEffect(() => {
     /**
@@ -93,12 +85,7 @@ function InputTooltipCustom(Props: InputTooltipCustomType) {
       {readonly ? (
         value
       ) : (
-        <Input
-          {...defaultFieldProps}
-          {...fieldProps}
-          value={inputValue}
-          onChange={onInputChange}
-        />
+        <Input {...defaultFieldProps} {...fieldProps} value={inputValue} onChange={onInputChange} />
       )}
       <Tooltip title={tooltipTitle || '我是提示'}>
         <a onClick={onClick || undefined} style={{ margin: '0 8px' }}>

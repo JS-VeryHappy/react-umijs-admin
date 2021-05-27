@@ -10,11 +10,7 @@ type Config = { immediate: boolean };
  * @param config 监听设置
  */
 
-function useWatch<T>(
-  dep: T,
-  callback: CallBack<T>,
-  config: Config = { immediate: false },
-) {
+function useWatch<T>(dep: T, callback: CallBack<T>, config: Config = { immediate: false }) {
   // 监听禁止标志
   const stop = useRef<boolean>(false);
   // 初始化标志

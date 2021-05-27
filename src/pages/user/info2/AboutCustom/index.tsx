@@ -1,10 +1,6 @@
 import React from 'react';
 import { Typography, Space, Dropdown, Menu } from 'antd';
-import {
-  EllipsisOutlined,
-  EditOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { EllipsisOutlined, EditOutlined, UploadOutlined } from '@ant-design/icons';
 import ProCard from '@ant-design/pro-card';
 
 const { Title, Text } = Typography;
@@ -35,8 +31,8 @@ function AboutCustom() {
       >
         <Space direction="vertical">
           <Text>
-            Hi! I'm Amiah the Senior UI Designer at NobleUI. We hope you enjoy
-            the design and quality of Social.
+            Hi! I'm Amiah the Senior UI Designer at NobleUI. We hope you enjoy the design and
+            quality of Social.
           </Text>
           <Space direction="vertical" size={0}>
             <Text>JOINED</Text>

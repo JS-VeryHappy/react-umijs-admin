@@ -228,12 +228,7 @@ export default function Chart() {
         {
           return (
             <>
-              <Avatar
-                key={infos[0]}
-                src={infos[0]}
-                shape="circle"
-                style={{ marginRight: 6 }}
-              />
+              <Avatar key={infos[0]} src={infos[0]} shape="circle" style={{ marginRight: 6 }} />
               <span key={infos[1]}>{infos[1]}</span>
             </>
           );
@@ -331,21 +326,14 @@ export default function Chart() {
     <>
       <Row gutter={24}>
         <Col xl={6} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            bodyStyle={{ textAlign: 'center' }}
-            style={{ marginBottom: 20 }}
-          >
+          <Card bodyStyle={{ textAlign: 'center' }} style={{ marginBottom: 20 }}>
             <Space align="center" direction="vertical">
               <Avatar
                 size={120}
                 src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=318406572,948591224&fm=26&gp=0.jpg"
               />
-              <Text style={{ fontSize: 20, fontWeight: 500 }}>
-                Da xian Zhou
-              </Text>
-              <Text style={{ color: 'grey', fontWeight: 500 }}>
-                Project Manager
-              </Text>
+              <Text style={{ fontSize: 20, fontWeight: 500 }}>Da xian Zhou</Text>
+              <Text style={{ color: 'grey', fontWeight: 500 }}>Project Manager</Text>
               <Button
                 shape="round"
                 style={{
@@ -358,15 +346,9 @@ export default function Chart() {
               </Button>
               <Text>
                 <span style={{ fontWeight: 800 }}>754</span>
-                <span
-                  style={{ fontWeight: 500, color: 'grey', marginRight: 10 }}
-                >
-                  Followers
-                </span>
+                <span style={{ fontWeight: 500, color: 'grey', marginRight: 10 }}>Followers</span>
                 <span style={{ fontWeight: 800 }}>24</span>
-                <span style={{ fontWeight: 500, color: 'grey' }}>
-                  Following
-                </span>
+                <span style={{ fontWeight: 500, color: 'grey' }}>Following</span>
               </Text>
               <Text>
                 <Avatar.Group maxCount={100}>
@@ -415,9 +397,8 @@ export default function Chart() {
                 About:
               </Text>
               <Paragraph style={{ color: 'grey' }}>
-                Hi I'm Da xian Zhou,has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type.
+                Hi I'm Da xian Zhou,has been the industry's standard dummy text ever since the
+                1500s, when an unknown printer took a galley of type.
               </Paragraph>
               <Divider />
               <Text>
@@ -430,10 +411,7 @@ export default function Chart() {
                     style={{ backgroundColor: 'rgb(0,172,237)' }}
                     icon={<AntDesignOutlined />}
                   />
-                  <Avatar
-                    style={{ backgroundColor: 'rgb(0,123,182)' }}
-                    icon={<SlackOutlined />}
-                  />
+                  <Avatar style={{ backgroundColor: 'rgb(0,123,182)' }} icon={<SlackOutlined />} />
                   <Avatar
                     style={{ backgroundColor: 'rgb(234,76,137)' }}
                     icon={<AliwangwangOutlined />}
@@ -515,12 +493,8 @@ export default function Chart() {
                 :15645985621@163.com
               </Text>
               <Text>
-                <EnvironmentOutlined
-                  style={{ color: 'cyan', marginRight: 10 }}
-                />
-                <Text style={{ fontWeight: 800, marginRight: 6 }}>
-                  Location
-                </Text>
+                <EnvironmentOutlined style={{ color: 'cyan', marginRight: 10 }} />
+                <Text style={{ fontWeight: 800, marginRight: 6 }}>Location</Text>
                 :China
               </Text>
             </Space>
@@ -528,11 +502,7 @@ export default function Chart() {
         </Col>
         <Col xl={18} lg={24} md={24} sm={24} xs={24}>
           <Card style={{ marginBottom: 20 }}>
-            <Text
-              style={{ color: 'rgb(52,58,64)', fontSize: 18, fontWeight: 800 }}
-            >
-              Your
-            </Text>
+            <Text style={{ color: 'rgb(52,58,64)', fontSize: 18, fontWeight: 800 }}>Your</Text>
             <DualAxes {...DualAxesConfig} />
           </Card>
           <Tabs defaultActiveKey="1">
@@ -558,13 +528,11 @@ export default function Chart() {
                       Projects Details
                     </Text>
                     <Paragraph style={{ color: 'grey' }}>
-                      It is a long established fact that a reader will be
-                      distracted by the readable content of a page when looking
-                      at its layout. The point of using Lorem Ipsum is that it
-                      has a more-or-less normal distribution of letters, as
-                      opposed to using 'Content here, content here', making it
-                      look like readable English. Many desktop publishing
-                      packages and web page editors now use Lorem Ipsum as their
+                      It is a long established fact that a reader will be distracted by the readable
+                      content of a page when looking at its layout. The point of using Lorem Ipsum
+                      is that it has a more-or-less normal distribution of letters, as opposed to
+                      using 'Content here, content here', making it look like readable English. Many
+                      desktop publishing packages and web page editors now use Lorem Ipsum as their
                       default model text.
                     </Paragraph>
                   </Card>
@@ -622,12 +590,10 @@ export default function Chart() {
                   >
                     <Space direction="vertical">
                       <Text style={{ fontWeight: 800 }}>
-                        Last Update:{' '}
-                        <span style={{ color: 'grey' }}>20 mins ago</span>
+                        Last Update: <span style={{ color: 'grey' }}>20 mins ago</span>
                       </Text>
                       <Text style={{ fontWeight: 800 }}>
-                        Deadline:{' '}
-                        <span style={{ color: 'grey' }}>5 Aug,2018</span>
+                        Deadline: <span style={{ color: 'grey' }}>5 Aug,2018</span>
                       </Text>
                       <Text style={{ color: 'grey' }}>Team Leader</Text>
                       <Text>
@@ -661,12 +627,10 @@ export default function Chart() {
                   >
                     <Space direction="vertical">
                       <Text style={{ fontWeight: 800 }}>
-                        Last Update:{' '}
-                        <span style={{ color: 'grey' }}>20 mins ago</span>
+                        Last Update: <span style={{ color: 'grey' }}>20 mins ago</span>
                       </Text>
                       <Text style={{ fontWeight: 800 }}>
-                        Deadline:{' '}
-                        <span style={{ color: 'grey' }}>5 Aug,2018</span>
+                        Deadline: <span style={{ color: 'grey' }}>5 Aug,2018</span>
                       </Text>
                       <Text style={{ color: 'grey' }}>Team Leader</Text>
                       <Text>
@@ -677,8 +641,7 @@ export default function Chart() {
                         <span>Kurty Watson</span>
                       </Text>
                       <Text>
-                        <Text style={{ color: 'grey' }}>Tags:</Text>{' '}
-                        <Tag color="cyan">Design</Tag>
+                        <Text style={{ color: 'grey' }}>Tags:</Text> <Tag color="cyan">Design</Tag>
                         <Tag color="#5f0">Programming</Tag>
                       </Text>
                     </Space>
@@ -700,12 +663,10 @@ export default function Chart() {
                   >
                     <Space direction="vertical">
                       <Text style={{ fontWeight: 800 }}>
-                        Last Update:{' '}
-                        <span style={{ color: 'grey' }}>20 mins ago</span>
+                        Last Update: <span style={{ color: 'grey' }}>20 mins ago</span>
                       </Text>
                       <Text style={{ fontWeight: 800 }}>
-                        Deadline:{' '}
-                        <span style={{ color: 'grey' }}>5 Aug,2018</span>
+                        Deadline: <span style={{ color: 'grey' }}>5 Aug,2018</span>
                       </Text>
                       <Text style={{ color: 'grey' }}>Team Leader</Text>
                       <Text>
@@ -716,8 +677,7 @@ export default function Chart() {
                         <span>Kurty Watson</span>
                       </Text>
                       <Text>
-                        <Text style={{ color: 'grey' }}>Tags:</Text>{' '}
-                        <Tag color="pink">Design</Tag>
+                        <Text style={{ color: 'grey' }}>Tags:</Text> <Tag color="pink">Design</Tag>
                         <Tag color="#05f">Programming</Tag>
                       </Text>
                     </Space>
@@ -743,12 +703,9 @@ export default function Chart() {
                           <Avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2396514300,1973001232&fm=26&gp=0.jpg" />
                         }
                       >
-                        <p style={{ fontWeight: 700, fontSize: 16 }}>
-                          Task Finish
-                        </p>
+                        <p style={{ fontWeight: 700, fontSize: 16 }}>Task Finish</p>
                         <p style={{ color: 'grey' }}>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <p style={{ color: '#c4d4d4' }}>5 minutes ago</p>
                       </Timeline.Item>
@@ -757,12 +714,8 @@ export default function Chart() {
                           <Avatar src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3747249113,2611241841&fm=26&gp=0.jpg" />
                         }
                       >
-                        <p style={{ fontWeight: 700, fontSize: 16 }}>
-                          Task Overdue
-                        </p>
-                        <p style={{ color: 'grey' }}>
-                          Lorem ipsum dolor sit amet.
-                        </p>
+                        <p style={{ fontWeight: 700, fontSize: 16 }}>Task Overdue</p>
+                        <p style={{ color: 'grey' }}>Lorem ipsum dolor sit amet.</p>
                         <p style={{ color: '#c4d4d4' }}>50 minutes ago</p>
                       </Timeline.Item>
                       <Timeline.Item
@@ -770,12 +723,9 @@ export default function Chart() {
                           <Avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2656177648,3328808604&fm=26&gp=0.jpg" />
                         }
                       >
-                        <p style={{ fontWeight: 700, fontSize: 16 }}>
-                          Task Overdue
-                        </p>
+                        <p style={{ fontWeight: 700, fontSize: 16 }}>Task Overdue</p>
                         <p style={{ color: 'grey' }}>
-                          There are many variations of passages of Lorem Ipsum
-                          available.
+                          There are many variations of passages of Lorem Ipsum available.
                         </p>
                         <p style={{ color: '#c4d4d4' }}>1 Day ago</p>
                       </Timeline.Item>
@@ -795,10 +745,9 @@ export default function Chart() {
                         Photos
                       </Text>
                       <Paragraph style={{ color: 'grey' }}>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is
-                        that it has a more-or-less normal distribution.
+                        It is a long established fact that a reader will be distracted by the
+                        readable content of a page when looking at its layout. The point of using
+                        Lorem Ipsum is that it has a more-or-less normal distribution.
                       </Paragraph>
                     </Space>
 

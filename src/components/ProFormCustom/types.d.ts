@@ -249,11 +249,7 @@ export interface SubmitterType {
   /**
    * 自定义渲染
    */
-  render?:
-    | false
-    | ((props: any, dom: ReactNode[]) => ReactNode[])
-    | undefined
-    | any;
+  render?: false | ((props: any, dom: ReactNode[]) => ReactNode[]) | undefined | any;
 }
 
 export interface ModalType {
@@ -324,10 +320,7 @@ export interface PropsType {
   /**
    * 值变化的回调函数
    */
-  onValuesChange?:
-    | Promise<any>
-    | ((changedValues: any, values: any) => any)
-    | any;
+  onValuesChange?: Promise<any> | ((changedValues: any, values: any) => any) | any;
   /**
    * 表单初始值
    */

@@ -1,9 +1,15 @@
+const fabric = require('@umijs/fabric');
+
 module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint')],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  rules: {
-    'react-hooks/rules-of-hooks': 0,
-  },
-  globals: {},
+  ...fabric.eslint,
 };
+
+// module.exports = {
+//   extends: [require.resolve('@umijs/fabric/dist/eslint')],
+//   parser: '@typescript-eslint/parser',
+//   plugins: ['@typescript-eslint'],
+//   rules: {
+//     'react-hooks/rules-of-hooks': 0,
+//   },
+//   globals: {},
+// };

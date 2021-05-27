@@ -74,9 +74,7 @@ function UserMobileLogin() {
           },
           render: (_: any, dom: any) => dom.pop(),
         }}
-        formConfig={
-          type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig
-        }
+        formConfig={type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig}
         onSubmit={onFinish}
       />
       <Space className={styles.other}>
@@ -101,10 +99,7 @@ function UserMobileLogin() {
         <Col xs={0} sm={0} md={12} lg={14} xl={16}></Col>
         <Col xs={24} sm={24} md={10} lg={8} xl={6}>
           <Row justify="center">
-            <Row
-              justify="center"
-              className={classnames(styles.bg, 'global-shadow-3-down')}
-            >
+            <Row justify="center" className={classnames(styles.bg, 'global-shadow-3-down')}>
               <div className={styles.main}>
                 {/* <Tooltip title={type !== 'qrcode' ? '扫码登录' : '普通登录'} color="blue"> */}
                 <div
@@ -114,13 +109,9 @@ function UserMobileLogin() {
                   }}
                 >
                   {type === 'qrcode' ? (
-                    <SlackOutlined
-                      style={{ fontSize: '50px', color: '#1890ff' }}
-                    />
+                    <SlackOutlined style={{ fontSize: '50px', color: '#1890ff' }} />
                   ) : (
-                    <QrcodeOutlined
-                      style={{ fontSize: '50px', color: '#1890ff' }}
-                    />
+                    <QrcodeOutlined style={{ fontSize: '50px', color: '#1890ff' }} />
                   )}
                 </div>
                 {/* </Tooltip> */}

@@ -24,14 +24,7 @@ import {
   QuestionCircleFilled,
   CheckCircleFilled,
 } from '@ant-design/icons';
-import {
-  Rose,
-  Bar,
-  Column,
-  RadialBar,
-  DualAxes,
-  Scatter,
-} from '@ant-design/charts';
+import { Rose, Bar, Column, RadialBar, DualAxes, Scatter } from '@ant-design/charts';
 import ProCard from '@ant-design/pro-card';
 
 export default function Join() {
@@ -483,14 +476,11 @@ export default function Join() {
             }}
           >
             <Space direction="vertical">
-              <Title style={{ color: 'white', marginTop: 20 }}>
-                {' '}
-                Congratulations Zhou{' '}
-              </Title>
+              <Title style={{ color: 'white', marginTop: 20 }}> Congratulations Zhou </Title>
               <Text style={{ color: 'white' }}>
                 {' '}
-                Gifted you already have skills that ordinary people don't have.
-                I have to praise you. You are a genius.
+                Gifted you already have skills that ordinary people don't have. I have to praise
+                you. You are a genius.
               </Text>
             </Space>
           </Card>
@@ -504,11 +494,7 @@ export default function Join() {
                     <span style={{ color: 'green' }}>+5.2%</span>vs last 7 days
                   </Text>
                 </Space>
-                <Button
-                  type="primary"
-                  block
-                  style={{ marginBottom: 10, marginTop: 10 }}
-                >
+                <Button type="primary" block style={{ marginBottom: 10, marginTop: 10 }}>
                   {' '}
                   View Details <DoubleRightOutlined />
                 </Button>
@@ -590,10 +576,7 @@ export default function Join() {
             style={{ color: '#a1b2fa', borderRadius: '2%' }}
             extra={
               <Dropdown overlay={menu}>
-                <a
-                  style={{ color: '#a1b2fa' }}
-                  onClick={e => e.preventDefault()}
-                >
+                <a style={{ color: '#a1b2fa' }} onClick={e => e.preventDefault()}>
                   标准
                   <DownOutlined />
                 </a>
@@ -610,84 +593,48 @@ export default function Join() {
               <Timeline.Item
                 className={style.timeLineItem}
                 label="问题一 "
-                dot={
-                  <QuestionCircleFilled
-                    style={{ color: '#ffa100', fontSize: 24 }}
-                  />
-                }
+                dot={<QuestionCircleFilled style={{ color: '#ffa100', fontSize: 24 }} />}
               >
                 把大象放进冰箱需要几步？
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 1.把冰箱打开
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 2.把大象放进去
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 3.把冰箱门关上
               </Timeline.Item>
               <Timeline.Item
                 label="问题二"
-                dot={
-                  <QuestionCircleFilled
-                    style={{ color: '#ffa100', fontSize: 24 }}
-                  />
-                }
+                dot={<QuestionCircleFilled style={{ color: '#ffa100', fontSize: 24 }} />}
               >
                 把长颈鹿放进冰箱需要几步?
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 1.把冰箱门打开
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 2.把大象拿出来
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 3.把长颈鹿放进冰箱
               </Timeline.Item>
               <Timeline.Item
-                dot={
-                  <CheckCircleFilled
-                    style={{ color: 'rgb(97,217,171)', fontSize: 24 }}
-                  />
-                }
+                dot={<CheckCircleFilled style={{ color: 'rgb(97,217,171)', fontSize: 24 }} />}
               >
                 4.把冰箱门关上
               </Timeline.Item>

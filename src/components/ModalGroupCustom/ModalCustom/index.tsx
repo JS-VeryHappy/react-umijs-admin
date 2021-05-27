@@ -117,12 +117,7 @@ function ModalCustom(Props: ModalCustomType) {
           </Button>
         )}
         {confirmText !== false && (
-          <Button
-            key="confirm"
-            type="primary"
-            loading={loading}
-            onClick={handleConfirm}
-          >
+          <Button key="confirm" type="primary" loading={loading} onClick={handleConfirm}>
             {confirmText || '确定'}
           </Button>
         )}

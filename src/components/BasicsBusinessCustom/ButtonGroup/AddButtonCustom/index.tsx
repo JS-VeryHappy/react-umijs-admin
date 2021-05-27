@@ -8,14 +8,7 @@ interface AddButtonCustomType {
    * size2 替代
    * @default dashed
    */
-  bntType?:
-    | 'link'
-    | 'text'
-    | 'ghost'
-    | 'dashed'
-    | 'default'
-    | 'primary'
-    | undefined;
+  bntType?: 'link' | 'text' | 'ghost' | 'dashed' | 'default' | 'primary' | undefined;
   /**
    * 按钮点击后触发事件
    * @param value

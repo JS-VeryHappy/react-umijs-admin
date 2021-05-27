@@ -55,10 +55,7 @@ const setCustomParams = function(props: any, intl: any) {
 
   //如果有参数fieldProps.placeholder
   if (!props.fieldProps.placeholder) {
-    props.fieldProps.placeholder = intl.getMessage(
-      'tableForm.inputPlaceholder',
-      '请输入',
-    );
+    props.fieldProps.placeholder = intl.getMessage('tableForm.inputPlaceholder', '请输入');
   }
 
   if (props.disabled) {
@@ -120,14 +117,7 @@ const getChildrenDom = function(
     childProps = setCustomParams(childProps, intl);
 
     let childs: [] = [];
-    getChildrenDom(
-      isCustom,
-      intl,
-      allComponent,
-      childs,
-      child.children,
-      level + 1,
-    );
+    getChildrenDom(isCustom, intl, allComponent, childs, child.children, level + 1);
 
     let arr = React.createElement(
       childDom,
@@ -189,14 +179,7 @@ function ComponentCustom(props: PropsType) {
           let children: any = [];
 
           //获取递归组件
-          getChildrenDom(
-            isCustom,
-            intl,
-            allComponent,
-            children,
-            item.children,
-            1,
-          );
+          getChildrenDom(isCustom, intl, allComponent, children, item.children, 1);
 
           //如果是自定义组件
           if (isCustom) {

@@ -13,13 +13,9 @@ env.PROGRESS = 'none';
 // flag to prevent multiple test
 let once = false;
 
-const startServer = spawn(
-  /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
-  ['start'],
-  {
-    env,
-  },
-);
+const startServer = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], {
+  env,
+});
 
 startServer.stderr.on('data', data => {
   // eslint-disable-next-line

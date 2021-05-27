@@ -5,11 +5,7 @@ import { useModel } from 'umi';
 
 import NoticeTabs from './NoticeTabs';
 import './index.less';
-import {
-  getNoticeNotification,
-  getNoticeMessage,
-  getNoticeEvent,
-} from '@/services';
+import { getNoticeNotification, getNoticeMessage, getNoticeEvent } from '@/services';
 
 const { Tab } = NoticeTabs;
 
@@ -17,14 +13,9 @@ const NoticeTip = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [totalCount, setTotalCount] = useState<number>(0);
 
-  const {
-    notification,
-    message,
-    event,
-    setNotification,
-    setMessage,
-    setEvent,
-  } = useModel('useNoticeModel');
+  const { notification, message, event, setNotification, setMessage, setEvent } = useModel(
+    'useNoticeModel',
+  );
   // 可以加入getInitialState
   useEffect(() => {
     getNoticeNotification().then(
@@ -69,9 +60,7 @@ const NoticeTip = () => {
 
   // 消息中心微标数
   useEffect(() => {
-    let arr = notification
-      .concat(message, event)
-      .filter((item: any) => !item.read);
+    let arr = notification.concat(message, event).filter((item: any) => !item.read);
     setTotalCount(arr.length);
   }, [notification, message, event]);
 
@@ -85,9 +74,7 @@ const NoticeTip = () => {
           tabKey="notification"
           title="通知"
           data={notification}
-          onClick={(item, index) =>
-            setNotification(changeReadState(item, index))
-          }
+          onClick={(item, index) => setNotification(changeReadState(item, index))}
         />
         <Tab
           tabKey="message"
@@ -105,11 +92,7 @@ const NoticeTip = () => {
     </div>
   );
   return (
-    <Dropdown
-      overlay={notice}
-      visible={visible}
-      overlayClassName="notice-tip__dropdown"
-    >
+    <Dropdown overlay={notice} visible={visible} overlayClassName="notice-tip__dropdown">
       {/* 待优化 */}
       <div className="notice-tip__icon" onClick={toggleVisible}>
         <Badge count={totalCount}>

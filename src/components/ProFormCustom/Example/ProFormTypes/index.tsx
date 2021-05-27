@@ -9,9 +9,7 @@ export function FormConfigType(props: all.FormConfigType) {}
 
 export function FormChildrenConfigType(props: all.FormChildrenConfigType) {}
 
-export function FormStepsChildrenConfigType(
-  props: all.FormStepsChildrenConfigType,
-) {}
+export function FormStepsChildrenConfigType(props: all.FormStepsChildrenConfigType) {}
 
 export function ProCardType(props: all.ProCardType) {}
 

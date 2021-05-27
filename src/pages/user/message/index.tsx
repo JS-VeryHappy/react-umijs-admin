@@ -196,11 +196,7 @@ function Message() {
           {tabs.map((tab, index) => {
             return (
               <TabPane tab={tab.name + '(' + tab.data.length + ')'} key={index}>
-                {initLoading && tab.data.length ? (
-                  ListCont(tab.data)
-                ) : (
-                  <Empty />
-                )}
+                {initLoading && tab.data.length ? ListCont(tab.data) : <Empty />}
               </TabPane>
             );
           })}
@@ -218,18 +214,11 @@ function Message() {
                   <Checkbox onChange={e => onChangeStatus(e, item)}>
                     <Text delete={item.isDelete}>{item.name}</Text>
                   </Checkbox>
-                  <CloseOutlined
-                    style={{ cursor: 'pointer' }}
-                    onClick={e => onDelete(e, index)}
-                  />
+                  <CloseOutlined style={{ cursor: 'pointer' }} onClick={e => onDelete(e, index)} />
                 </List.Item>
               )}
             />
-            <Input
-              ref={inputRef}
-              placeholder="Enter todo..."
-              onPressEnter={onPressEnter}
-            />
+            <Input ref={inputRef} placeholder="Enter todo..." onPressEnter={onPressEnter} />
           </Card>
         </Col>
 

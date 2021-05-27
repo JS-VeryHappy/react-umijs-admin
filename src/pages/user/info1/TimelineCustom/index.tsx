@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import { Card, Typography, Space, Timeline } from 'antd';
-import {
-  AppstoreAddOutlined,
-  AlertOutlined,
-  BankOutlined,
-} from '@ant-design/icons';
+import { AppstoreAddOutlined, AlertOutlined, BankOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
@@ -35,10 +31,7 @@ function TimelineCustom(props: any) {
           </Timeline.Item>
           <Timeline.Item
             dot={
-              <AlertOutlined
-                className={styles.timelineIcon}
-                style={{ background: '#52c41a' }}
-              />
+              <AlertOutlined className={styles.timelineIcon} style={{ background: '#52c41a' }} />
             }
             label="中午"
           >
@@ -53,12 +46,7 @@ function TimelineCustom(props: any) {
             </Space>
           </Timeline.Item>
           <Timeline.Item
-            dot={
-              <BankOutlined
-                className={styles.timelineIcon}
-                style={{ background: '#faad14' }}
-              />
-            }
+            dot={<BankOutlined className={styles.timelineIcon} style={{ background: '#faad14' }} />}
             label="早上"
           >
             <Space direction="vertical">

@@ -3,13 +3,7 @@ import ProTable from '@ant-design/pro-table';
 import { Space, Button } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 
-import {
-  TablePropsType,
-  ActionType,
-  ButtonGroupType,
-  PaginationConfig,
-  ProColumns,
-} from './types';
+import { TablePropsType, ActionType, ButtonGroupType, PaginationConfig, ProColumns } from './types';
 import './index.less';
 
 function TableCustom<ListItem>(
@@ -36,10 +30,7 @@ function TableCustom<ListItem>(
       return <div></div>;
     },
     // { searchText: string; resetText: string }
-    optionRender: (
-      searchConfig: Record<string, any>,
-      formProps: { form: any },
-    ) => {
+    optionRender: (searchConfig: Record<string, any>, formProps: { form: any }) => {
       let { searchText, resetText } = searchConfig;
       let { form } = formProps;
       return [
@@ -147,9 +138,7 @@ function TableCustom<ListItem>(
   const getListData = async () => {
     setLoading(true);
     // 获取表单字段并将分页参数合并得到请求参数requestParams
-    let res = await fetchGetList(
-      getRequestParams(formRef.current?.getFieldsValue(), pagination),
-    );
+    let res = await fetchGetList(getRequestParams(formRef.current?.getFieldsValue(), pagination));
     setDataSource(res.data.list);
     setLoading(false);
   };

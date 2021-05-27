@@ -43,10 +43,7 @@ export default (config: any) => {
       },
       //可以这样渲染 内容部分公用部分
       childrenRender: (children: any) => {
-        if (
-          history.location.pathname !== '/login' &&
-          history.location.pathname !== '/404'
-        ) {
+        if (history.location.pathname !== '/login' && history.location.pathname !== '/404') {
           return React.createElement(
             PageContainer,
             {

@@ -1,10 +1,6 @@
 import React from 'react';
 import { Card, Image, Row, Col, Space } from 'antd';
-import {
-  QqOutlined,
-  WechatOutlined,
-  WeiboCircleOutlined,
-} from '@ant-design/icons';
+import { QqOutlined, WechatOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
 export default function Spot() {
@@ -26,9 +22,7 @@ export default function Spot() {
       </div>
 
       <div className={styles.imgContain2}>
-        <div className={styles.containContent2}>
-          The sparkling sea is a symbol of peace
-        </div>
+        <div className={styles.containContent2}>The sparkling sea is a symbol of peace</div>
         <Image
           className={styles.image2}
           src="http://v.bootstrapmb.com/2019/7/ti2ib5398/demo-1/app-assets/img/gallery/27.jpg"

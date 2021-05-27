@@ -67,12 +67,7 @@ const columns: ProColumns<ProportionItem>[] = [
 ];
 
 const ProTable = () => {
-  return (
-    <TableCustom<ProportionItem>
-      columns={columns}
-      fetchGetList={getProTable}
-    ></TableCustom>
-  );
+  return <TableCustom<ProportionItem> columns={columns} fetchGetList={getProTable}></TableCustom>;
 };
 
 export default ProTable;

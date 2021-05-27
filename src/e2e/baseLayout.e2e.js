@@ -12,10 +12,7 @@ function formatter(routes, parentPath = '') {
     }
     if (item.routes) {
       result = result.concat(
-        formatter(
-          item.routes,
-          item.path ? `${fixedParentPath}/${item.path}` : parentPath,
-        ),
+        formatter(item.routes, item.path ? `${fixedParentPath}/${item.path}` : parentPath),
       );
     }
   });

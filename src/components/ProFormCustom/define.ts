@@ -32,12 +32,7 @@ const getChildrenParam = function(param: any, data: any, children: any) {
  * @param data
  * @param mode
  */
-const setFormDefault = function(
-  param: any,
-  formConfig: any,
-  data: any,
-  mode: string = 'ordinary',
-) {
+const setFormDefault = function(param: any, formConfig: any, data: any, mode: string = 'ordinary') {
   //处理回传参数默认值
   if (formConfig.length > 0) {
     formConfig.forEach((config: any, gindex: number) => {

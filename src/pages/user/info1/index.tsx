@@ -1,15 +1,6 @@
 import React from 'react';
 import styles from './index.less';
-import {
-  Row,
-  Col,
-  Card,
-  Typography,
-  Space,
-  Tag,
-  Divider,
-  Timeline,
-} from 'antd';
+import { Row, Col, Card, Typography, Space, Tag, Divider, Timeline } from 'antd';
 import { useModel } from 'umi';
 import {
   MailOutlined,

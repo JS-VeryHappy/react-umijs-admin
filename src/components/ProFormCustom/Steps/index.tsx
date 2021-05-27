@@ -95,11 +95,7 @@ function ProStepsFormCustom(props: StepsPropsType) {
           modal
             ? (dom, submitter) => {
                 return (
-                  <CustomModal
-                    {...modalConfig}
-                    footer={submitter}
-                    destroyOnClose
-                  >
+                  <CustomModal {...modalConfig} footer={submitter} destroyOnClose>
                     {dom}
                   </CustomModal>
                 );

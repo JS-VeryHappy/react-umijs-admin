@@ -24,11 +24,7 @@ interface TablePropsType<T> {
    * @description 表单项change回调
    *
    */
-  onFormValuesChange?: (
-    changedValues: any,
-    allValues: any,
-    formRef: any,
-  ) => void;
+  onFormValuesChange?: (changedValues: any, allValues: any, formRef: any) => void;
   /**
    * @description 是否开启搜索(undefined为开启)
    * @default undefined
@@ -38,9 +34,7 @@ interface TablePropsType<T> {
    * @description 列表数据API
    *
    */
-  fetchGetList: <U extends T>(
-    requestParams: U,
-  ) => Promise<RequestResponse<Record<any, any>>>;
+  fetchGetList: <U extends T>(requestParams: U) => Promise<RequestResponse<Record<any, any>>>;
   /**
    * @description 搜索表单下方按钮组配置
    *
@@ -116,10 +110,4 @@ interface ActionType {
   addEditRecord: any;
 }
 
-export {
-  TablePropsType,
-  ActionType,
-  ProColumns,
-  ButtonGroupType,
-  PaginationConfig,
-};
+export { TablePropsType, ActionType, ProColumns, ButtonGroupType, PaginationConfig };

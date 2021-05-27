@@ -16,12 +16,7 @@ export const response = (data: any) => {
  * @param data 数据
  * @param timeout 延迟
  */
-export const getObj = async (
-  data: any,
-  timeout: number,
-  req: any,
-  res: any,
-) => {
+export const getObj = async (data: any, timeout: number, req: any, res: any) => {
   if (timeout) {
     await waitTime(timeout);
   }

@@ -13,22 +13,19 @@ const userinfo = {
 const notification = {
   list: [
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
       title: '你收到了 14 份新周报',
       datetime: '3 年前',
       read: false,
     },
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
       title: '你推荐的 曲妮妮 已通过第三轮面试',
       datetime: '3 年前',
       read: false,
     },
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
       title: '这种模板可以区分多种通知类型',
       datetime: '3 年前',
       read: false,
@@ -39,8 +36,7 @@ const notification = {
 const message = {
   'list|3': [
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
       title: '曲丽丽 评论了你',
       datetime: '3 年前',
       read: false,
@@ -52,22 +48,19 @@ const message = {
 const event = {
   list: [
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
       title: '你收到了 14 份新周报',
       datetime: '3 年前',
       read: false,
     },
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
       title: '你推荐的 曲妮妮 已通过第三轮面试',
       datetime: '3 年前',
       read: false,
     },
     {
-      avatar:
-        'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/kISTdvpyTAhtGxpovNWd.png',
       title: '这种模板可以区分多种通知类型',
       datetime: '3 年前',
       read: false,

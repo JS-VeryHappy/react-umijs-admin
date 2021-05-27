@@ -77,12 +77,8 @@ function BodyCustom(props: propsType) {
               <Space size={20}>
                 <Html5Outlined style={{ color: '#ada123', fontSize: '30px' }} />
                 <AppleOutlined style={{ color: '#ada123', fontSize: '30px' }} />
-                <GithubOutlined
-                  style={{ color: '#ada123', fontSize: '30px' }}
-                />
-                <DingdingOutlined
-                  style={{ color: '#ada123', fontSize: '30px' }}
-                />
+                <GithubOutlined style={{ color: '#ada123', fontSize: '30px' }} />
+                <DingdingOutlined style={{ color: '#ada123', fontSize: '30px' }} />
               </Space>
             </Space>
           </Col>

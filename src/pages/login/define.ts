@@ -1,10 +1,5 @@
 import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
-import {
-  MobileTwoTone,
-  LockTwoTone,
-  ContactsTwoTone,
-  MailTwoTone,
-} from '@ant-design/icons';
+import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-design/icons';
 import React from 'react';
 import { message } from 'antd';
 
