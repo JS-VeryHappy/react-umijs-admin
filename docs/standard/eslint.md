@@ -6,7 +6,7 @@ nav:
 
 # 说明
 
-> 1. 开发时必须启用eslint,包含prettier，eslint，stylelint,[fabric](https://github.com/umijs/fabric#readme)
+> 1. 开发时必须启用eslint,包含prettier，eslint，stylelint验证[fabric](https://github.com/umijs/fabric#readme)
 
 > 2. 开发业务组件必须有文档说明
 

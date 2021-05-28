@@ -4,11 +4,11 @@ import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
 import { BookOutlined } from '@ant-design/icons';
 
-//获取本地配置
-const setting = localStorage.getItem('layoutSettings')
-  ? //@ts-ignore
-    JSON.parse(localStorage.getItem('layoutSettings'))
-  : {};
+//获取本地配置 调试样式
+// const setting = localStorage.getItem('layoutSettings')
+//   ? //@ts-ignore
+//     JSON.parse(localStorage.getItem('layoutSettings'))
+//   : {};
 
 /**
  * Layout 插件允许通过运行时的配置退出登陆、自定义 ErrorBoundary 等功能。
@@ -84,6 +84,6 @@ export default (config: any) => {
             ]
           : [],
     },
-    ...setting,
+    // ...setting,
   };
 };
