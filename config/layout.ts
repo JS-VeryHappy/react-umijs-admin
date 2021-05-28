@@ -2,7 +2,7 @@ import React from 'react';
 import { history, Link } from 'umi';
 import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
-import { BookOutlined } from '@ant-design/icons';
+import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 
 //获取本地配置 调试样式
 // const setting = localStorage.getItem('layoutSettings')
@@ -78,6 +78,25 @@ export default (config: any) => {
                       key: 'text',
                     },
                     '业务组件文档',
+                  ),
+                ],
+              ),
+              React.createElement(
+                Link,
+                {
+                  to: '/umi/plugin/openapi',
+                  target: '_blank',
+                },
+                [
+                  React.createElement(LinkOutlined, {
+                    key: 'icon',
+                  }),
+                  React.createElement(
+                    'span',
+                    {
+                      key: 'text',
+                    },
+                    'openAPI 文档',
                   ),
                 ],
               ),

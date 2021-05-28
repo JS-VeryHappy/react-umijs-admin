@@ -4,8 +4,9 @@ import proxy, { devServer } from './proxy';
 import routes from './routes';
 import dumi from './dumi';
 import theme from './theme';
+// import { join } from 'path';
 
-const OpenBrowser = require('open-browser-webpack-plugin');
+// const OpenBrowser = require('open-browser-webpack-plugin');
 
 export default defineConfig({
   /**
@@ -98,9 +99,26 @@ export default defineConfig({
       }),
     );
     //自动打开浏览器插件
-    config
-      .plugin('$open-browser-webpack-plugin')
-      .use(new OpenBrowser({ url: 'http://127.0.0.1:8080' }));
+    // config
+    //   .plugin('$open-browser-webpack-plugin')
+    //   .use(new OpenBrowser({ url: 'http://127.0.0.1:8080' }));
+
+    //如果是build下js/css分组
+    if (env === 'production') {
+      config.output
+        .filename(`js/${config.toConfig().output.filename}`)
+        .chunkFilename(`js/${config.toConfig().output.chunkFilename}`);
+
+      config.plugin('extract-css').tap((args) => {
+        return [
+          {
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+            ignoreOrder: true,
+          },
+        ];
+      });
+    }
   },
   // 使用 antd
   antd: {
@@ -140,6 +158,8 @@ export default defineConfig({
   locale: {
     default: 'zh-CN',
     antd: true,
+    // default true, when it is true, will use `navigator.language` overwrite default
+    baseNavigator: true,
   },
   /**
    * 替换压缩器为 esbuild
@@ -153,4 +173,14 @@ export default defineConfig({
     enable: true,
     exclude: ['/Example'],
   },
+
+  openAPI: [
+    {
+      requestLibPath: "import { request } from 'umi'",
+      // 或者使用在线的版本
+      schemaPath: 'https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json',
+      // schemaPath: join(__dirname, 'oneapi.json'),
+      mock: false,
+    },
+  ],
 });

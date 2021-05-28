@@ -49,7 +49,8 @@ export function onRouteChange({ routes, location }: any) {
   if (
     routes.length &&
     location.pathname.indexOf('~docs') === -1 &&
-    location.pathname.indexOf('~demos') === -1
+    location.pathname.indexOf('~demos') === -1 &&
+    location.pathname.indexOf('/umi/plugin/openapi') === -1
   ) {
     const routeStr = JSON.stringify(routesConfig);
     const has = routeStr.indexOf(`"path":"${location.pathname}"`);
