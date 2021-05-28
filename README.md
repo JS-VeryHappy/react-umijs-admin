@@ -34,6 +34,63 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 组件文档、使用说明: [xxxxx/~doc](xxxxx/~doc)
 路径查看文档说明
 
+## vscode 插件安装
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 代码格式风格验证
+
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 代码格式风格验证自动补全
+
+[stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) 样式风格验证
+
+[git-commit-plugin](https://marketplace.visualstudio.com/items?itemName=redjue.git-commit-plugin) 提交git文案工具
+
+### vscode本地settings.json
+```
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 检索过滤
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true
+  },
+  "GitCommitPlugin.CustomCommitType": [
+    {
+      "label": "💥 feat",
+      "detail": "add 'comments' option"
+    },
+    {
+      "label": "🐛 fix",
+      "detail": "fix some bug"
+    },
+    {
+      "label": "📝 docs",
+      "detail": "add some docs"
+    },
+    {
+      "label": "🌷 UI",
+      "detail": "better styles"
+    },
+    {
+      "label": "🏰 chore",
+      "detail": "Made some changes to the scaffolding"
+    },
+    {
+      "label": "🌐 locale",
+      "detail": "Made a small contribution to internationalization"
+    }
+  ]
+}
+
+```
+
 ## 文件结构
 
 ```txt
