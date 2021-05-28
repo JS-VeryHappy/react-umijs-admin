@@ -4,10 +4,7 @@ import { useModel } from 'umi';
 import { message } from 'antd';
 
 // eslint-disable-next-line func-names
-export default function (props: {
-  location: { pathname: string };
-  children: any;
-}) {
+export default function (props: { location: { pathname: string }; children: any }) {
   $global.log('我是全局layouts钩子。');
 
   // 图形界面来设置 layout 的配置。不建议在正式环境中使用

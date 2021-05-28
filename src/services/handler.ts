@@ -53,7 +53,7 @@ export function getQuery(url: string, data?: any, options?: any) {
 
 export function pathBody(url: string, data?: any, options?: any) {
   let nurl = url;
-  Object.keys(data).forEach((key)=>{
+  Object.keys(data).forEach((key) => {
     nurl += `_${data[key]}`;
   });
   return requestQuery(nurl, { method: 'post', data, ...options });
@@ -66,7 +66,7 @@ export function pathBody(url: string, data?: any, options?: any) {
  */
 export function pathQuery(url: string, data?: any, options?: any) {
   let nurl = url;
-  Object.keys(data).forEach((key)=>{
+  Object.keys(data).forEach((key) => {
     nurl += `_${data[key]}`;
   });
   return requestQuery(nurl, { method: 'post', params: data, ...options });

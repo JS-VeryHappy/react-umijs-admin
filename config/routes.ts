@@ -42,9 +42,9 @@ const routes: IBestAFSRoute[] = [
             path: '/panel/workbench',
             name: '工作台',
             component: '@/pages/panel/workbench/index',
-          }
+          },
         ],
-      }
+      },
     ],
   },
 ];

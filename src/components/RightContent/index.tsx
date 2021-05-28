@@ -1,8 +1,5 @@
 import { Menu, Avatar, Dropdown, Space } from 'antd';
-import {
-  LogoutOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 // @ts-ignore
 import { history, useModel, Link, SelectLang, useIntl } from 'umi';
 import styles from './index.less';
@@ -67,9 +64,9 @@ function RightContent(Props: any) {
     const nlocales: any = [];
     locales.forEach((item: any) => {
       nlocales.push({
-        ...item, 
-        key:item.lang
-      })
+        ...item,
+        key: item.lang,
+      });
     });
 
     return nlocales;
