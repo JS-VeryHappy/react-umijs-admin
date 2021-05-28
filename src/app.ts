@@ -3,9 +3,7 @@
  */
 import React from 'react';
 import { history } from 'umi';
-import { createLogger } from 'redux-logger';
-import { message } from 'antd';
-import routesConfig from '../config/route';
+import routesConfig from '../config/routes';
 import layoutConfig from '../config/layout';
 import requestConfig from '@/services/config';
 import { isLogin } from '@/services';
@@ -36,7 +34,7 @@ export async function getInitialState() {
 }
 
 // 修改路由 可以根据后台或者权限动态设置路由  启动应用执行一次
-export function patchRoutes({ routes }: any) {
+export function patchRoutes() {
   $global.log('我可以调整路由');
   // routes.unshift({
   //   path: '/foo',
@@ -46,7 +44,7 @@ export function patchRoutes({ routes }: any) {
 }
 
 // 在初始加载和路由切换时做一些事情。每次切换都会执行
-export function onRouteChange({ routes, matchedRoutes, location, action }: any) {
+export function onRouteChange({ routes, location }: any) {
   // 测试发现 umijs 约定式404 无法主动触发、所以自定义写了一个 配出文档查看路由
   if (
     routes.length &&

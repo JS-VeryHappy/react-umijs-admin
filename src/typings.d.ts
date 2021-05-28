@@ -10,5 +10,5 @@ declare module '*.svg' {
 }
 declare const $global: {
   // 打印方法
-  log: Function;
+  log: (msg) => void;
 };

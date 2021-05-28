@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
 import {
   LogoutOutlined,
-  QuestionCircleOutlined,
   UserOutlined,
-  MessageOutlined,
 } from '@ant-design/icons';
 // @ts-ignore
 import { history, useModel, Link, SelectLang, useIntl } from 'umi';
 import styles from './index.less';
-import { Tooltip, Tag } from 'antd';
 import headimg from '@/assets/images/headimg.jpeg';
 import NoticeTip from './NoticeTip';
 
@@ -68,11 +64,15 @@ function RightContent(Props: any) {
   );
 
   const postLocalesData = (locales: LocalData[]) => {
+    const nlocales: any = [];
     locales.forEach((item: any) => {
-      item.key = item.lang;
+      nlocales.push({
+        ...item, 
+        key:item.lang
+      })
     });
 
-    return locales;
+    return nlocales;
   };
 
   return (

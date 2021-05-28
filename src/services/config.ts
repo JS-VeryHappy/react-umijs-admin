@@ -54,14 +54,14 @@ const requestConfig: RequestConfig = {
     },
   ],
   responseInterceptors: [
-    async function response(response) {
-      if (response.status === 200) {
-        const data = await response.clone().json();
+    async function response(res) {
+      if (res.status === 200) {
+        const data = await res.clone().json();
         if (data.code === '403') {
           history.push('/login');
         }
       }
-      return response;
+      return res;
     },
   ],
 };

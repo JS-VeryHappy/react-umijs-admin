@@ -7,6 +7,7 @@
 // @ts-ignore
 const log = function log(...msg) {
   if (process.env.NODE_ENV !== 'pro') {
+   // eslint-disable-next-line 
     console.log(...msg);
   }
 };

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from 'react';
 import { Dropdown, Space, Badge } from 'antd';
 import { MessageOutlined } from '@ant-design/icons';
 import { useModel } from 'umi';
@@ -19,23 +20,24 @@ const NoticeTip = () => {
   useEffect(() => {
     getNoticeNotification().then(
       (res) => setNotification(res.data.list),
-      (err) => console.log(err),
+      // (err) => console.log(err),
     );
     getNoticeMessage().then(
       (res) => setMessage(res.data.list),
-      (err) => console.log(err),
+      // (err) => console.log(err),
     );
     getNoticeEvent().then(
       (res) => setEvent(res.data.list),
-      (err) => console.log(err),
+      // (err) => console.log(err),
     );
   }, []);
 
   // 切换已读状态
   const changeReadState = (item: any, index: number) => {
-    if (item.read) return item;
-    item[index].read = true;
-    return [...item];
+    const nitem = item;
+    if (nitem.read) return nitem;
+    nitem[index].read = true;
+    return [...nitem];
   };
 
   // 全局点击事件, 用于判断面板是否关闭
@@ -43,16 +45,18 @@ const NoticeTip = () => {
     let target = null;
     let icon = null;
     let notice = null;
-    const closeNoticeTabs = function (event: any) {
-      target = event.target;
+    const closeNoticeTabs = (e: any) => {
+      target = e.target;
       icon = document.querySelector('.notice-tip__icon');
       notice = document.querySelector('.notice-tip__dropdown');
       if (icon?.contains(target)) return;
       if (!notice?.contains(target)) setVisible(false);
     };
     document.addEventListener('click', closeNoticeTabs);
-    return function () {
-      target = icon = notice = null;
+    return () => {
+      target = null;
+      icon = null;
+      notice = null;
       document.removeEventListener('click', closeNoticeTabs);
     };
   }, []);

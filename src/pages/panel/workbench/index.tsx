@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { FireTwoTone, SmileTwoTone } from '@ant-design/icons';
+import {  useState } from 'react';
 import { Line } from '@ant-design/charts';
-import { Card, Skeleton, Row, Col, Rate, Avatar, Image, Space, Carousel, List } from 'antd';
+import { Card, Skeleton, Row, Col, Rate, Avatar, Image, Carousel, List } from 'antd';
 import styles from './index.less';
 import { getChartData, getListData } from '@/services';
-import { Link, useRequest } from 'umi';
+import {  useRequest } from 'umi';
 
 export default function WorkBench() {
   const [data, setData] = useState([]);
   const [listData, setListData] = useState([]);
-  const {} = useRequest(async (values: any) => {
+ useRequest(async (values: any) => {
     try {
       const res = await getChartData(values);
       const res1 = await getListData(values);
       setData(res.data.list);
       setListData(res1.data.list);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   });
   const config = {

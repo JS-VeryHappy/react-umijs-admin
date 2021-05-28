@@ -52,8 +52,11 @@ export function getQuery(url: string, data?: any, options?: any) {
  */
 
 export function pathBody(url: string, data?: any, options?: any) {
-  Object.keys(data).forEach((key: string, index: number) => (url += `_${data[key]}`));
-  return requestQuery(url, { method: 'post', data, ...options });
+  let nurl = url;
+  Object.keys(data).forEach((key)=>{
+    nurl += `_${data[key]}`;
+  });
+  return requestQuery(nurl, { method: 'post', data, ...options });
 }
 /**
  * get请求 路径形式
@@ -62,6 +65,9 @@ export function pathBody(url: string, data?: any, options?: any) {
  * @param options //额外配置
  */
 export function pathQuery(url: string, data?: any, options?: any) {
-  Object.keys(data).forEach((key: string, index: number) => (url += `_${data[key]}`));
-  return requestQuery(url, { method: 'post', params: data, ...options });
+  let nurl = url;
+  Object.keys(data).forEach((key)=>{
+    nurl += `_${data[key]}`;
+  });
+  return requestQuery(nurl, { method: 'post', params: data, ...options });
 }

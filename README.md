@@ -48,7 +48,7 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 │   ├── dumi.ts //dumi文档配置
 │   ├── theme.ts //全局样式变量配置
 │   ├── proxy.ts //代理配置文件
-│   └── route.ts //路由配置文件
+│   └── routes.ts //路由配置文件
 ├── docs //公用文档目录
 │   └── demo.md //文档说明样例
 ├── mock //mock模拟数据目录

@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { useModel } from 'umi';
 import { message } from 'antd';
 
+// eslint-disable-next-line func-names
 export default function (props: {
   location: { pathname: string };
-  children: {} | null | undefined;
+  children: any;
 }) {
   $global.log('我是全局layouts钩子。');
 

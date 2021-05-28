@@ -27,15 +27,6 @@ const routes: IBestAFSRoute[] = [
     redirect: '/panel/workbench',
   },
   {
-    path: '/join',
-    component: '@/pages/join/index',
-    layout: {
-      hideFooter: true,
-      hideMenu: true,
-      hideNav: true,
-    },
-  },
-  {
     component: '@/layouts/index',
     flatMenu: true, //隐藏父级 子集上提
     routes: [
@@ -51,19 +42,7 @@ const routes: IBestAFSRoute[] = [
             path: '/panel/workbench',
             name: '工作台',
             component: '@/pages/panel/workbench/index',
-          },
-          {
-            locale: 'menu.panel.chart',
-            path: '/panel/chart',
-            name: '图表',
-            component: '@/pages/panel/chart/index',
-          },
-          {
-            locale: 'menu.panel.hookTest',
-            path: '/panel/test',
-            name: '自定义hook测试',
-            component: '@/pages/test1',
-          },
+          }
         ],
       }
     ],

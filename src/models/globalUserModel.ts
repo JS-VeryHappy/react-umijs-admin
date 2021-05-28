@@ -35,7 +35,7 @@ const globalUserModel: GlobalUserModelType = {
   },
   reducers: {
     getInfo(state, { payload }) {
-      console.log(state, payload);
+      // console.log(state, payload);
       return {
         ...state,
         ...payload,

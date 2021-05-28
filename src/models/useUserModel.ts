@@ -4,11 +4,11 @@ import { useState, useCallback } from 'react';
 export default function useUserModel() {
   const [user, setUserModel] = useState<any>({});
 
-  const setUser = useCallback((user) => {
-    return setUserModel(user);
+  const setUser = useCallback((callbackUser) => {
+    return setUserModel(callbackUser);
   }, []);
 
-  const deleteUser = useCallback((user) => {
+  const deleteUser = useCallback(() => {
     return setUserModel({});
   }, []);
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // 我是约定@umijs/plugin-model写法、可以写很多全局状态管理
 import { useState, useCallback, useEffect } from 'react';
 import type { ProSettings } from '@ant-design/pro-layout';

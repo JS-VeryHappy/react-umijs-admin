@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { history, useModel, useRequest } from 'umi';
-import { login } from '@/services';
+import  {  useState } from 'react';
+// import { history, useModel, useRequest } from 'umi';
+// import { login } from '@/services';
 import styles from './index.less';
-import ProFormCustom from '@/components/ProFormCustom';
-import { mobileConfig, accountConfig } from './define';
-import { Row, Col, Typography, Tabs, Space, Image, message } from 'antd';
+import { Row, Col, Typography, Tabs, Space, Image } from 'antd';
 import classnames from 'classnames';
 import {
   AlipayCircleOutlined,
@@ -13,46 +11,47 @@ import {
   QrcodeOutlined,
   SlackOutlined,
 } from '@ant-design/icons';
-import { waitTime } from '@/utils';
+// import { waitTime } from '@/utils';
 import code from '@/assets/images/code.jpg';
 import scan from '@/assets/images/scan.png';
 
-const { Title, Text, Link } = Typography;
+const { Title } = Typography;
 const { TabPane } = Tabs;
 
 type loginType = 'mobile' | 'account' | 'qrcode';
 
 function UserMobileLogin() {
   const [type, setType] = useState<loginType>('mobile');
-  const { setInitialState } = useModel('@@initialState');
+  // const { setInitialState } = useModel('@@initialState');
 
-  const { run: onFinish } = useRequest(
-    async (values: any) => {
-      try {
-        const res = await login(values);
-        message.success('登录成功');
-        setInitialState(res.data);
-        setTimeout(() => {
-          history.push('/');
-        }, 0);
-      } catch (e) {}
-    },
-    {
-      manual: true,
-    },
-  );
+  // const { run: onFinish } = useRequest(
+  //   async (values: any) => {
+  //     try {
+  //       const res = await login(values);
+  //       message.success('登录成功');
+  //       setInitialState(res.data);
+  //       setTimeout(() => {
+  //         history.push('/');
+  //       }, 0);
+  //     } catch (e) {}
+  //   },
+  //   {
+  //     manual: true,
+  //   },
+  // );
 
   const tabOnChange = (key: any) => {
-    if (type === key && type === 'qrcode') {
-      key = 'mobile';
+    let nkey = key;
+    if (type === nkey && type === 'qrcode') {
+      nkey = 'mobile';
     }
-    setType(key);
+    setType(nkey);
   };
 
-  const onGetCaptcha = async (mobile: any) => {
-    await waitTime(1000);
-    message.success(`手机号 ${mobile} 验证码发送成功!`);
-  };
+  // const onGetCaptcha = async (mobile: any) => {
+  //   await waitTime(1000);
+  //   message.success(`手机号 ${mobile} 验证码发送成功!`);
+  // };
 
   const loginDom = (
     <>
@@ -60,7 +59,7 @@ function UserMobileLogin() {
         <TabPane tab="免密登录" key="mobile" />
         <TabPane tab="账号登录" key="account" />
       </Tabs>
-      <ProFormCustom
+      {/* <ProFormCustom
         size="large"
         submitter={{
           searchConfig: {
@@ -76,7 +75,7 @@ function UserMobileLogin() {
         }}
         formConfig={type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig}
         onSubmit={onFinish}
-      />
+      /> */}
       <Space className={styles.other}>
         其他登录方式:
         <AlipayCircleOutlined className={styles.icon} />
