@@ -57,6 +57,7 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 ├── public
 │   └── favicon.ico
 ├── src
+│   ├── typings.d.ts //ts类型声明
 │   ├── access.ts //umijs layout权限验证钩子
 │   ├── app.ts //umijs  约定运行时配置文件
 │   ├── assets //资源存放目录
@@ -92,8 +93,8 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 │       ├── utils.test.ts //函数测试
 │       └── index.ts //业务公用 单独引入使用
 ├── tests //自动化测试扩展编写
-├── tsconfig.json //ts配置文件
-└── typings.d.ts //ts类型声明
+└── tsconfig.json //ts配置文件
+
 ```
 
 ## 打包

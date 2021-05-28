@@ -2,7 +2,7 @@ import React from 'react';
 import { history, Link } from 'umi';
 import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
-import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import { BookOutlined } from '@ant-design/icons';
 
 //获取本地配置
 const setting = localStorage.getItem('layoutSettings')

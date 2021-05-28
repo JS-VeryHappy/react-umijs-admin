@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'umi';
 import proxy, { devServer } from './proxy';
 import routes from './routes';
-// import dumi from './dumi';
+import dumi from './dumi';
 import theme from './theme';
 
 const OpenBrowser = require('open-browser-webpack-plugin');
@@ -147,7 +147,7 @@ export default defineConfig({
   esbuild: {},
 
   //加载dumi文档配置
-  // ...dumi,
+  ...dumi,
 
   autotipsComponents: {
     enable: true,
