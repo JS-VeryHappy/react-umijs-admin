@@ -1,10 +1,8 @@
-import type { FormChildrenConfigType } from '@/components/ProFormCustom/types';
 import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-design/icons';
 import React from 'react';
-import { message } from 'antd';
 
 export const mobileConfig = (onGetCaptcha: Function) => {
-  const mobileConfig: FormChildrenConfigType[] = [
+  const mobileConfig: any[] = [
     {
       children: [
         {
@@ -47,7 +45,7 @@ export const mobileConfig = (onGetCaptcha: Function) => {
   return mobileConfig;
 };
 
-export const accountConfig: FormChildrenConfigType[] = [
+export const accountConfig: any[] = [
   {
     children: [
       {

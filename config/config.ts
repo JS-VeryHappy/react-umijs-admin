@@ -97,27 +97,10 @@ export default defineConfig({
         $global: [resolve(`src/utils/globalUtils.ts`), 'default'],
       }),
     );
-
+    //自动打开浏览器插件
     config
       .plugin('$open-browser-webpack-plugin')
       .use(new OpenBrowser({ url: 'http://127.0.0.1:8080' }));
-
-    //配置一个自定义loader
-    // config.module
-    //   .rule('auto-components-loader')
-    //     .test(/(\.js|\.ts|\.tsx)$/)
-    //     .pre()
-    //     .before('dumi')
-    //     .include.add(resolve('src'))
-    //     .end()
-    //     .exclude.add(resolve('src/.umi')).add(resolve('node_modules'))
-    //     .end()
-    //   .use('auto-components-loader')
-    //     .loader(resolve('loader/auto-components-loader'))
-    //     .options({
-    //       identifier:'Custom'
-    //     })
-    //     .end();
   },
   // 使用 antd
   antd: {

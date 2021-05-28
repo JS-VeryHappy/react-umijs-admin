@@ -35,17 +35,18 @@ export default function Chart() {
   const { TabPane } = Tabs;
   const [scatterData, setScatterData] = useState([]);
   const { Meta } = Card;
-  useEffect(() => {
-    asyncFetch();
-  }, []);
+  
   const asyncFetch = () => {
     fetch('https://gw.alipayobjects.com/os/antfincdn/aao6XnO5pW/IMDB.json')
       .then((response) => response.json())
       .then((json) => setScatterData(json))
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
   };
+  useEffect(() => {
+    asyncFetch();
+  }, []);
   const scatterConfig = {
     appendPadding: 10,
     data: scatterData,

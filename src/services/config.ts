@@ -54,7 +54,7 @@ const requestConfig: RequestConfig = {
     },
   ],
   responseInterceptors: [
-    async function response(response, options) {
+    async function response(response) {
       if (response.status === 200) {
         const data = await response.clone().json();
         if (data.code === '403') {

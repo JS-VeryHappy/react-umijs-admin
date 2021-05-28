@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Card,
   Space,
@@ -24,7 +24,7 @@ import {
   QuestionCircleFilled,
   CheckCircleFilled,
 } from '@ant-design/icons';
-import { Rose, Bar, Column, RadialBar, DualAxes, Scatter } from '@ant-design/charts';
+import { Rose, Bar, Column, RadialBar, DualAxes } from '@ant-design/charts';
 import ProCard from '@ant-design/pro-card';
 
 export default function Join() {

@@ -4,7 +4,6 @@
  */
 // @ts-ignore
 import type { Effect, Reducer, Subscription } from 'umi';
-import { ImmerReducer } from 'umi';
 import { isLogin } from '@/services';
 
 export interface GlobalUserModelType {
@@ -44,8 +43,8 @@ const globalUserModel: GlobalUserModelType = {
     },
   },
   subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
+    setup({ history }) {
+      return history.listen(() => {
         // console.log(pathname);
         // if (pathname === '/') {
         //   dispatch({
