@@ -22,7 +22,6 @@ export default function (props: { location: { pathname: string }; children: any 
   // useEffect(() => {
   //   loadingRef.current = true;
   // }, []);
-
   return (
     <>
       {props.children}

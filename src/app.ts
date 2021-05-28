@@ -54,7 +54,7 @@ export function onRouteChange({ routes, location }: any) {
     const routeStr = JSON.stringify(routesConfig);
     const has = routeStr.indexOf(`"path":"${location.pathname}"`);
     if (has === -1) {
-      history.push('/404');
+      history.replace('/404');
       return;
     }
   }

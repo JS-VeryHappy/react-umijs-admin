@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import mockjs from 'mockjs';
 import { waitTime } from '../src/utils';
 
@@ -24,7 +25,7 @@ export const getObj = async (data: any, timeout: number, req: any, res: any) => 
   return res.send(
     JSON.stringify(
       response({
-        data: data,
+        data,
         code: '0',
         reason: '成功',
       }),
@@ -48,7 +49,7 @@ interface pageOptionType {
 export const getPagination = async (
   data: any,
   timeout: number = 0,
-  option: pageOptionType | {},
+  option: pageOptionType | any,
   req: any,
   res: any,
 ) => {
@@ -74,6 +75,7 @@ export const getPagination = async (
       defaultOption.prePage = body.page + 1;
       defaultOption.nextPage = body.page + 2;
     }
+  // eslint-disable-next-line no-empty
   } catch (error) {}
 
   defaultOption.list = data;
