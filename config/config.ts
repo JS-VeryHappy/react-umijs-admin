@@ -98,11 +98,6 @@ export default defineConfig({
         $global: [resolve(`src/utils/globalUtils.ts`), 'default'],
       }),
     );
-    //自动打开浏览器插件
-    // config
-    //   .plugin('$open-browser-webpack-plugin')
-    //   .use(new OpenBrowser({ url: 'http://127.0.0.1:8080' }));
-
     //如果是build下js/css分组
     if (env === 'production') {
       config.output

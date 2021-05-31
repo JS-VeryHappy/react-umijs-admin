@@ -1,8 +1,10 @@
 import { useState } from 'react';
-// import { history, useModel, useRequest } from 'umi';
-// import { login } from '@/services';
+import { history, useModel, useRequest } from 'umi';
+import { login } from '@/services';
 import styles from './index.less';
-import { Row, Col, Typography, Tabs, Space, Image } from 'antd';
+import { mobileConfig, accountConfig } from './define';
+import { Row, Col, Typography, Tabs, Space, Image, message } from 'antd';
+import FromCustom from '@/components/FromCustom';
 import classnames from 'classnames';
 import {
   AlipayCircleOutlined,
@@ -22,23 +24,25 @@ type loginType = 'mobile' | 'account' | 'qrcode';
 
 function UserMobileLogin() {
   const [type, setType] = useState<loginType>('mobile');
-  // const { setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
 
-  // const { run: onFinish } = useRequest(
-  //   async (values: any) => {
-  //     try {
-  //       const res = await login(values);
-  //       message.success('登录成功');
-  //       setInitialState(res.data);
-  //       setTimeout(() => {
-  //         history.push('/');
-  //       }, 0);
-  //     } catch (e) {}
-  //   },
-  //   {
-  //     manual: true,
-  //   },
-  // );
+  const { run: onFinish } = useRequest(
+    async (values: any) => {
+      try {
+        const res = await login(values);
+        message.success('登录成功');
+        setInitialState(res.data);
+        setTimeout(() => {
+          history.push('/');
+        }, 0);
+      } catch (e) {
+        // empty
+      }
+    },
+    {
+      manual: true,
+    },
+  );
 
   const tabOnChange = (key: any) => {
     let nkey = key;
@@ -59,8 +63,7 @@ function UserMobileLogin() {
         <TabPane tab="免密登录" key="mobile" />
         <TabPane tab="账号登录" key="account" />
       </Tabs>
-      {/* <ProFormCustom
-        size="large"
+      <FromCustom
         submitter={{
           searchConfig: {
             submitText: type === 'mobile' ? '注册/登录' : '登录',
@@ -73,9 +76,9 @@ function UserMobileLogin() {
           },
           render: (_: any, dom: any) => dom.pop(),
         }}
-        formConfig={type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig}
-        onSubmit={onFinish}
-      /> */}
+        columns={type === 'mobile' ? mobileConfig() : accountConfig}
+        onFinish={onFinish}
+      />
       <Space className={styles.other}>
         其他登录方式:
         <AlipayCircleOutlined className={styles.icon} />
@@ -100,7 +103,6 @@ function UserMobileLogin() {
           <Row justify="center">
             <Row justify="center" className={classnames(styles.bg, 'global-shadow-3-down')}>
               <div className={styles.main}>
-                {/* <Tooltip title={type !== 'qrcode' ? '扫码登录' : '普通登录'} color="blue"> */}
                 <div
                   className={classnames(styles.code, type)}
                   onClick={() => {
@@ -113,7 +115,6 @@ function UserMobileLogin() {
                     <QrcodeOutlined style={{ fontSize: '50px', color: '#1890ff' }} />
                   )}
                 </div>
-                {/* </Tooltip> */}
                 <Col span={24}>
                   <Title style={{ color: '#fff' }}>欢迎登录</Title>
                 </Col>

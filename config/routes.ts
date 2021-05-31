@@ -45,6 +45,13 @@ const routes: IBestAFSRoute[] = [
           },
         ],
       },
+      {
+        path: '/tabel',
+        locale: 'tabel.list',
+        name: '表格',
+        icon: 'BarChartOutlined',
+        component: '@/pages/tabel/index',
+      },
     ],
   },
 ];
