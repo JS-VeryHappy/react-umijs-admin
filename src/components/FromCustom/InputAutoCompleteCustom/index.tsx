@@ -2,28 +2,31 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 import { message } from 'antd';
+import type { optionType } from '@/components/FromCustom/types';
 
 interface InputAutoCompleteCustomType {
   /**
    * antd 按钮props 参数
    * 和antd 参数一样
    */
-  fieldProps?: {} | undefined;
-  /**
-   * select选择数据
-   * @default []
-   */
-  options?: [];
-  /**
-   * 默认值
-   * 自定义必须要实现的
-   */
-  value?: any;
-  /**
-   * 切换触发方法
-   * 自定义必须要实现的
-   */
-  onChange?: (value: any) => void;
+  fieldProps: {
+    /**
+     * 默认值
+     * 自定义必须要实现的
+     */
+    value?: any;
+    /**
+     * 切换触发方法
+     * 自定义必须要实现的
+     */
+    onChange?: (value: any) => void;
+    /**
+     * select选择数据
+     * @default []
+     */
+    options?: optionType[];
+  };
+
   /**
    * 是否只读模式
    * 自定义必须要实现的
@@ -34,8 +37,8 @@ interface InputAutoCompleteCustomType {
 
 function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
-
-  const { fieldProps, readonly, onChange, value, options } = Props;
+  const { readonly, fieldProps } = Props;
+  const { onChange, value, options } = fieldProps;
 
   useEffect(() => {
     /**
@@ -57,32 +60,6 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
     }
   };
 
-  /**
-   * 如果直接使用下Input的默认值 文档说明看起好看一点
-   */
-  const defaultFieldProps = fieldProps
-    ? {}
-    : {
-        style: {
-          width: '300px',
-        },
-        placeholder: '请输入',
-        allowClear: true,
-      };
-
-  const selectOptions = fieldProps
-    ? options || []
-    : [
-        {
-          label: '1',
-          value: 1,
-        },
-        {
-          label: '2',
-          value: 2,
-        },
-      ];
-
   return (
     <>
       {readonly ? (
@@ -90,9 +67,8 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
       ) : (
         <AutoComplete
           value={inputValue}
-          {...defaultFieldProps}
           {...fieldProps}
-          options={selectOptions}
+          options={options}
           // onSelect={onSelect}
           // onSearch={onSearch}
           onChange={onInputChange}

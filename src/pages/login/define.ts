@@ -1,9 +1,9 @@
 import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-design/icons';
 import React from 'react';
-import type { ProFormColumnsType } from '@ant-design/pro-form';
+import type { FormCustomColumnsType } from '@/components/FromCustom/types';
 
 export const mobileConfig = () => {
-  const config: ProFormColumnsType[] = [
+  const config: FormCustomColumnsType[] = [
     {
       valueType: 'text',
       name: 'mobile',
@@ -40,7 +40,7 @@ export const mobileConfig = () => {
   return config;
 };
 
-export const accountConfig: ProFormColumnsType[] = [
+export const accountConfig: FormCustomColumnsType[] = [
   {
     valueType: 'text',
     name: 'account',
