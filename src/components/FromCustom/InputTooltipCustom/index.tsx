@@ -13,7 +13,7 @@ interface InputTooltipCustomType {
    * antd 按钮props 参数
    * 和antd 参数一样
    */
-  fieldProps: {
+  fieldProps?: {
     /**
      * 默认值
      * 自定义必须要实现的
@@ -23,13 +23,13 @@ interface InputTooltipCustomType {
      * 切换触发方法
      * 自定义必须要实现的
      */
-    onChange?: (value: any) => void;
+    onChange?: (value: any) => void | undefined;
 
     /**
      * 按钮点击后触发事件
      * @param value
      */
-    onClick?: (value: any) => any;
+    onClick?: (value: any) => any | undefined;
 
     /**
      * tooltip 显示文字
@@ -46,7 +46,8 @@ interface InputTooltipCustomType {
 
 function InputTooltipCustom(Props: InputTooltipCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
-  const { readonly, fieldProps } = Props;
+  const fieldProps = Props.fieldProps || {};
+  const readonly = Props.readonly || false;
   const { onClick, tooltipText, tooltipTitle, onChange, value } = fieldProps;
 
   useEffect(() => {

@@ -36,7 +36,24 @@ interface InputSelectCustomType {
 function InputSelectCustom(Props: InputSelectCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
   const [selectValue, setSelectValue] = useState<any>(null);
-  const { readonly, fieldProps } = Props;
+  const fieldProps = Props.fieldProps || {
+    style: {
+      width: '200px',
+    },
+    options: [
+      {
+        label: '1',
+        value: 1,
+      },
+      {
+        label: '2',
+        value: 2,
+      },
+    ],
+    value: undefined,
+    onChange: () => {},
+  };
+  const readonly = Props.readonly || false;
   const { onChange, value, options } = fieldProps;
 
   useEffect(() => {
@@ -89,7 +106,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
               placeholder="请选择"
               onChange={onSelectChange}
               // @ts-ignore
-              options={selectOptions}
+              options={options}
             ></Select>
           </Form.Item>
           <Form.Item noStyle>
