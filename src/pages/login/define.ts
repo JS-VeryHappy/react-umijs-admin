@@ -2,7 +2,7 @@ import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-d
 import React from 'react';
 import type { FormCustomColumnsType } from '@/components/FromCustom/types';
 
-export const mobileConfig = () => {
+export const mobileConfig = (onGetCaptcha: any) => {
   const config: FormCustomColumnsType[] = [
     {
       valueType: 'text',
@@ -19,22 +19,21 @@ export const mobileConfig = () => {
       },
     },
     {
-      valueType: 'Captcha',
+      valueType: 'ProFormCaptchaCustom',
       name: 'captcha',
       title: '验证码',
       width: 'auto',
       fieldProps: {
+        phoneName: 'mobile',
         placeholder: '请输入验证码',
+        onGetCaptcha,
+        name: 'captcha',
         maxLength: 6,
         prefix: React.createElement(MailTwoTone),
       },
       formItemProps: {
         rules: [{ required: true, message: '请输入验证码' }],
       },
-      //   onGetCaptcha:onGetCaptcha,
-      //   captchaProps: {
-      //     size: 'large',
-      //   },
     },
   ];
   return config;

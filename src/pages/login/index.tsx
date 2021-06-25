@@ -13,7 +13,7 @@ import {
   QrcodeOutlined,
   SlackOutlined,
 } from '@ant-design/icons';
-// import { waitTime } from '@/utils';
+import { waitTime } from '@/utils';
 import code from '@/assets/images/code.jpg';
 import scan from '@/assets/images/scan.png';
 
@@ -52,10 +52,10 @@ function UserMobileLogin() {
     setType(nkey);
   };
 
-  // const onGetCaptcha = async (mobile: any) => {
-  //   await waitTime(1000);
-  //   message.success(`手机号 ${mobile} 验证码发送成功!`);
-  // };
+  const onGetCaptcha = async (mobile: any) => {
+    await waitTime(1000);
+    message.success(`手机号 ${mobile} 验证码发送成功!`);
+  };
 
   const loginDom = (
     <>
@@ -76,7 +76,7 @@ function UserMobileLogin() {
           },
           render: (_: any, dom: any) => dom.pop(),
         }}
-        columns={type === 'mobile' ? mobileConfig() : accountConfig}
+        columns={type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig}
         onFinish={onFinish}
       />
       <Space className={styles.other}>
