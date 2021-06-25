@@ -19,7 +19,7 @@ export const mobileConfig = () => {
       },
     },
     {
-      valueType: 'text',
+      valueType: 'Captcha',
       name: 'captcha',
       title: '验证码',
       width: 'auto',

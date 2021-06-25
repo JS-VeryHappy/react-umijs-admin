@@ -1,31 +1,32 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 import { message } from 'antd';
 import type { optionType } from '@/components/FromCustom/types';
+
+interface fieldPropsType {
+  /**
+   * 默认值
+   * 自定义必须要实现的
+   */
+  value?: any;
+  /**
+   * 切换触发方法
+   * 自定义必须要实现的
+   */
+  onChange?: (value: any) => void | undefined;
+  /**
+   * select选择数据
+   * @default []
+   */
+  options?: optionType[];
+}
 
 interface InputAutoCompleteCustomType {
   /**
    * antd 按钮props 参数
    * 和antd 参数一样
    */
-  fieldProps: {
-    /**
-     * 默认值
-     * 自定义必须要实现的
-     */
-    value?: any;
-    /**
-     * 切换触发方法
-     * 自定义必须要实现的
-     */
-    onChange?: (value: any) => void;
-    /**
-     * select选择数据
-     * @default []
-     */
-    options?: optionType[];
-  };
+  fieldProps?: fieldPropsType;
 
   /**
    * 是否只读模式
@@ -37,7 +38,24 @@ interface InputAutoCompleteCustomType {
 
 function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
-  const { readonly, fieldProps } = Props;
+  const fieldProps = Props.fieldProps || {
+    style: {
+      width: '200px',
+    },
+    options: [
+      {
+        label: '1',
+        value: 1,
+      },
+      {
+        label: '2',
+        value: 2,
+      },
+    ],
+    value: undefined,
+    onChange: () => {},
+  };
+  const readonly = Props.readonly || false;
   const { onChange, value, options } = fieldProps;
 
   useEffect(() => {
