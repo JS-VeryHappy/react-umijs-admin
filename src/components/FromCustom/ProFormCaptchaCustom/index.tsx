@@ -4,8 +4,7 @@ import { MailTwoTone } from '@ant-design/icons';
 
 interface ProFormCaptchaCustomType {
   /**
-   * antd 按钮props 参数
-   * 和antd 参数一样
+   * 属性
    */
   fieldProps: {
     /**

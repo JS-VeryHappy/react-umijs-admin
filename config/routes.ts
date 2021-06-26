@@ -1,7 +1,43 @@
+import { IRoute } from 'umi';
+
+export interface IRouteMenuConfig {
+  /** 当前菜单名 */
+  name: string;
+  /** antd 的 icon name 和 url */
+  icon?: string;
+  /** 在菜单中隐藏他的子项 */
+  hideChildren?: boolean;
+  /** 默认为false 在菜单中只隐藏此项，子项往上提，仍旧展示 */
+  flatMenu?: boolean;
+  [key: string]: any;
+}
+
+export interface IRouteLayoutConfig {
+  /** 默认 false */
+  hideMenu?: boolean;
+  /** 默认 false */
+  hideNav?: boolean;
+  /** 默认 false */
+  hideFooter?: boolean;
+  [key: string]: any;
+}
+
 /**
- * 权限菜单配置文件
+ * 路由配置
  */
-import { IBestAFSRoute } from '@umijs/plugin-layout';
+export interface IBestAFSRoute extends IRoute {
+  /** 权限：https://yuque.antfin-inc.com/bigfish/best_afs/nxuhgb */
+  access?: string;
+
+  /** 当前页面的面包屑是否隐藏 */
+  showBreadcrumb?: boolean;
+
+  /** 默认为 false，在菜单中隐藏此项包括子项 */
+  menu?: false | IRouteMenuConfig;
+
+  /** 默认为 true ，是否显示 Layout */
+  layout?: boolean | IRouteLayoutConfig;
+}
 
 const routes: IBestAFSRoute[] = [
   {

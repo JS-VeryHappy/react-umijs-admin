@@ -74,7 +74,7 @@
     "@umijs/plugin-esbuild": "^1.3.1",
     "@umijs/plugin-openapi": "^1.3.0",
     "@umijs/preset-dumi": "^1.1.20",
-    "@umijs/preset-react": "^1.8.8",
+    "@umijs/preset-react": "^1.8.13",
     "@umijs/preset-ui": "^2.2.9",
     "@umijs/test": "^3.4.25",
     "@umijs/yorkie": "^2.0.3",
@@ -87,7 +87,7 @@
     "puppeteer-core": "^9.1.1",
     "stylelint": "^13.13.1",
     "typescript": "^4.0.5",
-    "umi-plugin-autotips-components": "^1.0.8"
+    "umi-plugin-autotips-components": "^1.0.9"
   },
   "resolutions": {
     "typescript": "4.2.3"

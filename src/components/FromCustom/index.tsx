@@ -55,14 +55,16 @@ function FromCustom(Props: FromCustomProps) {
   });
 
   return (
-    <ProProvider.Provider
-      value={{
-        ...values,
-        valueTypeMap: custom,
-      }}
-    >
-      <BetaSchemaForm<any, ValueType> {...Props} columns={newColumns} />
-    </ProProvider.Provider>
+    <>
+      <ProProvider.Provider
+        value={{
+          ...values,
+          valueTypeMap: custom,
+        }}
+      >
+        <BetaSchemaForm<any, ValueType> {...Props} columns={newColumns} />
+      </ProProvider.Provider>
+    </>
   );
 }
 
