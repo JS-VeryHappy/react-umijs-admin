@@ -12,6 +12,10 @@ interface ProFormCaptchaCustomType {
      */
     onGetCaptcha: (phone: string) => Promise<any>;
   };
+  /**
+   * json配置文件数据
+   */
+  config?: any;
 }
 
 function ProFormCaptchaCustom(Props: ProFormCaptchaCustomType) {
@@ -33,7 +37,7 @@ function ProFormCaptchaCustom(Props: ProFormCaptchaCustomType) {
 
   return (
     <>
-      <ProFormCaptcha {...fieldProps} />
+      <ProFormCaptcha {...fieldProps} fieldProps={Props.config?.fieldProps?.fieldProps} />
     </>
   );
 }

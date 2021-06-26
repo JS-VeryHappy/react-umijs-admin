@@ -39,11 +39,11 @@ function FromCustom(Props: FromCustomProps) {
         custom[column.valueType] = {
           render: (text: any, props: any) => {
             // @ts-ignore
-            return <CustomComponent readonly={true} {...props} />;
+            return <CustomComponent readonly={true} {...props} config={column} />;
           },
           renderFormItem: (text: any, props: any) => (
             // @ts-ignore
-            <CustomComponent {...props} />
+            <CustomComponent {...props} config={column} />
           ),
         };
         // custom.push(components[column.valueType]);

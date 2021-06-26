@@ -1,4 +1,4 @@
-import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailTwoTone } from '@ant-design/icons';
+import { MobileTwoTone, LockTwoTone, ContactsTwoTone, MailOutlined } from '@ant-design/icons';
 import React from 'react';
 import type { FormCustomColumnsType } from '@/components/FromCustom/types';
 
@@ -29,7 +29,9 @@ export const mobileConfig = (onGetCaptcha: any) => {
         onGetCaptcha,
         name: 'captcha',
         maxLength: 6,
-        prefix: React.createElement(MailTwoTone),
+        fieldProps: {
+          prefix: React.createElement(MailOutlined),
+        },
       },
       formItemProps: {
         rules: [{ required: true, message: '请输入验证码' }],
