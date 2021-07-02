@@ -24,16 +24,16 @@ export async function isLogin() {
 }
 
 /**
- * protable select测试
- */
-export const getSelect = () => getQuery('/api/protable/select');
-
-/**
  * protable list测试
  */
 export function getProTable(data: any) {
-  return postBody('/api/protable/list', data);
+  return postBody('/api/table/list', data);
 }
+
+/**
+ * protable select测试
+ */
+export const getSelect = () => getQuery('/api/protable/select');
 
 /**
  * workbench list测试

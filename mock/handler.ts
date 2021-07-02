@@ -6,8 +6,18 @@ import { waitTime } from '../src/utils';
  * mockjs 定义
  * https://github.com/nuysoft/Mock/wiki/Getting-Started
  */
-export const response = (data: any) => {
-  return mockjs.mock(data);
+export const response = (data: any, mock: boolean = true) => {
+  let newData = [];
+  if (mock) {
+    newData = mockjs.mock(data);
+  } else {
+    newData = data;
+  }
+  return JSON.stringify({
+    data: newData,
+    code: '0',
+    reason: '成功',
+  });
 };
 
 /**
@@ -22,23 +32,12 @@ export const getObj = async (data: any, timeout: number, req: any, res: any) => 
     await waitTime(timeout);
   }
 
-  return res.send(
-    JSON.stringify(
-      response({
-        data,
-        code: '0',
-        reason: '成功',
-      }),
-    ),
-  );
+  return res.send(response(data));
 };
 
 interface pageOptionType {
   total: number;
   list: [];
-  nextPage: number;
-  prePage: number;
-  pageSize: number;
 }
 /**
  * @param req 请求实例
@@ -46,39 +45,29 @@ interface pageOptionType {
  * @param data 数据
  * @param timeout 延迟
  */
-export const getPagination = async (
-  data: any,
-  timeout: number = 0,
-  option: pageOptionType | any,
-  req: any,
-  res: any,
-) => {
+export const getPagination = async (data: any, timeout: number = 0, req: any, res: any) => {
   const defaultOption: pageOptionType = {
-    ...{
-      total: 100,
-      list: [],
-      nextPage: 1,
-      prePage: 1,
-      pageSize: 20,
-    },
-    ...option,
+    total: 100,
+    list: [],
   };
 
   if (timeout) {
     await waitTime(timeout);
   }
 
-  let body: any = {};
-  try {
-    body = req.body;
-    if (body.page) {
-      defaultOption.prePage = body.page + 1;
-      defaultOption.nextPage = body.page + 2;
-    }
-  // eslint-disable-next-line no-empty
-  } catch (error) {}
+  // let body: any = {};
+  // try {
+  //   body = req.body;
+  //   if (body.page) {
+  //     defaultOption.prePage = body.page + 1;
+  //     defaultOption.nextPage = body.page + 2;
+  //   }
+  //   // eslint-disable-next-line no-empty
+  // } catch (error) {}
 
-  defaultOption.list = data;
+  const newData = mockjs.mock(data);
 
-  return response(defaultOption);
+  defaultOption.list = newData.list;
+
+  return res.send(response(defaultOption));
 };

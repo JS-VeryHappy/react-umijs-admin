@@ -27,7 +27,7 @@ const getBrowser = async () => {
     const { executablePath } = findChromePath;
     const browser = await puppeteer.launch({
       executablePath,
-      // headless: false,
+      headless: false,
       args: [
         '--disable-gpu',
         '--disable-dev-shm-usage',
