@@ -1,6 +1,7 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
 import React from 'react';
 import { TableDropdown } from '@ant-design/pro-table';
+import { getProTableUserList } from '@/services';
 
 const typeValueEnum = {
   all: { text: '全部', status: 'Default' },
@@ -31,6 +32,7 @@ const statusValueEnum = {
     text: '等待',
   },
 };
+
 export const columns: ProColumnsTypes<any>[] = [
   {
     title: 'ID',
@@ -90,6 +92,17 @@ export const columns: ProColumnsTypes<any>[] = [
     dataIndex: 'status',
     valueType: 'select',
     valueEnum: statusValueEnum,
+  },
+  {
+    title: '用户',
+    dataIndex: 'user_id',
+    valueType: 'select',
+    search: false,
+    requestConfig: {
+      request: getProTableUserList,
+      label: 'name',
+      value: 'id',
+    },
   },
   {
     title: '头像',

@@ -29,7 +29,12 @@ export async function isLogin() {
 export function getProTable(data: any) {
   return postBody('/api/table/list', data);
 }
-
+/**
+ * protable list测试
+ */
+export function getProTableUserList() {
+  return postBody('/api/table/userlist');
+}
 /**
  * protable select测试
  */
