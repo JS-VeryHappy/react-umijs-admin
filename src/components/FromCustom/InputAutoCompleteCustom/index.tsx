@@ -54,7 +54,7 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
     onChange: () => {},
   };
   const readonly = Props.readonly || false;
-  const { onChange, value, options } = fieldProps;
+  const { onChange, value, options, ...rest } = fieldProps;
 
   useEffect(() => {
     /**
@@ -83,7 +83,8 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
       ) : (
         <AutoComplete
           value={inputValue}
-          {...fieldProps}
+          placeholder="请选择"
+          {...rest}
           options={options}
           // onSelect={onSelect}
           // onSearch={onSearch}

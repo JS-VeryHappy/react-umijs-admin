@@ -34,7 +34,8 @@ export default defineConfig({
   //hash配置是否让生成的文件包含 hash 后缀，通常用于增量发布和避免浏览器加载缓存
   hash: true,
   //生成map文件
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  devtool: 'eval',
   devServer: devServer,
   // 代理配置(跨域处理)
   proxy: proxy,

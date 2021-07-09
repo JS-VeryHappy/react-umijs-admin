@@ -12,6 +12,7 @@ export default {
           title: '@ctitle',
           datetime: '@datetime',
           description: '@title',
+          'status|1-3': 1,
           'type|1-3': 1,
         },
       ],

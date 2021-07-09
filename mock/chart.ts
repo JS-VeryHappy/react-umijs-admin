@@ -67,7 +67,7 @@ export default {
         },
       ],
     },
-    2000,
+    1000,
   ),
   'POST /api/workbench/list': getObj.bind(
     null,
@@ -100,7 +100,7 @@ export default {
         },
       ],
     },
-    3000,
+    1000,
   ),
   'POST /api/workbench/group': getObj.bind(
     null,
@@ -144,6 +144,6 @@ export default {
         },
       ],
     },
-    2000,
+    1000,
   ),
 };

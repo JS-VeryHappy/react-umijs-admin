@@ -54,7 +54,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
     onChange: () => {},
   };
   const readonly = Props.readonly || false;
-  const { onChange, value, options } = fieldProps;
+  const { onChange, value, options, ...rest } = fieldProps;
 
   useEffect(() => {
     /**
@@ -110,7 +110,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
             ></Select>
           </Form.Item>
           <Form.Item noStyle>
-            <Input value={inputValue} {...fieldProps} onChange={onInputChange} />
+            <Input value={inputValue} {...rest} onChange={onInputChange} />
           </Form.Item>
         </Input.Group>
       )}
