@@ -13,4 +13,23 @@ export declare type ProColumnsTypes<T> = ProColumns<T, ValueType> & {
   };
 };
 
-export declare type TabelCustomTypes<T> = ProTableProps<T>;
+export declare type TabelCustomTypes<T> = ProTableProps<T> & {
+  // header设置快捷按钮
+  headerTitleConfig?: {
+    //   新增
+    create?: Promise<any>;
+    // 导入
+    import?: Promise<any>;
+    // 导出
+    export?: Promise<any>;
+  };
+  // 所选快捷配置
+  selectionConfig?: {
+    // 新增
+    delete?: Promise<any>;
+    // 导入
+    import?: Promise<any>;
+    // 导出
+    export?: Promise<any>;
+  };
+};

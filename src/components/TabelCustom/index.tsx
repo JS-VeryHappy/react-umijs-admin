@@ -1,9 +1,69 @@
 import ProTable from '@ant-design/pro-table';
 import type { TabelCustomTypes } from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
+import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Button, Space, Table } from 'antd';
+
+const headerTitleConfigArr: any = {
+  create: {
+    text: '新增',
+    icon: PlusOutlined,
+    type: 'primary',
+    key: 'header—primary',
+    style: {
+      background: '#1890ff',
+      borderColor: '#1890ff',
+    },
+  },
+  import: {
+    text: '导入',
+    icon: ImportOutlined,
+    type: 'primary',
+    key: 'header—import',
+    style: {
+      background: '#faad14',
+      borderColor: '#faad14',
+    },
+  },
+  export: {
+    text: '导出',
+    icon: ExportOutlined,
+    type: 'primary',
+    key: 'header—export',
+    style: {
+      background: '#269884',
+      borderColor: '#269884',
+    },
+  },
+};
+
+const tableAlertOptionRenderConfigArr: any = {
+  delete: {
+    text: '批量删除',
+    type: 'link',
+    danger: true,
+    key: 'selection-delete',
+  },
+  export: {
+    text: '导出',
+    type: 'link',
+    key: 'selection-export',
+  },
+};
 
 function TabelCustom<T>(Props: TabelCustomTypes<T>) {
-  const { columns, request, search } = Props;
+  const {
+    columns,
+    request,
+    search,
+    headerTitle,
+    headerTitleConfig,
+    rowSelection,
+    tableAlertRender,
+    selectionConfig,
+    tableAlertOptionRender,
+  } = Props;
   let searchCustom: boolean | {} = false;
   if (columns) {
     columns.forEach((item: any) => {
@@ -57,9 +117,78 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     });
   }
 
+  let cunstomHeaderTitle = headerTitle;
+  // 处理自定义 headerTitle 快捷设置
+  if (!headerTitle && headerTitleConfig) {
+    const buttons: any = [];
+
+    const keys = Object.keys(headerTitleConfig);
+
+    keys.forEach((kitem) => {
+      if (!headerTitleConfigArr[kitem]) {
+        $global.log(`headerTitleConfig配置的:${kitem}无法识别`);
+      }
+      const { text, icon, ...config } = headerTitleConfigArr[kitem];
+      buttons.push(
+        React.createElement(Button, { ...config, onClick: headerTitleConfig[kitem] }, [
+          React.createElement(icon, { key: `icon-${kitem}` }),
+          text,
+        ]),
+      );
+    });
+
+    cunstomHeaderTitle = React.createElement(Space, {}, buttons);
+  }
+
+  let cunstomRowSelection = rowSelection;
+  let cunstomTableAlertRender = tableAlertRender;
+  let cunstomTableAlertOptionRender = tableAlertOptionRender;
+
+  // 处理自定义多选快捷设置
+  if (!rowSelection && !tableAlertRender && selectionConfig) {
+    cunstomRowSelection = {
+      // 注释该行则默认不显示下拉选项
+      selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+    };
+    if (!tableAlertRender) {
+      cunstomTableAlertRender = ({ selectedRowKeys, onCleanSelected }: any) => (
+        <Space size={24}>
+          <span>
+            已选 {selectedRowKeys.length} 项
+            <a style={{ marginLeft: 8 }} onClick={onCleanSelected}>
+              取消选择
+            </a>
+          </span>
+        </Space>
+      );
+    }
+    if (!tableAlertOptionRender) {
+      const keys = Object.keys(selectionConfig);
+
+      cunstomTableAlertOptionRender = () => {
+        return (
+          <Space size={0}>
+            {keys.map((kitem) => {
+              if (!tableAlertOptionRenderConfigArr[kitem]) {
+                $global.log(`selectionConfig配置的:${kitem}无法识别`);
+              }
+              const { text, ...config } = tableAlertOptionRenderConfigArr[kitem];
+              return (
+                <Button {...config} onClick={selectionConfig[kitem]}>
+                  {text}
+                </Button>
+              );
+            })}
+          </Space>
+        );
+      };
+    }
+  }
+
   return (
     <>
       <ProTable<T>
+        rowKey="id"
         {...Props}
         columns={columns}
         size="small"
@@ -102,6 +231,10 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         }}
         search={{ ...searchCustom, ...search }}
         options={{ fullScreen: false, reload: true, setting: true, density: false, search: false }}
+        headerTitle={cunstomHeaderTitle}
+        rowSelection={cunstomRowSelection}
+        tableAlertRender={cunstomTableAlertRender}
+        tableAlertOptionRender={cunstomTableAlertOptionRender}
       />
     </>
   );
