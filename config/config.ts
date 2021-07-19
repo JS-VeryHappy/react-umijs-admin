@@ -9,6 +9,8 @@ import theme from './theme';
 // const OpenBrowser = require('open-browser-webpack-plugin');
 
 export default defineConfig({
+  // 提高编译速度
+  mfsu: {},
   /**
    * https://umijs.org/zh-CN/docs/fast-refresh
    * 快速刷新（Fast Refresh）
@@ -90,6 +92,10 @@ export default defineConfig({
   //配置额外的 umi 插件。
   // plugins:[],
 
+  chunks:
+    process.env.NODE_ENV === 'production'
+      ? ['react-vendor', 'antd', 'umi-vendor', 'vendors', 'default', 'umi']
+      : ['umi'],
   // chunks: ['vendors', 'umi'],
   chainWebpack(config, { env, webpack, createCSSRule }) {
     //引入全局公用方法
@@ -113,6 +119,46 @@ export default defineConfig({
             ignoreOrder: true,
           },
         ];
+      });
+      // 文件分块
+      config.merge({
+        optimization: {
+          minimize: true,
+          splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+              'react-vendor': {
+                test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                name: 'react-vendor',
+                enforce: true,
+                priority: 5,
+              },
+              antd: {
+                test: /[\\/]node_modules[\\/](antd)[\\/]/,
+                name: 'antd-vendor',
+                enforce: true,
+                priority: 4,
+              },
+              'umi-vendor': {
+                test: /[\\/]node_modules[\\/](umi).*[\\/]/,
+                name: 'umi-vendor',
+                enforce: true,
+                priority: 3,
+              },
+              vendors: {
+                name: 'vendors',
+                enforce: true,
+                priority: 1,
+                test: /[\\/]node_modules[\\/]((?!(@dzg|antd|react|react-dom|umi)).*)[\\/]/,
+              },
+              default: {
+                test: /[\\/]src[\\/]((?!(pages)).*)[\\/]/,
+                name: 'default',
+                enforce: true,
+              },
+            },
+          },
+        },
       });
     }
   },
