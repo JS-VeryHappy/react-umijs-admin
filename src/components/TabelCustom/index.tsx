@@ -1,16 +1,18 @@
 import ProTable from '@ant-design/pro-table';
-import type { TabelCustomTypes } from '@/components/TabelCustom/types';
+import type { TabelCustomTypes, ProColumnsTypes } from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
 import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Button, Space, Table } from 'antd';
+import styles from './index.less';
 
 const headerTitleConfigArr: any = {
   create: {
     text: '新增',
     icon: PlusOutlined,
     type: 'primary',
-    key: 'header—primary',
+    key: 'header—create',
+    className: 'header-item',
     style: {
       background: '#1890ff',
       borderColor: '#1890ff',
@@ -21,6 +23,7 @@ const headerTitleConfigArr: any = {
     icon: ImportOutlined,
     type: 'primary',
     key: 'header—import',
+    className: 'header-item',
     style: {
       background: '#faad14',
       borderColor: '#faad14',
@@ -31,6 +34,7 @@ const headerTitleConfigArr: any = {
     icon: ExportOutlined,
     type: 'primary',
     key: 'header—export',
+    className: 'header-item',
     style: {
       background: '#269884',
       borderColor: '#269884',
@@ -44,11 +48,34 @@ const tableAlertOptionRenderConfigArr: any = {
     type: 'link',
     danger: true,
     key: 'selection-delete',
+    className: 'selection-item',
   },
   export: {
     text: '导出',
     type: 'link',
     key: 'selection-export',
+    className: 'selection-item',
+  },
+};
+
+const operationConfigRenderConfigArr: any = {
+  edit: {
+    text: '编辑',
+    type: 'link',
+    key: 'operation-edit',
+    className: 'operation-item',
+  },
+  delete: {
+    text: '删除',
+    type: 'link',
+    key: 'operation-delete',
+    className: 'operation-item',
+  },
+  copy: {
+    text: '复制',
+    type: 'link',
+    key: 'operation-copy',
+    className: 'operation-item',
   },
 };
 
@@ -63,8 +90,10 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     tableAlertRender,
     selectionConfig,
     tableAlertOptionRender,
+    operationConfig,
   } = Props;
   let searchCustom: boolean | {} = false;
+  const customColumns: ProColumnsTypes<any>[] = [];
   if (columns) {
     columns.forEach((item: any) => {
       if (typeof item.search === 'undefined' || item.search === true) {
@@ -114,6 +143,34 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
           });
         };
       }
+
+      customColumns.push(item);
+    });
+  }
+
+  // 处理快捷配置row操作菜单
+  if (operationConfig) {
+    const operationKeys = Object.keys(operationConfig);
+
+    const operationConfigRenderFun = (itext: any, irecord: any, _: any, iaction: any) => {
+      return operationKeys.map((oitem) => {
+        if (!operationConfigRenderConfigArr[oitem]) {
+          $global.log(`operationConfig配置的:${oitem}无法识别`);
+        }
+        const { text, icon, ...config } = operationConfigRenderConfigArr[oitem];
+        return (
+          <a {...config} onClick={operationConfig[oitem].bind(null, itext, irecord, _, iaction)}>
+            {icon}
+            {text}
+          </a>
+        );
+      });
+    };
+    customColumns.push({
+      title: '操作',
+      key: 'option',
+      valueType: 'option',
+      render: operationConfigRenderFun,
     });
   }
 
@@ -188,9 +245,10 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
   return (
     <>
       <ProTable<T>
+        className={styles.tabelCustom}
         rowKey="id"
         {...Props}
-        columns={columns}
+        columns={customColumns}
         size="small"
         request={async (
           // 第一个参数 params 查询表单和 params 参数的结合

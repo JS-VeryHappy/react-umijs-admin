@@ -32,4 +32,12 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
     // 导出
     export?: Promise<any>;
   };
+  operationConfig?: {
+    // 编辑
+    edit?: Promise<any>;
+    // 删除
+    delete?: Promise<any>;
+    // 复制
+    copy?: Promise<any>;
+  };
 };

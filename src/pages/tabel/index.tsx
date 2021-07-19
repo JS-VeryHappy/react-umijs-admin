@@ -26,6 +26,17 @@ function tabel() {
           console.log(3);
         },
       }}
+      operationConfig={{
+        edit: () => {
+          console.log(1);
+        },
+        delete: () => {
+          console.log(2);
+        },
+        copy: () => {
+          console.log(3);
+        },
+      }}
       expandable={{
         expandedRowRender: (record: any) => <p>{record.title}</p>,
       }}

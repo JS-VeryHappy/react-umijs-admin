@@ -1,6 +1,5 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
-import React from 'react';
-import { TableDropdown } from '@ant-design/pro-table';
+
 import { getProTableUserList } from '@/services';
 
 const typeValueEnum = {
@@ -130,38 +129,5 @@ export const columns: ProColumnsTypes<any>[] = [
         };
       },
     },
-  },
-  {
-    title: '操作',
-    key: 'option',
-    valueType: 'option',
-    render: (text, record, _, action) => [
-      React.createElement(
-        'a',
-        {
-          key: 'link',
-        },
-        '修改',
-      ),
-      React.createElement(
-        'a',
-        {
-          key: 'link',
-        },
-        '删除',
-      ),
-      React.createElement(
-        TableDropdown,
-        {
-          key: 'actionGroup',
-          onSelect: () => action?.reload(),
-          menus: [
-            { key: 'copy', name: '复制' },
-            { key: 'delete', name: '删除' },
-          ],
-        },
-        '',
-      ),
-    ],
   },
 ];
