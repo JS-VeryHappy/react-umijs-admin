@@ -1,47 +1,70 @@
+import FromCustom from '@/components/FromCustom';
 import TabelCustom from '@/components/TabelCustom';
+import { useState } from 'react';
 import { columns } from './define';
 import { getProTable } from '@/services';
 
-function tabel() {
+function Tabel() {
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const onFinish = async (values: any) => {
+    console.log('====================================');
+    console.log(values);
+    console.log('====================================');
+    return true;
+  };
   return (
-    <TabelCustom<any>
-      request={getProTable}
-      columns={columns}
-      headerTitleConfig={{
-        create: () => {
-          console.log(1);
-        },
-        import: () => {
-          console.log(2);
-        },
-        export: () => {
-          console.log(3);
-        },
-      }}
-      selectionConfig={{
-        delete: () => {
-          console.log(1);
-        },
-        export: () => {
-          console.log(3);
-        },
-      }}
-      operationConfig={{
-        edit: () => {
-          console.log(1);
-        },
-        delete: () => {
-          console.log(2);
-        },
-        copy: () => {
-          console.log(3);
-        },
-      }}
-      expandable={{
-        expandedRowRender: (record: any) => <p>{record.title}</p>,
-      }}
-    />
+    <>
+      <TabelCustom<any>
+        request={getProTable}
+        columns={columns}
+        headerTitleConfig={{
+          create: () => {
+            setVisible(true);
+            console.log(1);
+          },
+          import: () => {
+            console.log(2);
+          },
+          export: () => {
+            console.log(3);
+          },
+        }}
+        selectionConfig={{
+          delete: () => {
+            console.log(1);
+          },
+          export: () => {
+            console.log(3);
+          },
+        }}
+        operationConfig={{
+          edit: () => {
+            console.log(1);
+          },
+          delete: () => {
+            console.log(2);
+          },
+          copy: () => {
+            console.log(3);
+          },
+        }}
+        expandable={{
+          expandedRowRender: (record: any) => <p>{record.title}</p>,
+        }}
+      />
+      <FromCustom
+        columns={columns}
+        layoutType="ModalForm"
+        title="新建表单"
+        visible={visible}
+        onVisibleChange={(value: boolean) => {
+          setVisible(value);
+        }}
+        onFinish={onFinish}
+      />
+    </>
   );
 }
 
-export default tabel;
+export default Tabel;

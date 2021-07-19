@@ -32,6 +32,9 @@ function FromCustom(Props: FromCustomProps) {
     }
     newColumns.push(column);
 
+    if (!column.valueType) {
+      column.valueType = 'text';
+    }
     // 如果是自定义组件
     if (column.valueType.indexOf('Custom') !== -1) {
       if (components[column.valueType]) {

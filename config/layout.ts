@@ -1,6 +1,6 @@
 import React from 'react';
-import { history, Link } from 'umi';
-import { DefaultFooter, PageContainer } from '@ant-design/pro-layout';
+import { Link } from 'umi';
+import { DefaultFooter } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 
@@ -43,19 +43,26 @@ export default (config: any) => {
       },
       //可以这样渲染 内容部分公用部分
       childrenRender: (children: any) => {
-        if (history.location.pathname !== '/login' && history.location.pathname !== '/404') {
-          return React.createElement(
-            PageContainer,
-            {
-              fixedHeader: false,
-              header: {
-                // title: "",
-                // breadcrumb: []
-              },
-            },
-            children,
-          );
-        }
+        // if (history.location.pathname !== '/login' && history.location.pathname !== '/404') {
+        //   return React.createElement(
+        //     PageContainer,
+        //     {
+        //       fixedHeader: false,
+        //       header: {
+        //         // title: "",
+        //         // breadcrumb: []
+        //       },
+        //     },
+        //     children,
+        //   );
+        // }
+        return React.createElement(
+          'div',
+          {
+            className: 'custom-container',
+          },
+          children,
+        );
         return children;
       },
       //配置开发模式下文档地址

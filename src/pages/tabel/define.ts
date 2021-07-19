@@ -1,5 +1,4 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
-
 import { getProTableUserList } from '@/services';
 
 const typeValueEnum = {
@@ -45,6 +44,13 @@ export const columns: ProColumnsTypes<any>[] = [
     dataIndex: 'title',
     ellipsis: true,
     tip: '标题过长会自动收缩',
+    fieldProps: {
+      placeholder: '请输入账号',
+      maxLength: 20,
+    },
+    formItemProps: {
+      rules: [{ required: true, message: '标题' }],
+    },
   },
   {
     title: '描述',
@@ -57,6 +63,7 @@ export const columns: ProColumnsTypes<any>[] = [
     dataIndex: 'description',
     valueType: 'InputTooltipCustom',
     hideInTable: true,
+    hideInForm: true,
     fieldProps: {
       tooltipTitle: '自定义组件的使用',
     },
@@ -107,7 +114,7 @@ export const columns: ProColumnsTypes<any>[] = [
     title: '头像',
     dataIndex: 'avatar',
     search: false,
-    valueType: 'avatar',
+    valueType: 'image',
   },
   {
     title: '时间',
@@ -121,6 +128,7 @@ export const columns: ProColumnsTypes<any>[] = [
     dataIndex: 'datetime',
     valueType: 'dateRange',
     hideInTable: true,
+    hideInForm: true,
     search: {
       transform: (value) => {
         return {
