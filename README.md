@@ -10,7 +10,7 @@
 
 ## 项目架构
 
-Umi(React + AntD + Less + TypeScript )
+Umi(React + AntD + Less + TypeScript + dumi )
 
 Umi中文网： [https://umijs.org/zh-CN/docs/](https://umijs.org/zh-CN/docs)
 
@@ -26,11 +26,68 @@ Less官网： [http://lesscss.cn/](http://lesscss.cn/)
 
 TypeScript官网： [https://www.tslang.cn/](https://www.tslang.cn/)
 
-dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
+Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 
 ## 组件说明（必须查看整个说明）
 组件文档、使用说明: [xxxxx/~doc](xxxxx/~doc)
 路径查看文档说明
+
+## vscode 插件安装
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 代码格式风格验证
+
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 代码格式风格验证自动补全
+
+[stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) 样式风格验证
+
+[git-commit-plugin](https://marketplace.visualstudio.com/items?itemName=redjue.git-commit-plugin) 提交git文案工具
+
+### vscode本地settings.json
+```
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 检索过滤
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true
+  },
+  "GitCommitPlugin.CustomCommitType": [
+    {
+      "label": "💥 feat",
+      "detail": "add 'comments' option"
+    },
+    {
+      "label": "🐛 fix",
+      "detail": "fix some bug"
+    },
+    {
+      "label": "📝 docs",
+      "detail": "add some docs"
+    },
+    {
+      "label": "🌷 UI",
+      "detail": "better styles"
+    },
+    {
+      "label": "🏰 chore",
+      "detail": "Made some changes to the scaffolding"
+    },
+    {
+      "label": "🌐 locale",
+      "detail": "Made a small contribution to internationalization"
+    }
+  ]
+}
+
+```
 
 ## 文件结构
 
@@ -46,7 +103,7 @@ dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 │   ├── dumi.ts //dumi文档配置
 │   ├── theme.ts //全局样式变量配置
 │   ├── proxy.ts //代理配置文件
-│   └── route.ts //路由配置文件
+│   └── routes.ts //路由配置文件
 ├── docs //公用文档目录
 │   └── demo.md //文档说明样例
 ├── mock //mock模拟数据目录
@@ -55,6 +112,7 @@ dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 ├── public
 │   └── favicon.ico
 ├── src
+│   ├── typings.d.ts //ts类型声明
 │   ├── access.ts //umijs layout权限验证钩子
 │   ├── app.ts //umijs  约定运行时配置文件
 │   ├── assets //资源存放目录
@@ -90,8 +148,8 @@ dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 │       ├── utils.test.ts //函数测试
 │       └── index.ts //业务公用 单独引入使用
 ├── tests //自动化测试扩展编写
-├── tsconfig.json //ts配置文件
-└── typings.d.ts //ts类型声明
+└── tsconfig.json //ts配置文件
+
 ```
 
 ## 打包
@@ -126,7 +184,7 @@ dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 ### 测试/开发登录路径
 
 
-/signIn
+/login
 
 
 

@@ -1,103 +1,134 @@
-import React,{ useEffect } from 'react';
-import { history,useModel,useRequest } from 'umi';
-import { pwdLogin } from '@/services';
-import ProForm, { ProFormText } from '@ant-design/pro-form';
-import { Image,message } from 'antd';
+import { useState } from 'react';
+import { history, useModel, useRequest } from 'umi';
+import { login } from '@/services';
 import styles from './index.less';
-import bg from  '@/assets/images/bg.png';
-import ProFormCustom from '@/components/ProFormCustom';
-import { FormChildrenConfigType } from '@/components/ProFormCustom/types';
+import { mobileConfig, accountConfig } from './define';
+import { Row, Col, Typography, Tabs, Space, Image, message } from 'antd';
+import FromCustom from '@/components/FromCustom';
+import classnames from 'classnames';
+import {
+  AlipayCircleOutlined,
+  TaobaoCircleOutlined,
+  WeiboCircleOutlined,
+  QrcodeOutlined,
+  SlackOutlined,
+} from '@ant-design/icons';
+import { waitTime } from '@/utils';
+import code from '@/assets/images/code.jpg';
+import scan from '@/assets/images/scan.png';
 
-function UserMobileLogin(){
+const { Title } = Typography;
+const { TabPane } = Tabs;
 
-  const {  setInitialState } = useModel('@@initialState');
+type loginType = 'mobile' | 'account' | 'qrcode';
 
-  const { run:onFinish } = useRequest(async (values:any)=>{
-    try {
-      let res = await pwdLogin(values);
-      message.success('登录成功');
-      setInitialState(res.data);
-      setTimeout(()=>{
-        history.push('/');
-      },0);
-    }catch (e) {
+function UserMobileLogin() {
+  const [type, setType] = useState<loginType>('mobile');
+  const { setInitialState } = useModel('@@initialState');
 
-    }
-  },{
-    manual: true
-  });
-
-  //设置style
-  const divStyle = (): React.CSSProperties => ({
-    width: 'auto',
-    background:'none'
-  });
-
-  let config: FormChildrenConfigType[] = [
-    {
-      children: [
-        {
-          mold: "ProFormText",
-          name: "mobile",
-          label: "手机码号",
-          tooltip: '钉钉登录手机号',
-          placeholder: "请输入手机码号",
-          fieldProps: {
-            maxLength: 11
-          },
-          rules:[{ required: true , message: '填写手机'}]
-        }
-      ]
+  const { run: onFinish } = useRequest(
+    async (values: any) => {
+      try {
+        const res = await login(values);
+        message.success('登录成功');
+        setInitialState(res.data);
+        setTimeout(() => {
+          history.push('/');
+        }, 0);
+      } catch (e) {
+        // empty
+      }
     },
     {
-      children: [
-        {
-          mold: "ProFormText.Password",
-          name: "password",
-          label: "密码",
-          placeholder: "请输入密码",
-          rules:[{ required: true , message: '填写密码'}]
-        }
-      ]
-    }
-  ]
-  return (
-    <div className={styles.main}>
-      <div className={styles.sign}>
-        <div>
-          <Image
-            preview={false}
-            width="100%"
-            height="100%"
-            src={bg}
-          />
-          <div className={styles.code}>
-            <div className={styles.title}>
-              使用钉钉手机进行登录
-            </div>
-            <div className={styles.box} style={divStyle()}>
-              <ProFormCustom
-                submitter={{
-                  searchConfig:{
-                    submitText:'登录'
-                  },
-                  submitButtonProps:{
-                    style:{
-                      width: '100%',
-                    }
-                  },
-                  render: (_:any, dom:any) => dom.pop(),
-                }}
-                formConfig={config}
-                onSubmit={onFinish}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      manual: true,
+    },
   );
-};
 
+  const tabOnChange = (key: any) => {
+    let nkey = key;
+    if (type === nkey && type === 'qrcode') {
+      nkey = 'mobile';
+    }
+    setType(nkey);
+  };
+
+  const onGetCaptcha = async (mobile: any) => {
+    await waitTime(1000);
+    message.success(`手机号 ${mobile} 验证码发送成功!`);
+  };
+
+  const loginDom = (
+    <>
+      <Tabs defaultActiveKey={type} onChange={tabOnChange} size="large">
+        <TabPane tab="免密登录" key="mobile" />
+        <TabPane tab="账号登录" key="account" />
+      </Tabs>
+      <FromCustom
+        submitter={{
+          searchConfig: {
+            submitText: type === 'mobile' ? '注册/登录' : '登录',
+          },
+          submitButtonProps: {
+            style: {
+              width: '100%',
+              marginTop: '20px',
+            },
+          },
+          render: (_: any, dom: any) => dom.pop(),
+        }}
+        columns={type === 'mobile' ? mobileConfig(onGetCaptcha) : accountConfig}
+        onFinish={onFinish}
+      />
+      <Space className={styles.other}>
+        其他登录方式:
+        <AlipayCircleOutlined className={styles.icon} />
+        <TaobaoCircleOutlined className={styles.icon} />
+        <WeiboCircleOutlined className={styles.icon} />
+      </Space>
+    </>
+  );
+  const qrcodeDom = (
+    <>
+      <Row align="middle" justify="center">
+        <Image width={160} preview={false} src={code} />
+        <Image width={160} preview={false} src={scan} />
+      </Row>
+    </>
+  );
+  return (
+    <>
+      <Row className={styles.login} align="middle" justify="center">
+        <Col xs={0} sm={0} md={12} lg={14} xl={16}></Col>
+        <Col xs={24} sm={24} md={10} lg={8} xl={6}>
+          <Row justify="center">
+            <Row justify="center" className={classnames(styles.bg, 'global-shadow-3-down')}>
+              <div className={styles.main}>
+                <div
+                  className={classnames(styles.code, type)}
+                  onClick={() => {
+                    tabOnChange('qrcode');
+                  }}
+                >
+                  {type === 'qrcode' ? (
+                    <SlackOutlined style={{ fontSize: '50px', color: '#1890ff' }} />
+                  ) : (
+                    <QrcodeOutlined style={{ fontSize: '50px', color: '#1890ff' }} />
+                  )}
+                </div>
+                <Col span={24}>
+                  <Title style={{ color: '#fff' }}>欢迎登录</Title>
+                </Col>
+                <Col span={24} className={styles.box}>
+                  {type !== 'qrcode' ? loginDom : qrcodeDom}
+                </Col>
+              </div>
+            </Row>
+          </Row>
+        </Col>
+        <Col xs={0} sm={2} md={2} lg={2} xl={2}></Col>
+      </Row>
+    </>
+  );
+}
 
 export default UserMobileLogin;

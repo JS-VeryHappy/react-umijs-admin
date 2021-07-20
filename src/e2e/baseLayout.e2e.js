@@ -6,20 +6,17 @@ const BASE_URL = `http://localhost:8080`;
 function formatter(routes, parentPath = '') {
   const fixedParentPath = parentPath.replace(/\/{1,}/g, '/');
   let result = [];
-  routes.forEach(item => {
+  routes.forEach((item) => {
     if (item.path) {
       result.push(`${fixedParentPath}/${item.path}`.replace(/\/{1,}/g, '/'));
     }
     if (item.routes) {
       result = result.concat(
-        formatter(
-          item.routes,
-          item.path ? `${fixedParentPath}/${item.path}` : parentPath,
-        ),
+        formatter(item.routes, item.path ? `${fixedParentPath}/${item.path}` : parentPath),
       );
     }
   });
-  return uniq(result.filter(item => !!item));
+  return uniq(result.filter((item) => !!item));
 }
 
 beforeEach(async () => {
@@ -30,7 +27,7 @@ beforeEach(async () => {
 });
 
 describe('E2E test', () => {
-  const testPage = path => async () => {
+  const testPage = (path) => async () => {
     await page.goto(`${BASE_URL}${path}`);
     await page.waitForSelector('footer', {
       timeout: 2000,
@@ -42,7 +39,7 @@ describe('E2E test', () => {
   };
 
   const routers = formatter(RouterConfig);
-  routers.forEach(route => {
+  routers.forEach((route) => {
     it(`test pages ${route}`, testPage(route));
   });
 });

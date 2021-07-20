@@ -1,11 +1,16 @@
 import { resolve } from 'path';
 import { defineConfig } from 'umi';
 import proxy, { devServer } from './proxy';
-import routes from './route';
+import routes from './routes';
 import dumi from './dumi';
 import theme from './theme';
+// import { join } from 'path';
+
+// const OpenBrowser = require('open-browser-webpack-plugin');
 
 export default defineConfig({
+  // 提高编译速度
+  mfsu: {},
   /**
    * https://umijs.org/zh-CN/docs/fast-refresh
    * 快速刷新（Fast Refresh）
@@ -31,7 +36,8 @@ export default defineConfig({
   //hash配置是否让生成的文件包含 hash 后缀，通常用于增量发布和避免浏览器加载缓存
   hash: true,
   //生成map文件
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  devtool: 'eval',
   devServer: devServer,
   // 代理配置(跨域处理)
   proxy: proxy,
@@ -86,6 +92,10 @@ export default defineConfig({
   //配置额外的 umi 插件。
   // plugins:[],
 
+  chunks:
+    process.env.NODE_ENV === 'production'
+      ? ['react-vendor', 'antd', 'umi-vendor', 'vendors', 'default', 'umi']
+      : ['umi'],
   // chunks: ['vendors', 'umi'],
   chainWebpack(config, { env, webpack, createCSSRule }) {
     //引入全局公用方法
@@ -95,23 +105,62 @@ export default defineConfig({
         $global: [resolve(`src/utils/globalUtils.ts`), 'default'],
       }),
     );
+    //如果是build下js/css分组
+    if (env === 'production') {
+      config.output
+        .filename(`js/${config.toConfig().output.filename}`)
+        .chunkFilename(`js/${config.toConfig().output.chunkFilename}`);
 
-    //配置一个自定义loader
-    // config.module
-    //   .rule('auto-components-loader')
-    //     .test(/(\.js|\.ts|\.tsx)$/)
-    //     .pre()
-    //     .before('dumi')
-    //     .include.add(resolve('src'))
-    //     .end()
-    //     .exclude.add(resolve('src/.umi')).add(resolve('node_modules'))
-    //     .end()
-    //   .use('auto-components-loader')
-    //     .loader(resolve('loader/auto-components-loader'))
-    //     .options({
-    //       identifier:'Custom'
-    //     })
-    //     .end();
+      config.plugin('extract-css').tap((args) => {
+        return [
+          {
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+            ignoreOrder: true,
+          },
+        ];
+      });
+      // 文件分块
+      config.merge({
+        optimization: {
+          minimize: true,
+          splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+              'react-vendor': {
+                test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                name: 'react-vendor',
+                enforce: true,
+                priority: 5,
+              },
+              antd: {
+                test: /[\\/]node_modules[\\/](antd)[\\/]/,
+                name: 'antd-vendor',
+                enforce: true,
+                priority: 4,
+              },
+              'umi-vendor': {
+                test: /[\\/]node_modules[\\/](umi).*[\\/]/,
+                name: 'umi-vendor',
+                enforce: true,
+                priority: 3,
+              },
+              vendors: {
+                name: 'vendors',
+                enforce: true,
+                priority: 1,
+                test: /[\\/]node_modules[\\/]((?!(@dzg|antd|react|react-dom|umi)).*)[\\/]/,
+              },
+              default: {
+                test: /[\\/]src[\\/]((?!(pages)).*)[\\/]/,
+                name: 'default',
+                enforce: true,
+              },
+            },
+          },
+        },
+      });
+    }
   },
   // 使用 antd
   antd: {
@@ -125,10 +174,10 @@ export default defineConfig({
   // 约定是到 model 组织方式，不用手动注册 model
   // 文件名即 namespace，model 内如果没有声明 namespace，会以文件名作为 namespace
   // 内置 dva-loading，直接 connect loading 字段使用即可
-  dva: {
-    immer: true, // 表示是否启用 immer 以方便修改 reducer
-    hmr: true, // 表示是否启用 dva model 的热更新
-  },
+  // dva: {
+  //   immer: true, // 表示是否启用 immer 以方便修改 reducer
+  //   hmr: true, // 表示是否启用 dva model 的热更新
+  // },
   // 是否启用按需加载，即是否把构建产物进行拆分，在需要的时候下载额外的 JS 再执行
   dynamicImport: {
     // 无需 level, webpackChunkName 引入 tsx时候看看 tsconfig.json配置了相关配置没
@@ -140,22 +189,20 @@ export default defineConfig({
   // ssr: {},
   // //配置即可拥有 Ant Design 的 Layout
   layout: {
-    name: '后台管理系统',
-    locale: false,
-    navTheme: 'dark',
-    menu: { locale: false },
-    primaryColor: '#1890ff',
-    logo:
-      'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    // name: '后台管理系统'
+    locale: true,
   },
   // request请求配置
   request: {
     dataField: 'data',
   },
-  //国际化配置
-  // locale: {
-  //   default: 'zh-CN',
-  // },
+  // 国际化配置 https://umijs.org/zh-CN/plugins/plugin-locale
+  locale: {
+    default: 'zh-CN',
+    antd: true,
+    // default true, when it is true, will use `navigator.language` overwrite default
+    baseNavigator: true,
+  },
   /**
    * 替换压缩器为 esbuild
    */
@@ -163,4 +210,16 @@ export default defineConfig({
 
   //加载dumi文档配置
   ...dumi,
+
+  autotipsComponents: false,
+
+  openAPI: [
+    {
+      requestLibPath: "import { request } from 'umi'",
+      // 或者使用在线的版本
+      schemaPath: 'https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json',
+      // schemaPath: join(__dirname, 'oneapi.json'),
+      mock: false,
+    },
+  ],
 });

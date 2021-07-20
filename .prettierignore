@@ -2,7 +2,11 @@
 **/*.svg
 **/*.ejs
 **/*.html
+**/*.jpeg
+**/*.jpg
+**/*.png
 package.json
 .umi
 .umi-production
 .umi-test
+/.history

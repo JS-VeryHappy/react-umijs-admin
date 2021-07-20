@@ -1,3 +1,7 @@
 export default {
-  WELCOME_TO_UMI_WORLD: "{name}, welcome to umi's world",
+  'menu.panel': 'Panel',
+  'menu.panel.workbench': 'Workbench',
+  'tabel.list': 'tabel',
+  'layout.header.logout': 'Logout',
+  'layout.header.userinfo': 'Profile',
 };

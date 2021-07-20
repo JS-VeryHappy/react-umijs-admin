@@ -4,10 +4,9 @@
  */
 
 // @ts-ignore
-import React,{useState,useContext} from 'react';
-import { Button,message } from 'antd';
+import React, { useState, useContext } from 'react';
+import { Button, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-
 
 interface AddButtonCustomType {
   /**
@@ -27,32 +26,27 @@ interface AddButtonCustomType {
    * @param undefined
    * @default Add
    */
-  bntText?:string | undefined
+  bntText?: string | undefined;
   /**
    * antd 按钮props 参数
    * 和antd 参数一样
    */
-  fieldProps?:{} | undefined
+  fieldProps?: {} | undefined;
 }
 
-
-
-function AddButtonCustom(Props:AddButtonCustomType) {
-
-  const {
-    bntType,
-    onClick,
-    fieldProps,
-    bntText
-  } = Props;
+function AddButtonCustom(Props: AddButtonCustomType) {
+  const { bntType, onClick, fieldProps, bntText } = Props;
 
   return (
     <>
       <Button
         type={bntType || 'dashed'}
-        onClick={onClick || function() {
-          message.info('点击按钮');
-        }}
+        onClick={
+          onClick ||
+          function () {
+            message.info('点击按钮');
+          }
+        }
         icon={<PlusOutlined />}
         {...fieldProps}
       >

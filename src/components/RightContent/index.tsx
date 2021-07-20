@@ -1,60 +1,94 @@
-import React from 'react';
-import { Menu,Avatar,Dropdown,Space } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Menu, Avatar, Dropdown, Space } from 'antd';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+// @ts-ignore
+import { history, useModel, Link, SelectLang, useIntl } from 'umi';
+import styles from './index.less';
+import headimg from '@/assets/images/headimg.jpeg';
+import NoticeTip from './NoticeTip';
 
-import { history,useModel,Link } from 'umi';
-
-interface RightContentType {
-
-  /**
-   *
-   * 显示名称
-   */
-  name?:string | undefined
-
+interface LocalData {
+  lang: string;
+  label?: string;
+  icon?: string;
+  title?: string;
 }
+function RightContent(Props: any) {
+  const { initialState } = useModel('@@initialState');
+  const intl = useIntl();
 
-function RightContent(Props:RightContentType) {
-  const { initialState} = useModel('@@initialState');
   if (!initialState) {
     return null;
   }
-  const {
-    name
-  } = initialState;
 
-  const signOut = ()=>{
-    setTimeout(()=>{
-      //请求服务退出登录 目前没有
-      history.push('/signIn');
-    },100);
+  const { theme, layout } = Props;
+  let className = styles.right;
+
+  if (theme === 'dark' && layout === 'top') {
+    className = `${styles.right}  ${styles.dark}`;
+  }
+
+  const { name } = initialState;
+
+  const signOut = () => {
+    setTimeout(() => {
+      // 请求服务退出登录 目前没有
+      history.push('/login');
+    }, 100);
   };
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key="userinfo">
+        <Link to="/user/info">
+          <UserOutlined />
+          {intl.formatMessage({
+            id: 'layout.header.userinfo',
+            defaultMessage: '个人中心',
+          })}
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="logout">
         <a onClick={signOut}>
-          退出登录
+          <LogoutOutlined />
+          {intl.formatMessage({
+            id: 'layout.header.logout',
+            defaultMessage: '退出登录',
+          })}
         </a>
       </Menu.Item>
     </Menu>
   );
+
+  const postLocalesData = (locales: LocalData[]) => {
+    const nlocales: any = [];
+    locales.forEach((item: any) => {
+      nlocales.push({
+        ...item,
+        key: item.lang,
+      });
+    });
+
+    return nlocales;
+  };
+
   return (
-    <>
-      <Space align="center">
-        {
-          process.env.UMI_ENV === 'local'?<a target="_blank" href="/~docs" >开发文档</a>:''
-        }
-        <Dropdown overlay={menu}>
-          <Space style={{
-            cursor: 'pointer'
-          }}>
-            <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />}  size="small"  />
-            <span >{name}</span>
-          </Space>
-        </Dropdown>
-      </Space>
-    </>
+    <div className={className}>
+      <NoticeTip></NoticeTip>
+
+      <Dropdown overlay={menu}>
+        <Space
+          style={{
+            cursor: 'pointer',
+          }}
+        >
+          <Avatar src={headimg} size="small" />
+          <span>{name}</span>
+        </Space>
+      </Dropdown>
+
+      <SelectLang className={styles.action} postLocalesData={postLocalesData} />
+    </div>
   );
 }
 

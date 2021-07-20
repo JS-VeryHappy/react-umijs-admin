@@ -3,7 +3,7 @@
  * 我是dva数据写法
  */
 // @ts-ignore
-import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
+import type { Effect, Reducer, Subscription } from 'umi';
 import { isLogin } from '@/services';
 
 export interface GlobalUserModelType {
@@ -24,8 +24,7 @@ const globalUserModel: GlobalUserModelType = {
     info: {},
   },
   effects: {
-    * queryUserInfo({ payload }, { call, put }) {
-
+    *queryUserInfo({ payload }, { call, put }) {
       const res = yield call(isLogin, payload);
       // put函数是用来发送action的
       yield put({
@@ -36,17 +35,16 @@ const globalUserModel: GlobalUserModelType = {
   },
   reducers: {
     getInfo(state, { payload }) {
-      console.log(state, payload);
+      // console.log(state, payload);
       return {
         ...state,
         ...payload,
       };
     },
-
   },
   subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
+    setup({ history }) {
+      return history.listen(() => {
         // console.log(pathname);
         // if (pathname === '/') {
         //   dispatch({

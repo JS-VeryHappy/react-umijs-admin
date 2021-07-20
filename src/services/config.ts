@@ -1,35 +1,41 @@
-import { RequestConfig,ErrorShowType,history } from 'umi';
-import { message } from 'antd';
+import type { RequestConfig } from 'umi';
+import { ErrorShowType, history } from 'umi';
 
 const requestConfig: RequestConfig = {
   timeout: 30000,
   errorConfig: {
-    //当后端接口不满足该规范的时候你需要通过该配置把后端接口数据转换为该格式，
+    // 当后端接口不满足该规范的时候你需要通过该配置把后端接口数据转换为该格式，
     // 该配置只是用于错误处理，不会影响最终传递给页面的数据格式。
-    adaptor: resData => {
-      //如果是http状态码错误
-      if(resData.status && resData.error && resData.timestamp){
+    adaptor: (resData) => {
+      // 如果是http状态码错误
+      if (!resData) {
+        return {
+          success: false,
+          errorCode: 500,
+          errorMessage: '系统错误',
+          showType: ErrorShowType.ERROR_MESSAGE,
+        };
+      }
+      if (resData.status && resData.error && resData.timestamp) {
         return {
           success: false,
           errorCode: resData.status,
           errorMessage: `${resData.status} ${resData.error}`,
-          showType:ErrorShowType.ERROR_MESSAGE
-        };
-      }else {
-        //如果http 状态 200 内部状态判断
-        let showType = ErrorShowType.ERROR_MESSAGE;
-        if(resData.code === '403'){
-          showType = ErrorShowType.WARN_MESSAGE;
-        }
-        return {
-          data:resData.data,
-          success: resData.code === '0',
-          errorCode: resData.code,
-          errorMessage: resData.reason,
-          showType:showType
+          showType: ErrorShowType.ERROR_MESSAGE,
         };
       }
-
+      // 如果http 状态 200 内部状态判断
+      let showType = ErrorShowType.ERROR_MESSAGE;
+      if (resData.code === '403') {
+        showType = ErrorShowType.WARN_MESSAGE;
+      }
+      return {
+        data: resData.data,
+        success: resData.code === '0',
+        errorCode: resData.code,
+        errorMessage: resData.reason || '系统错误',
+        showType,
+      };
     },
   },
   middlewares: [
@@ -48,16 +54,14 @@ const requestConfig: RequestConfig = {
     },
   ],
   responseInterceptors: [
-    async function response(response, options) {
-
-      if(response.status === 200){
-        const data = await response.clone().json();
-        if(data.code === '403'){
-          history.push('/signIn')
+    async function response(res) {
+      if (res.status === 200) {
+        const data = await res.clone().json();
+        if (data.code === '403') {
+          history.push('/login');
         }
-
       }
-      return response;
+      return res;
     },
   ],
 };
