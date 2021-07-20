@@ -32,21 +32,21 @@ function Tabel() {
         }}
         selectionConfig={{
           delete: () => {
-            console.log(1);
+            console.log(11);
           },
           export: () => {
-            console.log(3);
+            console.log(21);
           },
         }}
         operationConfig={{
           edit: () => {
-            console.log(1);
+            console.log(111);
           },
           delete: () => {
-            console.log(2);
+            console.log(222);
           },
           copy: () => {
-            console.log(3);
+            console.log(333);
           },
         }}
         expandable={{
@@ -56,7 +56,7 @@ function Tabel() {
       <FromCustom
         columns={columns}
         layoutType="ModalForm"
-        title="新建表单"
+        title="新建表单11111"
         visible={visible}
         onVisibleChange={(value: boolean) => {
           setVisible(value);
