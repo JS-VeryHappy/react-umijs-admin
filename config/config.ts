@@ -37,7 +37,7 @@ export default defineConfig({
   hash: true,
   //生成map文件
   // devtool: 'source-map',
-  devtool: 'eval',
+  devtool: 'source-map',
   devServer: devServer,
   // 代理配置(跨域处理)
   proxy: proxy,
@@ -60,7 +60,7 @@ export default defineConfig({
   // headScripts:[],
   // 配置 <body> 里的额外脚本。。
   scripts: [
-    'https://g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js',
+    // 'https://g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js',
     // 'https://lib.baomitu.com/antd/4.9.1/antd.min.js',
     // '//unpkg.com/react@16.14.0/umd/react.production.min.js',
     // '//unpkg.com/react-dom@16.14.0/umd/react-dom.production.min.js'
@@ -191,6 +191,7 @@ export default defineConfig({
   layout: {
     // name: '后台管理系统'
     locale: true,
+    loading: false,
   },
   // request请求配置
   request: {
@@ -213,13 +214,13 @@ export default defineConfig({
 
   autotipsComponents: false,
 
-  openAPI: [
-    {
-      requestLibPath: "import { request } from 'umi'",
-      // 或者使用在线的版本
-      schemaPath: 'https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json',
-      // schemaPath: join(__dirname, 'oneapi.json'),
-      mock: false,
-    },
-  ],
+  // openAPI: [
+  //   {
+  //     requestLibPath: "import { request } from 'umi'",
+  //     // 或者使用在线的版本
+  //     schemaPath: 'https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json',
+  //     // schemaPath: join(__dirname, 'oneapi.json'),
+  //     mock: false,
+  //   },
+  // ],
 });

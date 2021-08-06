@@ -1,5 +1,4 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
-import { getProTableUserList } from '@/services';
 
 const typeValueEnum = {
   all: { text: '全部', status: 'Default' },
@@ -99,23 +98,23 @@ export const columns: ProColumnsTypes<any>[] = [
     valueType: 'select',
     valueEnum: statusValueEnum,
   },
-  {
-    title: '用户',
-    dataIndex: 'user_id',
-    valueType: 'select',
-    search: false,
-    requestConfig: {
-      request: getProTableUserList,
-      label: 'name',
-      value: 'id',
-    },
-  },
-  {
-    title: '头像',
-    dataIndex: 'avatar',
-    search: false,
-    valueType: 'image',
-  },
+  // {
+  //   title: '用户',
+  //   dataIndex: 'user_id',
+  //   valueType: 'select',
+  //   search: false,
+  //   requestConfig: {
+  //     request: getProTableUserList,
+  //     label: 'name',
+  //     value: 'id',
+  //   },
+  // },
+  // {
+  //   title: '头像',
+  //   dataIndex: 'avatar',
+  //   search: false,
+  //   valueType: 'image',
+  // },
   {
     title: '时间',
     dataIndex: 'datetime',

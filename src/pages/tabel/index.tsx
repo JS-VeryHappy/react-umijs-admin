@@ -56,7 +56,7 @@ function Tabel() {
       <FromCustom
         columns={columns}
         layoutType="ModalForm"
-        title="新建表单11111"
+        title="新建表单"
         visible={visible}
         onVisibleChange={(value: boolean) => {
           setVisible(value);

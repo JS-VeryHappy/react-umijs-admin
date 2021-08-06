@@ -118,11 +118,9 @@ Dumi中文网： [https://d.umijs.org/zh-CN/](https://d.umijs.org/zh-CN/)
 │   ├── assets //资源存放目录
 │   │   └── images
 │   ├── components //组件目录
-│   │   ├── BasicsBusinessCustom //基础业务组件
 │   │   ├── ErrorBoundary //全局错误捕获组件
-│   │   ├── ProFormCustom //表单封装组件
+│   │   ├── FromCustom //表单封装组件
 │   │   ├── Exception //全局异常等组件分组
-│   │   ├── ModalGroupCustom //弹窗封装组件
 │   │   ├── RightContent //顶部栏组件
 │   │   └── TableCustom //表格封装组件
 │   ├── global.css //全局样式文件
