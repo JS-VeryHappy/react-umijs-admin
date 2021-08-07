@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'umi';
+import { Link, history } from 'umi';
 import { DefaultFooter } from '@ant-design/pro-layout';
 import RightContent from '@/components/RightContent';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
@@ -56,6 +56,9 @@ export default (config: any) => {
         //     children,
         //   );
         // }
+        if (history.location.pathname === '/login') {
+          return children;
+        }
         return React.createElement(
           'div',
           {
@@ -63,7 +66,6 @@ export default (config: any) => {
           },
           children,
         );
-        return children;
       },
       //配置开发模式下文档地址
       links:
