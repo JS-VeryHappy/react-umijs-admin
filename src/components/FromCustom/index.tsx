@@ -72,11 +72,11 @@ function FromCustom(Props: FromCustomProps) {
   // 如果是ModalForm 弹窗表单 设置默认值
   if (layoutType === 'ModalForm') {
     if (!customProps.width) {
-      // customProps.width = '400px';
+      customProps.width = '750px';
     }
-    // if (!customProps.layout) {
-    //   customProps.layout = 'vertical';
-    // }
+    if (!customProps.layout) {
+      customProps.layout = 'vertical';
+    }
   }
 
   return (

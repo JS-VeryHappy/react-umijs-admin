@@ -11,8 +11,6 @@ const headerTitleConfigArr: any = {
     text: '新增',
     icon: PlusOutlined,
     type: 'primary',
-    key: 'header—create',
-    className: 'header-item',
     style: {
       background: '#1890ff',
       borderColor: '#1890ff',
@@ -22,8 +20,6 @@ const headerTitleConfigArr: any = {
     text: '导入',
     icon: ImportOutlined,
     type: 'primary',
-    key: 'header—import',
-    className: 'header-item',
     style: {
       background: '#faad14',
       borderColor: '#faad14',
@@ -33,11 +29,20 @@ const headerTitleConfigArr: any = {
     text: '导出',
     icon: ExportOutlined,
     type: 'primary',
-    key: 'header—export',
-    className: 'header-item',
     style: {
       background: '#269884',
       borderColor: '#269884',
+    },
+  },
+  default: {
+    text: '按钮', // 按钮显示名称
+    icon: PlusOutlined, // 按钮图标
+    type: 'primary', // 按钮类型
+    auth: () => true, // 显示权限
+    style: {
+      // 按钮显示样式
+      background: '#1890ff',
+      borderColor: '#1890ff',
     },
   },
 };
@@ -47,14 +52,15 @@ const tableAlertOptionRenderConfigArr: any = {
     text: '批量删除',
     type: 'link',
     danger: true,
-    key: 'selection-delete',
-    className: 'selection-item',
   },
   export: {
     text: '导出',
     type: 'link',
-    key: 'selection-export',
-    className: 'selection-item',
+  },
+  default: {
+    text: '按钮', // 按钮显示名称
+    type: 'link',
+    auth: () => true, // 显示权限
   },
 };
 
@@ -62,20 +68,19 @@ const operationConfigRenderConfigArr: any = {
   edit: {
     text: '编辑',
     type: 'link',
-    key: 'operation-edit',
-    className: 'operation-item',
   },
   delete: {
     text: '删除',
     type: 'link',
-    key: 'operation-delete',
-    className: 'operation-item',
   },
   copy: {
     text: '复制',
     type: 'link',
-    key: 'operation-copy',
-    className: 'operation-item',
+  },
+  default: {
+    text: '按钮', // 按钮显示名称
+    type: 'link',
+    auth: () => true, // 显示权限
   },
 };
 
@@ -153,17 +158,39 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     const operationKeys = Object.keys(operationConfig);
 
     const operationConfigRenderFun = (itext: any, irecord: any, _: any, iaction: any) => {
-      return operationKeys.map((oitem) => {
-        if (!operationConfigRenderConfigArr[oitem]) {
-          $global.log(`operationConfig配置的:${oitem}无法识别`);
+      return operationKeys.map((kitem) => {
+        // 按钮取默认值
+        let btnConfig = operationConfigRenderConfigArr.default;
+        // 如果自定义有按钮样式取自定义
+        if (operationConfigRenderConfigArr[kitem]) {
+          btnConfig = operationConfigRenderConfigArr[kitem];
         }
-        const { text, icon, ...config } = operationConfigRenderConfigArr[oitem];
-        return (
-          <a {...config} onClick={operationConfig[oitem].bind(null, itext, irecord, _, iaction)}>
-            {icon}
-            {text}
-          </a>
-        );
+        // key名称 必须是唯一
+        btnConfig.key = `operation-${kitem}`;
+        // 按钮类型
+        btnConfig.className = `operation-item operation-item-${kitem}`;
+
+        // 如果传入的是方法
+        if (typeof operationConfig[kitem] === 'function') {
+          btnConfig.onClick = operationConfig[kitem];
+        } else if (typeof operationConfig[kitem] === 'object') {
+          btnConfig = {
+            ...btnConfig,
+            ...operationConfig[kitem],
+          };
+        }
+        // 拆分参数
+        const { text, icon, onClick, auth, ...config } = btnConfig;
+
+        if (!auth || (typeof auth === 'function' && auth(irecord, btnConfig))) {
+          return (
+            <a {...config} onClick={onClick.bind(null, btnConfig, itext, irecord, _, iaction)}>
+              {icon}
+              {text}
+            </a>
+          );
+        }
+        return <></>;
       });
     };
     customColumns.push({
@@ -182,16 +209,36 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     const keys = Object.keys(headerTitleConfig);
 
     keys.forEach((kitem) => {
-      if (!headerTitleConfigArr[kitem]) {
-        $global.log(`headerTitleConfig配置的:${kitem}无法识别`);
+      // 按钮取默认值
+      let btnConfig = headerTitleConfigArr.default;
+      // 如果自定义有按钮样式取自定义
+      if (headerTitleConfigArr[kitem]) {
+        btnConfig = headerTitleConfigArr[kitem];
       }
-      const { text, icon, ...config } = headerTitleConfigArr[kitem];
-      buttons.push(
-        React.createElement(Button, { ...config, onClick: headerTitleConfig[kitem] }, [
-          React.createElement(icon, { key: `icon-${kitem}` }),
-          text,
-        ]),
-      );
+      // key名称 必须是唯一
+      btnConfig.key = `header-${kitem}`;
+      // 按钮类型
+      btnConfig.className = `header-item header-item-${kitem}`;
+
+      // 如果传入的是方法
+      if (typeof headerTitleConfig[kitem] === 'function') {
+        btnConfig.onClick = headerTitleConfig[kitem];
+      } else if (typeof headerTitleConfig[kitem] === 'object') {
+        btnConfig = {
+          ...btnConfig,
+          ...headerTitleConfig[kitem],
+        };
+      }
+      // 拆分参数
+      const { text, icon, onClick, auth, ...config } = btnConfig;
+      if (!auth || (typeof auth === 'function' && auth(btnConfig))) {
+        buttons.push(
+          React.createElement(Button, { ...config, onClick }, [
+            React.createElement(icon, { key: `icon-${kitem}` }),
+            text,
+          ]),
+        );
+      }
     });
 
     cunstomHeaderTitle = React.createElement(Space, {}, buttons);
@@ -222,19 +269,48 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     if (!tableAlertOptionRender) {
       const keys = Object.keys(selectionConfig);
 
-      cunstomTableAlertOptionRender = () => {
+      cunstomTableAlertOptionRender = ({ selectedRowKeys, onCleanSelected }: any) => {
         return (
           <Space size={0}>
             {keys.map((kitem) => {
-              if (!tableAlertOptionRenderConfigArr[kitem]) {
-                $global.log(`selectionConfig配置的:${kitem}无法识别`);
+              // 按钮取默认值
+              let btnConfig = tableAlertOptionRenderConfigArr.default;
+              // 如果自定义有按钮样式取自定义
+              if (tableAlertOptionRenderConfigArr[kitem]) {
+                btnConfig = tableAlertOptionRenderConfigArr[kitem];
               }
-              const { text, ...config } = tableAlertOptionRenderConfigArr[kitem];
-              return (
-                <Button {...config} onClick={selectionConfig[kitem]}>
-                  {text}
-                </Button>
-              );
+              // key名称 必须是唯一
+              btnConfig.key = `selection-${kitem}`;
+              // 按钮类型
+              btnConfig.className = `selection-item selection-item-${kitem}`;
+
+              // 如果传入的是方法
+              if (typeof selectionConfig[kitem] === 'function') {
+                btnConfig.onClick = selectionConfig[kitem];
+              } else if (typeof selectionConfig[kitem] === 'object') {
+                btnConfig = {
+                  ...btnConfig,
+                  ...selectionConfig[kitem],
+                };
+              }
+              // 拆分参数
+              const { text, onClick, auth, ...config } = btnConfig;
+
+              if (
+                !auth ||
+                (typeof auth === 'function' && auth(selectedRowKeys, onCleanSelected, btnConfig))
+              ) {
+                return (
+                  <Button
+                    {...config}
+                    onClick={onClick.bind(null, selectedRowKeys, onCleanSelected, btnConfig)}
+                  >
+                    {text}
+                  </Button>
+                );
+              }
+
+              return <></>;
             })}
           </Space>
         );

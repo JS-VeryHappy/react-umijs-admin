@@ -19,9 +19,11 @@ function Tabel() {
         request={getProTable}
         columns={columns}
         headerTitleConfig={{
-          create: () => {
-            setVisible(true);
-            console.log(1);
+          create: {
+            onClick: () => {
+              setVisible(true);
+              console.log(1);
+            },
           },
           import: () => {
             console.log(2);
@@ -37,6 +39,18 @@ function Tabel() {
           export: () => {
             console.log(21);
           },
+          a: () => {
+            console.log(21);
+          },
+          onc: {
+            onClick: (selectedRowKeys: any, onCleanSelected: any, btnConfig: any) => {
+              console.log(selectedRowKeys);
+            },
+            auth: (selectedRowKeys: any, onCleanSelected: any, btnConfig: any) => {
+              console.log(selectedRowKeys);
+              return true;
+            },
+          },
         }}
         operationConfig={{
           edit: () => {
@@ -47,6 +61,14 @@ function Tabel() {
           },
           copy: () => {
             console.log(333);
+          },
+          onc: {
+            onClick: (btnConfig: any, itext: any, irecord: any, _: any, iaction: any) => {
+              console.log(btnConfig, itext, irecord, _, iaction);
+            },
+            auth: (irecord: any, btnConfig: any) => {
+              return true;
+            },
           },
         }}
         expandable={{
