@@ -18,7 +18,7 @@ export default {
         },
       ],
     },
-    0,
+    1000,
   ),
 
   // list测试
