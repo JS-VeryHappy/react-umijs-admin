@@ -62,6 +62,12 @@ export type btnConfigTypes = Record<
      */
     danger?: boolean;
     /**
+     *  是否禁用
+     * 可配置为 boolean 和 函数
+     * @default false
+     */
+    disabled?: ((...params: any[]) => boolean) | boolean;
+    /**
      *  按钮权限 控制是否显示 return false 隐藏 true显示
      * @default true
      */

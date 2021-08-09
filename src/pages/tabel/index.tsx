@@ -44,6 +44,13 @@ function Tabel() {
           export: () => {
             console.log(3);
           },
+          onc: {
+            onClick: () => {},
+            disabled: true,
+            auth: () => {
+              return true;
+            },
+          },
         }}
         selectionConfig={{
           delete: () => {
@@ -74,6 +81,7 @@ function Tabel() {
           },
           onc: {
             onClick: () => {},
+            disabled: true,
             auth: () => {
               return true;
             },

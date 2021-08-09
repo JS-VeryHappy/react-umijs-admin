@@ -6,7 +6,7 @@ import type {
 } from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
 import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Space, Table } from 'antd';
 import styles from './index.less';
 // import { dynamic } from 'umi';
@@ -102,6 +102,75 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     tableAlertOptionRender,
     operationConfig,
   } = Props;
+  // 自定义弹窗配置 key对应表
+  let modalTypeList = {};
+
+  const [visible, setVisible] = useState<boolean>(false);
+  console.log('====================================');
+  console.log(visible, setVisible);
+  console.log('====================================');
+
+  /**
+   * 如果配置使用了智能弹窗模式 寻找对应弹窗dom结构
+   * @param kitem
+   * @param btnConfig
+   * @returns
+   */
+  const setModalType = (kitem: string, btnConfig: any) => {
+    // 处理自定义弹窗类型
+    const { modalType, renderModal, ...rest } = btnConfig;
+
+    // 如果设置了弹窗类型
+    if (modalType) {
+      // 如果自定义了弹窗render
+      let render;
+      if (renderModal) {
+        render = renderModal;
+      }
+      modalTypeList = {
+        ...modalTypeList,
+        [kitem]: {
+          modalType,
+          render,
+        },
+      };
+    }
+
+    return rest;
+  };
+  /**
+   *
+   * @param kitem // 按钮key
+   * @param configArr // 默认配置
+   * @param config  // 传入配置
+   * @param type // 按钮业务类型 header:表头 select:多选  operation:row菜单
+   * @returns
+   */
+  const setBtnConfig = (kitem: string, configArr: any, config: any, type: string = 'header') => {
+    // 按钮取默认值
+    let btnConfig = configArr.default;
+    // 如果自定义有按钮样式取自定义
+    if (configArr[kitem]) {
+      btnConfig = configArr[kitem];
+    }
+    // key名称 必须是唯一
+    btnConfig.key = `${type}-${kitem}`;
+    // 按钮类型
+    btnConfig.className = `${type}-item ${type}-item-${kitem}`;
+
+    // 如果传入的是方法
+    if (typeof config[kitem] === 'function') {
+      btnConfig.onClick = config[kitem];
+    } else if (typeof config[kitem] === 'object') {
+      btnConfig = {
+        ...btnConfig,
+        ...config[kitem],
+      };
+    }
+
+    return setModalType(kitem, btnConfig);
+  };
+
   let searchCustom: boolean | {} = false;
   const customColumns: ProColumnsTypes<any>[] = [];
   if (columns) {
@@ -164,35 +233,32 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
 
     const operationConfigRenderFun = (itext: any, irecord: any, _: any, iaction: any) => {
       return operationKeys.map((kitem) => {
-        // 按钮取默认值
-        let btnConfig = operationConfigRenderConfigArr.default;
-        // 如果自定义有按钮样式取自定义
-        if (operationConfigRenderConfigArr[kitem]) {
-          btnConfig = operationConfigRenderConfigArr[kitem];
-        }
-        // key名称 必须是唯一
-        btnConfig.key = `operation-${kitem}`;
-        // 按钮类型
-        btnConfig.className = `operation-item operation-item-${kitem}`;
+        let btnConfig = setBtnConfig(
+          kitem,
+          operationConfigRenderConfigArr,
+          operationConfig,
+          'operation',
+        );
 
-        // 如果传入的是方法
-        if (typeof operationConfig[kitem] === 'function') {
-          btnConfig.onClick = operationConfig[kitem];
-        } else if (typeof operationConfig[kitem] === 'object') {
-          btnConfig = {
-            ...btnConfig,
-            ...operationConfig[kitem],
-          };
-        }
         // 拆分参数
-        const { text, icon, onClick, auth, ...config } = btnConfig;
+        const { text, icon, onClick, auth, disabled, ...config } = btnConfig;
 
         if (!auth || (typeof auth === 'function' && auth(irecord, btnConfig))) {
+          let newDisable = undefined;
+          if (typeof disabled === 'function') {
+            newDisable = disabled(irecord, btnConfig);
+          } else if (typeof disabled === 'boolean' && disabled) {
+            newDisable = disabled;
+          }
           return (
-            <a {...config} onClick={onClick.bind(null, btnConfig, itext, irecord, _, iaction)}>
+            <Button
+              {...config}
+              disabled={newDisable}
+              onClick={onClick.bind(null, btnConfig, itext, irecord, _, iaction)}
+            >
               {icon}
               {text}
-            </a>
+            </Button>
           );
         }
         return <></>;
@@ -214,31 +280,19 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     const keys = Object.keys(headerTitleConfig);
 
     keys.forEach((kitem) => {
-      // 按钮取默认值
-      let btnConfig = headerTitleConfigArr.default;
-      // 如果自定义有按钮样式取自定义
-      if (headerTitleConfigArr[kitem]) {
-        btnConfig = headerTitleConfigArr[kitem];
-      }
-      // key名称 必须是唯一
-      btnConfig.key = `header-${kitem}`;
-      // 按钮类型
-      btnConfig.className = `header-item header-item-${kitem}`;
+      let btnConfig = setBtnConfig(kitem, headerTitleConfigArr, headerTitleConfig, 'header');
 
-      // 如果传入的是方法
-      if (typeof headerTitleConfig[kitem] === 'function') {
-        btnConfig.onClick = headerTitleConfig[kitem];
-      } else if (typeof headerTitleConfig[kitem] === 'object') {
-        btnConfig = {
-          ...btnConfig,
-          ...headerTitleConfig[kitem],
-        };
-      }
       // 拆分参数
-      const { text, icon, onClick, auth, ...config } = btnConfig;
+      const { text, icon, onClick, auth, disabled, ...config } = btnConfig;
       if (!auth || (typeof auth === 'function' && auth(btnConfig))) {
+        let newDisable = undefined;
+        if (typeof disabled === 'function') {
+          newDisable = disabled(btnConfig);
+        } else if (typeof disabled === 'boolean' && disabled) {
+          newDisable = disabled;
+        }
         buttons.push(
-          React.createElement(Button, { ...config, onClick }, [
+          React.createElement(Button, { ...config, onClick, disabled: newDisable }, [
             React.createElement(icon, { key: `icon-${kitem}` }),
             text,
           ]),
@@ -278,36 +332,31 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         return (
           <Space size={0}>
             {keys.map((kitem) => {
-              // 按钮取默认值
-              let btnConfig = tableAlertOptionRenderConfigArr.default;
-              // 如果自定义有按钮样式取自定义
-              if (tableAlertOptionRenderConfigArr[kitem]) {
-                btnConfig = tableAlertOptionRenderConfigArr[kitem];
-              }
-              // key名称 必须是唯一
-              btnConfig.key = `selection-${kitem}`;
-              // 按钮类型
-              btnConfig.className = `selection-item selection-item-${kitem}`;
+              let btnConfig = setBtnConfig(
+                kitem,
+                tableAlertOptionRenderConfigArr,
+                selectionConfig,
+                'selection',
+              );
 
-              // 如果传入的是方法
-              if (typeof selectionConfig[kitem] === 'function') {
-                btnConfig.onClick = selectionConfig[kitem];
-              } else if (typeof selectionConfig[kitem] === 'object') {
-                btnConfig = {
-                  ...btnConfig,
-                  ...selectionConfig[kitem],
-                };
-              }
               // 拆分参数
-              const { text, onClick, auth, ...config } = btnConfig;
+              const { text, onClick, auth, disabled, ...config } = btnConfig;
 
               if (
                 !auth ||
                 (typeof auth === 'function' && auth(selectedRowKeys, onCleanSelected, btnConfig))
               ) {
+                let newDisable = undefined;
+                if (typeof disabled === 'function') {
+                  newDisable = disabled(selectedRowKeys, onCleanSelected, btnConfig);
+                } else if (typeof disabled === 'boolean' && disabled) {
+                  newDisable = disabled;
+                }
+
                 return (
                   <Button
                     {...config}
+                    disabled={newDisable}
                     onClick={onClick.bind(null, selectedRowKeys, onCleanSelected, btnConfig)}
                   >
                     {text}
@@ -322,7 +371,9 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
       };
     }
   }
-
+  console.log('====================================');
+  console.log(modalTypeList);
+  console.log('====================================');
   return (
     <>
       <ProTable<T>
