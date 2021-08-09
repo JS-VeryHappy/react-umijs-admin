@@ -10,7 +10,7 @@ import theme from './theme';
 
 export default defineConfig({
   // 提高编译速度
-  mfsu: {},
+  // mfsu: {},
   /**
    * https://umijs.org/zh-CN/docs/fast-refresh
    * 快速刷新（Fast Refresh）

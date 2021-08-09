@@ -24,6 +24,19 @@ function Tabel() {
               setVisible(true);
               console.log(1);
             },
+            modalType: 'form',
+            renderModal: (
+              <FromCustom
+                columns={columns}
+                layoutType="ModalForm"
+                title="新建表单"
+                visible={visible}
+                onVisibleChange={(value: boolean) => {
+                  setVisible(value);
+                }}
+                onFinish={onFinish}
+              />
+            ),
           },
           import: () => {
             console.log(2);
@@ -69,16 +82,6 @@ function Tabel() {
         expandable={{
           expandedRowRender: (record: any) => <p>{record.title}</p>,
         }}
-      />
-      <FromCustom
-        columns={columns}
-        layoutType="ModalForm"
-        title="新建表单"
-        visible={visible}
-        onVisibleChange={(value: boolean) => {
-          setVisible(value);
-        }}
-        onFinish={onFinish}
       />
     </>
   );
