@@ -1,5 +1,9 @@
 import ProTable from '@ant-design/pro-table';
-import type { TabelCustomTypes, ProColumnsTypes } from '@/components/TabelCustom/types';
+import type {
+  TabelCustomTypes,
+  ProColumnsTypes,
+  btnConfigTypes,
+} from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
 import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
 import React from 'react';
@@ -7,64 +11,6 @@ import { Button, Space, Table } from 'antd';
 import styles from './index.less';
 // import { dynamic } from 'umi';
 
-interface btnConfigTypes {
-  //属性按钮名称
-  [x: string]: {
-    /**
-     * 唯一值 会自动生成
-     * @default 会自动生成
-     */
-    key?: string;
-    /**
-     * className 会自动生成
-     * @default 会自动生成
-     */
-    className?: string;
-    /**
-     * 按钮名称
-     * @default 按钮
-     */
-    text?: string;
-    /**
-     *  icon
-     * @default
-     */
-    icon?: React.ReactNode | any;
-    /**
-     *  按钮类型
-     * @default primary
-     */
-    type?: 'default' | 'primary' | 'link' | 'text' | 'ghost' | 'dashed';
-    /**
-     *  按钮样式
-     */
-    style?: object;
-    /**
-     *  按钮属性危险
-     * @default false
-     */
-    danger?: boolean;
-    /**
-     *  按钮权限 控制是否显示 return false 隐藏 true显示
-     * @default true
-     */
-    auth?: any | (() => any);
-    /**
-     *  按钮点击回调
-     */
-    onClick?: any | (() => any);
-    /**
-     *  关联弹窗类型
-     * @default 不启用
-     */
-    modalType?: 'form' | 'delete';
-    /**
-     *  关联弹窗自定义样式 如果有该参数会渲染此弹窗类型，不然会根据类型选择
-     * @default
-     */
-    renderModal?: React.ReactNode;
-  };
-}
 const headerTitleConfigArr: btnConfigTypes = {
   create: {
     text: '新增',
