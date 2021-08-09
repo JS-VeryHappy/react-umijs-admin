@@ -43,11 +43,8 @@ function Tabel() {
             console.log(21);
           },
           onc: {
-            onClick: (selectedRowKeys: any, onCleanSelected: any, btnConfig: any) => {
-              // console.log(selectedRowKeys);
-            },
-            auth: (selectedRowKeys: any, onCleanSelected: any, btnConfig: any) => {
-              // console.log(selectedRowKeys);
+            onClick: () => {},
+            auth: () => {
               return true;
             },
           },
@@ -63,10 +60,8 @@ function Tabel() {
             console.log(333);
           },
           onc: {
-            onClick: (btnConfig: any, itext: any, irecord: any, _: any, iaction: any) => {
-              // console.log(btnConfig, itext, irecord, _, iaction);
-            },
-            auth: (irecord: any, btnConfig: any) => {
+            onClick: () => {},
+            auth: () => {
               return true;
             },
           },

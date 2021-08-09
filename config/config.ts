@@ -23,6 +23,7 @@ export default defineConfig({
    */
   nodeModulesTransform: {
     type: 'none',
+    exclude: [],
   },
   targets: {
     ie: 11,
@@ -94,7 +95,15 @@ export default defineConfig({
 
   chunks:
     process.env.NODE_ENV === 'production'
-      ? ['react-vendor', 'antd', 'umi-vendor', 'vendors', 'default', 'umi']
+      ? [
+          'react-vendor',
+          'antd-vendor',
+          'ant-design-vendor',
+          'antv-vendor',
+          'vendors',
+          'default',
+          'umi',
+        ]
       : ['umi'],
   // chunks: ['vendors', 'umi'],
   chainWebpack(config, { env, webpack, createCSSRule }) {
@@ -120,6 +129,7 @@ export default defineConfig({
           },
         ];
       });
+
       // 文件分块
       config.merge({
         optimization: {
@@ -133,17 +143,23 @@ export default defineConfig({
                 enforce: true,
                 priority: 5,
               },
-              antd: {
+              'ant-design': {
+                test: /[\\/]node_modules[\\/](@ant-design).*[\\/]/,
+                name: 'ant-design-vendor',
+                enforce: true,
+                priority: 4,
+              },
+              'antv-vendor': {
+                test: /[\\/]node_modules[\\/](@antv)[\\/]/,
+                name: 'antv-vendor',
+                enforce: true,
+                priority: 4,
+              },
+              'antd-vendor': {
                 test: /[\\/]node_modules[\\/](antd)[\\/]/,
                 name: 'antd-vendor',
                 enforce: true,
                 priority: 4,
-              },
-              'umi-vendor': {
-                test: /[\\/]node_modules[\\/](umi).*[\\/]/,
-                name: 'umi-vendor',
-                enforce: true,
-                priority: 3,
               },
               vendors: {
                 name: 'vendors',

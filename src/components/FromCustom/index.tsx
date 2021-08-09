@@ -63,7 +63,7 @@ function FromCustom(Props: FromCustomProps) {
         // custom.push(components[column.valueType]);
       } else {
         // @ts-ignore
-        $global.log('自定义组件:' + column.valueType + '无法识别');
+        $global.log(`自定义组件:${column.valueType}无法识别`);
       }
     }
   });

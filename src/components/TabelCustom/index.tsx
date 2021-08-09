@@ -115,7 +115,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
           const CustomComponent: any = components[item.valueType];
 
           // eslint-disable-next-line no-param-reassign
-          item.renderFormItem = (_: any, { type, defaultRender, ...rest }: any, form: any) => {
+          item.renderFormItem = (_: any, { type, defaultRender, ...rest }: any) => {
             if (type === 'form') {
               return null;
             }
@@ -123,7 +123,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
           };
         } else {
           // @ts-ignore
-          $global.log('自定义组件:' + item.valueType + '无法识别');
+          $global.log(`自定义组件:${item.valueType}无法识别`);
         }
       }
 

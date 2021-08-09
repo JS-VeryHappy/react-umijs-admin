@@ -2,13 +2,19 @@
 
 @import '~antd/es/style/themes/default.less';
 
-html,
-body,
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 #root {
   height: 100%;
   // background: #f0f2f5;
 }
-
 .colorWeak {
   filter: invert(80%);
 }
@@ -26,19 +32,13 @@ canvas {
   display: block;
 }
 
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 ul,
 ol {
   list-style: none;
 }
 
-.custom-container{
-  padding: 20px ;
+.custom-container {
+  padding: 20px;
 }
 
 .global-shadow-1-down {

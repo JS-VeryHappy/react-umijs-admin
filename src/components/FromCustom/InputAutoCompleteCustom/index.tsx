@@ -67,12 +67,12 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
    * input切换值变换。如果父级传入监听方法调用
    * @param value
    */
-  const onInputChange = (value: any) => {
-    setInputValue(value);
+  const onInputChange = (avalue: any) => {
+    setInputValue(avalue);
     if (onChange && typeof onChange === 'function') {
-      onChange(value);
+      onChange(avalue);
     } else {
-      message.info(`Input切换值${value}`);
+      message.info(`Input切换值${avalue}`);
     }
   };
 
