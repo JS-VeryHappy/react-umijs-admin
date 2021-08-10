@@ -24,6 +24,35 @@ export declare type ProColumnsTypes<T> = ProColumns<T, ValueType> & {
   requestConfig?: requestConfigType;
 };
 
+// 内置弹窗的类型
+export declare type modalType = 'Form';
+// 内置弹窗配置
+export declare type modalPropsType = {
+  /**
+   * key
+   */
+  key: string;
+  /**
+   * 触发的业务位置
+   */
+  type?: string;
+  /**
+   *  关联弹窗类型
+   * @default 不启用
+   */
+  modalType?: modalType;
+  /**
+   *  关联弹窗自定义样式 如果有该参数会渲染此弹窗类型，不然会根据类型选择
+   * @default
+   */
+  render?: React.ReactNode;
+  /**
+   * 内置的配置
+   * @default
+   */
+  config?: any;
+};
+
 export type btnConfigTypes = Record<
   string,
   {
@@ -82,15 +111,9 @@ export type btnConfigTypes = Record<
      */
     onClick?: any | (() => any);
     /**
-     *  关联弹窗类型
-     * @default 不启用
+     *  内置弹窗的配置
      */
-    modalType?: 'form' | 'delete';
-    /**
-     *  关联弹窗自定义样式 如果有该参数会渲染此弹窗类型，不然会根据类型选择
-     * @default
-     */
-    renderModal?: React.ReactNode;
+    modalConfig?: modalPropsType;
   }
 >;
 
@@ -109,3 +132,5 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
    */
   operationConfig?: btnConfigTypes;
 };
+
+export type modalTypeListType = Record<string, modalPropsType>;

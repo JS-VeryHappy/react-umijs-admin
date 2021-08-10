@@ -22,21 +22,21 @@ function Tabel() {
           create: {
             onClick: () => {
               setVisible(true);
-              console.log(1);
             },
-            modalType: 'form',
-            renderModal: (
-              <FromCustom
-                columns={columns}
-                layoutType="ModalForm"
-                title="新建表单"
-                visible={visible}
-                onVisibleChange={(value: boolean) => {
-                  setVisible(value);
-                }}
-                onFinish={onFinish}
-              />
-            ),
+            modalConfig: {
+              render: (
+                <FromCustom
+                  columns={columns}
+                  layoutType="ModalForm"
+                  title="新建表单"
+                  visible={visible}
+                  onVisibleChange={(value: boolean) => {
+                    setVisible(value);
+                  }}
+                  onFinish={onFinish}
+                />
+              ),
+            },
           },
           import: () => {
             console.log(2);
@@ -44,11 +44,13 @@ function Tabel() {
           export: () => {
             console.log(3);
           },
-          onc: {
-            onClick: () => {},
-            disabled: true,
-            auth: () => {
-              return true;
+          edit: {
+            onClick: onFinish,
+            modalConfig: {
+              modalType: 'Form',
+              config: {
+                title: '编辑表单',
+              },
             },
           },
         }}
@@ -59,19 +61,16 @@ function Tabel() {
           export: () => {
             console.log(21);
           },
-          a: () => {
-            console.log(21);
-          },
-          onc: {
-            onClick: () => {},
-            auth: () => {
-              return true;
-            },
-          },
         }}
         operationConfig={{
-          edit: () => {
-            console.log(111);
+          edit: {
+            onClick: onFinish,
+            modalConfig: {
+              modalType: 'Form',
+              modalTypeConfig: {
+                title: '编辑表单',
+              },
+            },
           },
           delete: () => {
             console.log(222);

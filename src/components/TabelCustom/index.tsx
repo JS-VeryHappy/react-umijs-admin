@@ -3,12 +3,15 @@ import type {
   TabelCustomTypes,
   ProColumnsTypes,
   btnConfigTypes,
+  modalTypeListType,
 } from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
 import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import { Button, Space, Table } from 'antd';
 import styles from './index.less';
+import * as modalTypeRenderConfig from './modalTypeRenderConfig';
+
 // import { dynamic } from 'umi';
 
 const headerTitleConfigArr: btnConfigTypes = {
@@ -103,12 +106,9 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     operationConfig,
   } = Props;
   // 自定义弹窗配置 key对应表
-  let modalTypeList = {};
+  let modalTypeList: modalTypeListType = {};
 
-  const [visible, setVisible] = useState<boolean>(false);
-  console.log('====================================');
-  console.log(visible, setVisible);
-  console.log('====================================');
+  const [modal, setModal] = useState<any>(null);
 
   /**
    * 如果配置使用了智能弹窗模式 寻找对应弹窗dom结构
@@ -116,22 +116,46 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
    * @param btnConfig
    * @returns
    */
-  const setModalType = (kitem: string, btnConfig: any) => {
+  const setModalType = (kitem: string, btnConfig: any, type: string) => {
     // 处理自定义弹窗类型
-    const { modalType, renderModal, ...rest } = btnConfig;
+    const { modalConfig, ...rest } = btnConfig;
+
+    const { modalType, render } = modalConfig || {};
 
     // 如果设置了弹窗类型
-    if (modalType) {
+    if (modalType || render) {
       // 如果自定义了弹窗render
-      let render;
-      if (renderModal) {
-        render = renderModal;
+      let newRender;
+      if (modalType && !render) {
+        if (!modalTypeRenderConfig[modalType]) {
+          $global.log(`内置弹窗:${modalType}无法识别`);
+          return;
+        }
+
+        // 重置点击按钮显示弹窗
+        rest.onClick = () => {
+          setModal(btnConfig.key);
+        };
+
+        newRender = React.createElement(modalTypeRenderConfig[modalType], {
+          modal,
+          setModal,
+          btnConfig,
+          tabelProps: Props,
+        });
       }
+
+      if (render) {
+        newRender = render;
+      }
+
       modalTypeList = {
         ...modalTypeList,
-        [kitem]: {
+        [btnConfig.key]: {
+          key: kitem,
+          type: type,
           modalType,
-          render,
+          render: newRender,
         },
       };
     }
@@ -168,8 +192,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         ...config[kitem],
       };
     }
-
-    return setModalType(kitem, btnConfig);
+    return setModalType(kitem, btnConfig, type);
   };
 
   let searchCustom: boolean | {} = false;
@@ -372,9 +395,17 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
       };
     }
   }
-  console.log('====================================');
-  console.log(modalTypeList);
-  console.log('====================================');
+
+  // 内置弹窗遍历
+  const modalTypeKeys = Object.keys(modalTypeList);
+  // 外置弹窗遍历
+  const extranetModal: any = [];
+  modalTypeKeys.forEach((kitem: string) => {
+    if (!modalTypeList[kitem].modalType) {
+      extranetModal.push(modalTypeList[kitem]);
+    }
+  });
+
   return (
     <>
       <ProTable<T>
@@ -427,6 +458,23 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         tableAlertRender={cunstomTableAlertRender}
         tableAlertOptionRender={cunstomTableAlertOptionRender}
       />
+
+      {extranetModal.map((item: any) => {
+        return (
+          <div key={`${item.key}-modal`} className={`${item.key}-modal`}>
+            {item.render}
+          </div>
+        );
+      })}
+
+      {modalTypeList[modal] && (
+        <div
+          key={`${modalTypeList[modal].key}-modal`}
+          className={`${modalTypeList[modal].key}-modal`}
+        >
+          {modalTypeList[modal].render}
+        </div>
+      )}
     </>
   );
 }
