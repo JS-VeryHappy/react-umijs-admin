@@ -149,10 +149,11 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
   const setBtnConfig = (kitem: string, configArr: any, config: any, type: string = 'header') => {
     // 按钮取默认值
     let btnConfig = configArr.default;
-    // 如果自定义有按钮样式取自定义
+    // 如果自定义有按钮配置 合并
     if (configArr[kitem]) {
-      btnConfig = configArr[kitem];
+      btnConfig = { ...btnConfig, ...configArr[kitem] };
     }
+
     // key名称 必须是唯一
     btnConfig.key = `${type}-${kitem}`;
     // 按钮类型

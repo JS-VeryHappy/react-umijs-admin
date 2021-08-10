@@ -53,6 +53,11 @@ export type btnConfigTypes = Record<
      */
     type?: 'default' | 'primary' | 'link' | 'text' | 'ghost' | 'dashed';
     /**
+     *  按钮类型
+     * @default primary
+     */
+    size?: 'default' | 'large' | 'small';
+    /**
      *  按钮样式
      */
     style?: Record<string, any>;
