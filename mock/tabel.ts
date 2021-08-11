@@ -33,9 +33,11 @@ export default {
   }),
 
   // 新增数据
-  'POST /api/table/proTableAddRow': getObj.bind(null, {
-    data: [],
+  'POST /api/protable/proTableAddRow': getObj.bind(null, {
+    data: {},
     mock: false,
     timeout: 1000,
+    code: '0',
+    reason: '请求错误',
   }),
 };

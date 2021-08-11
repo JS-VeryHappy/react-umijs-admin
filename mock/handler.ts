@@ -6,7 +6,7 @@ import { waitTime } from '../src/utils';
  * mockjs 定义
  * https://github.com/nuysoft/Mock/wiki/Getting-Started
  */
-export const response = (data: any, mock: boolean = true) => {
+export const response = ({ data, mock = true, code = '0', reason = '成功' }: any) => {
   let newData = [];
   if (mock) {
     newData = mockjs.mock(data);
@@ -15,8 +15,8 @@ export const response = (data: any, mock: boolean = true) => {
   }
   return JSON.stringify({
     data: newData,
-    code: '0',
-    reason: '成功',
+    code,
+    reason,
   });
 };
 
@@ -27,15 +27,23 @@ export const response = (data: any, mock: boolean = true) => {
  * @param data 数据
  * @param timeout 延迟
  */
-export const getObj = async (props: any, req: any, res: any) => {
-  const { data, timeout, mock } = props;
+export const getObj = async (
+  { data, timeout, mock, code = '0', reason = '成功' }: any,
+  req: any,
+  res: any,
+) => {
   if (timeout) {
     await waitTime(timeout);
   }
-  console.log('====================================');
-  console.log(props, req);
-  console.log('====================================');
-  return res.send(response(data, mock));
+
+  return res.send(
+    response({
+      data,
+      mock,
+      code,
+      reason,
+    }),
+  );
 };
 
 interface pageOptionType {
@@ -76,5 +84,10 @@ export const getPagination = async (
 
   defaultOption.list = newData.list;
 
-  return res.send(response(defaultOption, mock));
+  return res.send(
+    response({
+      data: defaultOption,
+      mock,
+    }),
+  );
 };

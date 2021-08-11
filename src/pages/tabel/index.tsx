@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { columns } from './define';
 import { getProTable, proTableAddRow } from '@/services';
 import { useRequest } from 'umi';
+import { message } from 'antd';
 
 function Tabel() {
   const [visible, setVisible] = useState<boolean>(false);
@@ -11,11 +12,10 @@ function Tabel() {
   const { run: onFinish } = useRequest(proTableAddRow, {
     manual: true,
     onSuccess: (result, params) => {
-      console.log('====================================');
-      console.log(result, params);
-      console.log('====================================');
+      message.success('新增成功');
     },
   });
+
   return (
     <>
       <TabelCustom<any>
