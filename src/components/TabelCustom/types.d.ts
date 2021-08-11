@@ -132,5 +132,3 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
    */
   operationConfig?: btnConfigTypes;
 };
-
-export type modalTypeListType = Record<string, modalPropsType>;

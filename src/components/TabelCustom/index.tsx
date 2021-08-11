@@ -3,11 +3,10 @@ import type {
   TabelCustomTypes,
   ProColumnsTypes,
   btnConfigTypes,
-  modalTypeListType,
 } from '@/components/TabelCustom/types';
 import * as components from '@/components/FromCustom/components';
 import { PlusOutlined, ImportOutlined, ExportOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Space, Table } from 'antd';
 import styles from './index.less';
 import * as modalTypeRenderConfig from './modalTypeRenderConfig';
@@ -105,10 +104,6 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     tableAlertOptionRender,
     operationConfig,
   } = Props;
-  // 自定义弹窗配置 key对应表
-  let modalTypeList: modalTypeListType = {};
-
-  const [modal, setModal] = useState<any>(null);
 
   /**
    * 如果配置使用了智能弹窗模式 寻找对应弹窗dom结构
@@ -123,45 +118,29 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     const { modalType, render } = modalConfig || {};
 
     // 如果设置了弹窗类型
-    if (modalType || render) {
-      // 如果自定义了弹窗render
-      let newRender;
-      if (modalType && !render) {
-        if (!modalTypeRenderConfig[modalType]) {
-          $global.log(`内置弹窗:${modalType}无法识别`);
-          return;
-        }
-
-        // 重置点击按钮显示弹窗
-        rest.onClick = () => {
-          setModal(btnConfig.key);
-        };
-
-        newRender = React.createElement(modalTypeRenderConfig[modalType], {
-          modal,
-          setModal,
+    if (modalType) {
+      if (!modalTypeRenderConfig[modalType]) {
+        $global.log(`内置弹窗:${modalType}无法识别`);
+        return;
+      }
+      const newRender = React.createElement(modalTypeRenderConfig[modalType], {
+        render,
+        btnConfig,
+        tabelProps: Props,
+        type,
+      });
+      // 重置按钮点击事件、如果是内置弹窗-点击事件中间件处理不同点击分发
+      rest.onClick = () => {
+        return modalTypeRenderConfig.default({
+          children: newRender,
           btnConfig,
-          tabelProps: Props,
         });
-      }
-
-      if (render) {
-        newRender = render;
-      }
-
-      modalTypeList = {
-        ...modalTypeList,
-        [btnConfig.key]: {
-          key: kitem,
-          type: type,
-          modalType,
-          render: newRender,
-        },
       };
     }
 
     return rest;
   };
+
   /**
    *
    * @param kitem // 按钮key
@@ -257,7 +236,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
 
     const operationConfigRenderFun = (itext: any, irecord: any, _: any, iaction: any) => {
       return operationKeys.map((kitem) => {
-        let btnConfig = setBtnConfig(
+        const btnConfig = setBtnConfig(
           kitem,
           operationConfigRenderConfigArr,
           operationConfig,
@@ -268,7 +247,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         const { text, icon, onClick, auth, disabled, ...config } = btnConfig;
 
         if (!auth || (typeof auth === 'function' && auth(irecord, btnConfig))) {
-          let newDisable = undefined;
+          let newDisable;
           if (typeof disabled === 'function') {
             newDisable = disabled(irecord, btnConfig);
           } else if (typeof disabled === 'boolean' && disabled) {
@@ -304,12 +283,12 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
     const keys = Object.keys(headerTitleConfig);
 
     keys.forEach((kitem) => {
-      let btnConfig = setBtnConfig(kitem, headerTitleConfigArr, headerTitleConfig, 'header');
+      const btnConfig = setBtnConfig(kitem, headerTitleConfigArr, headerTitleConfig, 'header');
 
       // 拆分参数
       const { text, icon, onClick, auth, disabled, ...config } = btnConfig;
       if (!auth || (typeof auth === 'function' && auth(btnConfig))) {
-        let newDisable = undefined;
+        let newDisable;
         if (typeof disabled === 'function') {
           newDisable = disabled(btnConfig);
         } else if (typeof disabled === 'boolean' && disabled) {
@@ -356,7 +335,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         return (
           <Space size={0}>
             {keys.map((kitem) => {
-              let btnConfig = setBtnConfig(
+              const btnConfig = setBtnConfig(
                 kitem,
                 tableAlertOptionRenderConfigArr,
                 selectionConfig,
@@ -370,7 +349,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
                 !auth ||
                 (typeof auth === 'function' && auth(selectedRowKeys, onCleanSelected, btnConfig))
               ) {
-                let newDisable = undefined;
+                let newDisable;
                 if (typeof disabled === 'function') {
                   newDisable = disabled(selectedRowKeys, onCleanSelected, btnConfig);
                 } else if (typeof disabled === 'boolean' && disabled) {
@@ -395,16 +374,6 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
       };
     }
   }
-
-  // 内置弹窗遍历
-  const modalTypeKeys = Object.keys(modalTypeList);
-  // 外置弹窗遍历
-  const extranetModal: any = [];
-  modalTypeKeys.forEach((kitem: string) => {
-    if (!modalTypeList[kitem].modalType) {
-      extranetModal.push(modalTypeList[kitem]);
-    }
-  });
 
   return (
     <>
@@ -458,23 +427,6 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         tableAlertRender={cunstomTableAlertRender}
         tableAlertOptionRender={cunstomTableAlertOptionRender}
       />
-
-      {extranetModal.map((item: any) => {
-        return (
-          <div key={`${item.key}-modal`} className={`${item.key}-modal`}>
-            {item.render}
-          </div>
-        );
-      })}
-
-      {modalTypeList[modal] && (
-        <div
-          key={`${modalTypeList[modal].key}-modal`}
-          className={`${modalTypeList[modal].key}-modal`}
-        >
-          {modalTypeList[modal].render}
-        </div>
-      )}
     </>
   );
 }
