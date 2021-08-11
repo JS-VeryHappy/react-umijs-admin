@@ -1,9 +1,8 @@
 import { getObj } from './handler';
 
 export default {
-  'POST /api/workbench/chart': getObj.bind(
-    null,
-    {
+  'POST /api/workbench/chart': getObj.bind(null, {
+    data: {
       list: [
         {
           item: '发呆',
@@ -67,11 +66,10 @@ export default {
         },
       ],
     },
-    1000,
-  ),
-  'POST /api/workbench/list': getObj.bind(
-    null,
-    {
+    timeout: 1000,
+  }),
+  'POST /api/workbench/list': getObj.bind(null, {
+    data: {
       list: [
         {
           url: 'https://img.haoqu.org/file/2020/01-24/76478da6a20ca59b163d290fbcce52b4.jpg',
@@ -100,11 +98,10 @@ export default {
         },
       ],
     },
-    1000,
-  ),
-  'POST /api/workbench/group': getObj.bind(
-    null,
-    {
+    timeout: 1000,
+  }),
+  'POST /api/workbench/group': getObj.bind(null, {
+    data: {
       list: [
         {
           url: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=339776857,3862571302&fm=26&gp=0.jpg',
@@ -144,6 +141,6 @@ export default {
         },
       ],
     },
-    1000,
-  ),
+    timeout: 1000,
+  }),
 };

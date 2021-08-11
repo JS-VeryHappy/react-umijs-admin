@@ -2,17 +2,20 @@ import FromCustom from '@/components/FromCustom';
 import TabelCustom from '@/components/TabelCustom';
 import { useState } from 'react';
 import { columns } from './define';
-import { getProTable } from '@/services';
+import { getProTable, proTableAddRow } from '@/services';
+import { useRequest } from 'umi';
 
 function Tabel() {
   const [visible, setVisible] = useState<boolean>(false);
 
-  const onFinish = async (values: any) => {
-    console.log('====================================');
-    console.log(values);
-    console.log('====================================');
-    return true;
-  };
+  const { run: onFinish } = useRequest(proTableAddRow, {
+    manual: true,
+    onSuccess: (result, params) => {
+      console.log('====================================');
+      console.log(result, params);
+      console.log('====================================');
+    },
+  });
   return (
     <>
       <TabelCustom<any>

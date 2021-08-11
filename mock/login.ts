@@ -69,10 +69,24 @@ const event = {
 };
 
 export default {
-  'POST /api/user/login': getObj.bind(null, userinfo, 1000),
-  'POST /api/user/isLogin': getObj.bind(null, userinfo, 0),
+  'POST /api/user/login': getObj.bind(null, {
+    data: userinfo,
+    timeout: 1000,
+  }),
+  'POST /api/user/isLogin': getObj.bind(null, {
+    data: userinfo,
+  }),
 
-  'POST /api/notice/notification': getObj.bind(null, notification, 1000),
-  'POST /api/notice/message': getObj.bind(null, message, 1500),
-  'POST /api/notice/event': getObj.bind(null, event, 2000),
+  'POST /api/notice/notification': getObj.bind(null, {
+    data: notification,
+    timeout: 1000,
+  }),
+  'POST /api/notice/message': getObj.bind(null, {
+    data: message,
+    timeout: 1500,
+  }),
+  'POST /api/notice/event': getObj.bind(null, {
+    data: event,
+    timeout: 2000,
+  }),
 };

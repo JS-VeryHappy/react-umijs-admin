@@ -123,17 +123,19 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         $global.log(`内置弹窗:${modalType}无法识别`);
         return;
       }
-      const newRender = React.createElement(modalTypeRenderConfig[modalType], {
-        render,
-        btnConfig,
-        tabelProps: Props,
-        type,
-      });
+
       // 重置按钮点击事件、如果是内置弹窗-点击事件中间件处理不同点击分发
-      rest.onClick = () => {
+      rest.onClick = (clickConfig: any) => {
         return modalTypeRenderConfig.default({
-          children: newRender,
+          children: React.createElement(modalTypeRenderConfig[modalType], {
+            render,
+            btnConfig,
+            tabelProps: Props,
+            type,
+            clickConfig,
+          }),
           btnConfig,
+          clickConfig,
         });
       };
     }
@@ -171,6 +173,7 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         ...config[kitem],
       };
     }
+
     return setModalType(kitem, btnConfig, type);
   };
 
@@ -257,7 +260,13 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
             <Button
               {...config}
               disabled={newDisable}
-              onClick={onClick.bind(null, btnConfig, itext, irecord, _, iaction)}
+              onClick={onClick.bind(null, {
+                btnConfig,
+                itext,
+                irecord,
+                _,
+                iaction,
+              })}
             >
               {icon}
               {text}
@@ -295,10 +304,11 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
           newDisable = disabled;
         }
         buttons.push(
-          React.createElement(Button, { ...config, onClick, disabled: newDisable }, [
-            React.createElement(icon, { key: `icon-${kitem}` }),
-            text,
-          ]),
+          React.createElement(
+            Button,
+            { ...config, onClick: onClick.bind(null, { btnConfig }), disabled: newDisable },
+            [React.createElement(icon, { key: `icon-${kitem}` }), text],
+          ),
         );
       }
     });
@@ -360,7 +370,11 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
                   <Button
                     {...config}
                     disabled={newDisable}
-                    onClick={onClick.bind(null, selectedRowKeys, onCleanSelected, btnConfig)}
+                    onClick={onClick.bind(null, {
+                      selectedRowKeys,
+                      onCleanSelected,
+                      btnConfig,
+                    })}
                   >
                     {text}
                   </Button>

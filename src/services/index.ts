@@ -36,6 +36,11 @@ export function getProTableUserList() {
   return postBody('/api/table/userlist');
 }
 /**
+ * protable 新增接口
+ */
+export const proTableAddRow = (params: any) => postBody('/api/protable/proTableAddRow', params);
+
+/**
  * protable select测试
  */
 export const getSelect = () => getQuery('/api/protable/select');

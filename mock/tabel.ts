@@ -2,9 +2,8 @@ import { getPagination, getObj } from './handler';
 
 export default {
   // list测试
-  'POST /api/table/list': getPagination.bind(
-    null,
-    {
+  'POST /api/table/list': getPagination.bind(null, {
+    data: {
       'list|20': [
         {
           'id|+1': 1,
@@ -18,13 +17,12 @@ export default {
         },
       ],
     },
-    1000,
-  ),
+    timeout: 1000,
+  }),
 
   // list测试
-  'POST /api/table/userlist': getObj.bind(
-    null,
-    {
+  'POST /api/table/userlist': getObj.bind(null, {
+    data: {
       'list|20': [
         {
           'id|1-20': 1,
@@ -32,6 +30,12 @@ export default {
         },
       ],
     },
-    0,
-  ),
+  }),
+
+  // 新增数据
+  'POST /api/table/proTableAddRow': getObj.bind(null, {
+    data: [],
+    mock: false,
+    timeout: 1000,
+  }),
 };

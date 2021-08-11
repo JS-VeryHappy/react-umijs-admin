@@ -32,7 +32,11 @@ const boardData = [
 
 export default {
   // list测试
-  'POST /api/message/list': getObj.bind(null, ListData, 0),
+  'POST /api/message/list': getObj.bind(null, {
+    data: ListData,
+  }),
   // 看板数据
-  'POST /api/board/data': getObj.bind(null, boardData, 0),
+  'POST /api/board/data': getObj.bind(null, {
+    data: boardData,
+  }),
 };

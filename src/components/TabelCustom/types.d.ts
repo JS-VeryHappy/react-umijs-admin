@@ -132,3 +132,18 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
    */
   operationConfig?: btnConfigTypes;
 };
+
+declare type ModalPropsType = {
+  /**
+   * 渲染的子集
+   */
+  children: any;
+  /**
+   * 按钮配置
+   */
+  btnConfig?: any;
+  /**
+   * 按钮点击回调配置和数据
+   */
+  clickConfig?: any;
+};

@@ -27,12 +27,15 @@ export const response = (data: any, mock: boolean = true) => {
  * @param data 数据
  * @param timeout 延迟
  */
-export const getObj = async (data: any, timeout: number, req: any, res: any) => {
+export const getObj = async (props: any, req: any, res: any) => {
+  const { data, timeout, mock } = props;
   if (timeout) {
     await waitTime(timeout);
   }
-
-  return res.send(response(data));
+  console.log('====================================');
+  console.log(props, req);
+  console.log('====================================');
+  return res.send(response(data, mock));
 };
 
 interface pageOptionType {
@@ -45,7 +48,11 @@ interface pageOptionType {
  * @param data 数据
  * @param timeout 延迟
  */
-export const getPagination = async (data: any, timeout: number = 0, req: any, res: any) => {
+export const getPagination = async (
+  { data, timeout = 0, mock = true }: any,
+  req: any,
+  res: any,
+) => {
   const defaultOption: pageOptionType = {
     total: 100,
     list: [],
@@ -69,5 +76,5 @@ export const getPagination = async (data: any, timeout: number = 0, req: any, re
 
   defaultOption.list = newData.list;
 
-  return res.send(response(defaultOption));
+  return res.send(response(defaultOption, mock));
 };
