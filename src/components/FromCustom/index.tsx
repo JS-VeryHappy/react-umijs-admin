@@ -1,18 +1,13 @@
 import { useContext } from 'react';
 import { BetaSchemaForm } from '@ant-design/pro-form';
 import ProProvider from '@ant-design/pro-provider';
-import type { FormSchema } from '@ant-design/pro-form/lib/components/SchemaForm/index';
-import type { FormCustomColumnsType, ValueType } from '@/components/FromCustom/types';
+import type {
+  FormCustomColumnsType,
+  ValueType,
+  FromCustomProps,
+} from '@/components/FromCustom/types';
 import * as components from './components';
 import styles from './index.less';
-
-declare type FromCustomProps = {
-  /**
-   * 是否只读模式
-   * @default false
-   */
-  readonly?: boolean;
-} & FormSchema;
 
 function FromCustom(Props: FromCustomProps) {
   const { columns, readonly, layoutType } = Props;
@@ -22,7 +17,7 @@ function FromCustom(Props: FromCustomProps) {
   // 重新整理字段
   const newColumns: FormCustomColumnsType[] = [];
   columns.forEach((item: any) => {
-    const column: FormCustomColumnsType = item;
+    const column: FormCustomColumnsType = { ...item };
     // 如果大小没有设置默认m:328
     if (!column.width) {
       column.width = 'm';

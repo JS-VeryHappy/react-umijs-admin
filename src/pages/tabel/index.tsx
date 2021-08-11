@@ -12,6 +12,9 @@ function Tabel() {
   const { run: onFinish } = useRequest(proTableAddRow, {
     manual: true,
     onSuccess: (result, params) => {
+      console.log('====================================');
+      console.log(params);
+      console.log('====================================');
       message.success('新增成功');
     },
   });
@@ -33,6 +36,15 @@ function Tabel() {
           export: () => {
             console.log(3);
           },
+          edit: {
+            onClick: onFinish,
+            modalConfig: {
+              modalType: 'Form',
+              config: {
+                title: '新增表单1',
+              },
+            },
+          },
         }}
         selectionConfig={{
           delete: () => {
@@ -50,6 +62,7 @@ function Tabel() {
               config: {
                 title: '编辑表单',
               },
+              edit: true,
             },
           },
           delete: () => {
@@ -79,6 +92,27 @@ function Tabel() {
           setVisible(value);
         }}
         onFinish={onFinish}
+        request={async (params: any) => {
+          console.log('====================================');
+          console.log(params);
+          console.log('====================================');
+          return {
+            datetime: '2006-02-03 21:30:57',
+            description: '确天确年',
+            id: 262,
+            status: 2,
+            title: '确天确年',
+            type: 2,
+          };
+        }}
+        // initialValues={{
+        //   datetime: '2006-02-03 21:30:57',
+        //   description: '确天确年',
+        //   id: 262,
+        //   status: 2,
+        //   title: '确天确年',
+        //   type: 2,
+        // }}
       />
     </>
   );

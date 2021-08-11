@@ -42,17 +42,24 @@ export declare type modalPropsType = {
    */
   modalType?: modalType;
   /**
-   *  关联弹窗自定义样式 如果有该参数会渲染此弹窗类型，不然会根据类型选择
-   * @default
-   */
-  render?: React.ReactNode;
-  /**
    * 内置的配置
    * @default
    */
-  config?: any;
+  config?: any & {
+    /**
+     * 弹窗名称设置
+     * @default 弹窗表单
+     */
+    title: React.ReactNode | ((props, type, dom) => React.ReactNode);
+    /**
+     * 是否为编辑模式
+     * @default false
+     */
+    edit: boolean;
+  };
 };
 
+// 按钮参数
 export type btnConfigTypes = Record<
   string,
   {
@@ -117,6 +124,7 @@ export type btnConfigTypes = Record<
   }
 >;
 
+// 表格参数
 export declare type TabelCustomTypes<T> = ProTableProps<T> & {
   /**
    * header设置快捷按钮
@@ -133,6 +141,7 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
   operationConfig?: btnConfigTypes;
 };
 
+// 动态插入渲染弹窗的参数
 declare type ModalPropsType = {
   /**
    * 渲染的子集

@@ -1,41 +1,12 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
 
-const typeValueEnum = {
-  all: { text: '全部', status: 'Default' },
-  open: {
-    text: '未解决',
-    status: 'Error',
-  },
-  closed: {
-    text: '已解决',
-    status: 'Success',
-  },
-  processing: {
-    text: '解决中',
-    status: 'Processing',
-  },
-};
-const statusValueEnum = {
-  null: {
-    text: '全部',
-  },
-  1: {
-    text: '启用',
-  },
-  2: {
-    text: '禁用',
-  },
-  3: {
-    text: '等待',
-  },
-};
-
 export const columns: ProColumnsTypes<any>[] = [
   {
     title: 'ID',
     dataIndex: 'id',
     search: false,
     valueType: 'indexBorder',
+    hideInForm: true,
     width: 48,
   },
   {
@@ -71,32 +42,99 @@ export const columns: ProColumnsTypes<any>[] = [
     title: '类型',
     dataIndex: 'type',
     valueType: 'select',
-    valueEnum: typeValueEnum,
     filters: true,
-    renderText: (value) => {
-      let string = '';
-      switch (value) {
-        case 1:
-          string = 'open';
-          break;
-        case 2:
-          string = 'closed';
-          break;
-        case 3:
-          string = 'processing';
-          break;
-        default:
-          string = 'processing';
-          break;
-      }
-      return string;
+    fieldProps: {
+      options: [
+        {
+          label: '全部',
+          value: null,
+        },
+        {
+          label: '未解决',
+          value: 1,
+        },
+        {
+          label: '已解决',
+          value: 2,
+        },
+        {
+          label: '解决中',
+          value: 3,
+        },
+      ],
     },
+    // valueEnum: {
+    //   all: { text: '全部', status: 'Default' },
+    //   open: {
+    //     text: '未解决',
+    //     status: 'Error',
+    //   },
+    //   closed: {
+    //     text: '已解决',
+    //     status: 'Success',
+    //   },
+    //   processing: {
+    //     text: '解决中',
+    //     status: 'Processing',
+    //   },
+    // },
+    // renderText: (value) => {
+    //   let string = '';
+    //   switch (value) {
+    //     case 1:
+    //       string = 'open';
+    //       break;
+    //     case 2:
+    //       string = 'closed';
+    //       break;
+    //     case 3:
+    //       string = 'processing';
+    //       break;
+    //     default:
+    //       string = 'processing';
+    //       break;
+    //   }
+    //   return string;
+    // },
   },
   {
     title: '状态',
     dataIndex: 'status',
     valueType: 'select',
-    valueEnum: statusValueEnum,
+    // valueEnum: {
+    //   null: {
+    //     text: '全部',
+    //   },
+    //   1: {
+    //     text: '启用',
+    //   },
+    //   2: {
+    //     text: '禁用',
+    //   },
+    //   3: {
+    //     text: '等待',
+    //   },
+    // },
+    fieldProps: {
+      options: [
+        {
+          label: '全部',
+          value: null,
+        },
+        {
+          label: '启用',
+          value: 1,
+        },
+        {
+          label: '禁用',
+          value: 2,
+        },
+        {
+          label: '等待',
+          value: 3,
+        },
+      ],
+    },
   },
   // {
   //   title: '用户',

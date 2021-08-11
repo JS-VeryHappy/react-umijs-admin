@@ -44,16 +44,54 @@ export default Modal;
  */
 export const Form = (props: any) => {
   const { btnConfig, tabelProps, clickConfig } = props;
+  // 内部显示状态
   const [visible, setVisible] = useState<boolean>(true);
-  console.log('====================================');
-  console.log(clickConfig);
-  console.log('====================================');
+  // 解构按钮配置的弹窗配置
+  const { config, edit = false } = btnConfig.modalConfig || {};
+
+  let initialValues: any = {};
+  const columns: any = [];
+  // 遍历一次去掉索引关系
+  tabelProps.columns.forEach((item: any) => {
+    columns.push({ ...item });
+  });
+  // 如果显示 并且 开启编辑模式
+  if (visible && edit) {
+    initialValues = { ...clickConfig.irecord };
+    columns.forEach((newItem: any) => {
+      if (!newItem.hideInForm) {
+        // 因为编辑的时候已经赋值记录值 删除默认值就不会错误提醒
+        if (newItem.initialValue) {
+          delete newItem.initialValue;
+        }
+      }
+    });
+  }
+
   const defaultConfig = {
     layoutType: 'ModalForm',
     title: '弹窗表单',
     visible,
-    columns: tabelProps.columns,
-    onFinish: btnConfig.onClick,
+    columns,
+    onFinish: async (values: any) => {
+      // 遍历处理默认数据
+      const initialValue: any = {};
+      if (edit) {
+        // 如果是编辑默认带上id
+        initialValue.id = clickConfig.irecord.id || undefined;
+      }
+      // tabelProps.columns.forEach((item: any) => {
+      //   if (!item.hideInForm) {
+      //     if (item.initialValue) {
+      //       initialValue[item.dataIndex] = item.initialValue;
+      //     } else {
+      //       initialValue[item.dataIndex] = undefined;
+      //     }
+      //   }
+      // });
+
+      return await btnConfig.onClick({ ...initialValue, ...values });
+    },
     onVisibleChange: (value: any) => {
       if (!value) {
         setVisible(value);
@@ -70,7 +108,14 @@ export const Form = (props: any) => {
     },
   };
 
-  const config = { ...defaultConfig, ...btnConfig.modalConfig?.config };
+  const newConfig = { ...defaultConfig, ...config };
 
-  return <FromCustom id={`${btnConfig.key}-from`} key={`${btnConfig.key}-from`} {...config} />;
+  return (
+    <FromCustom
+      id={`${btnConfig.key}-from`}
+      key={`${btnConfig.key}-from`}
+      {...newConfig}
+      initialValues={initialValues}
+    />
+  );
 };
