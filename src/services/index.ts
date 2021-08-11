@@ -44,6 +44,10 @@ export const proTableAddRow = (params: any) => postBody('/api/protable/proTableA
  * protable select测试
  */
 export const getSelect = () => getQuery('/api/protable/select');
+/**
+ * protable 详情数据
+ */
+export const proTableDetails = (params: any) => postBody('/api/protable/proTableDetails', params);
 
 /**
  * workbench list测试

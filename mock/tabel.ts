@@ -40,4 +40,18 @@ export default {
     code: '0',
     reason: '请求错误',
   }),
+  // 新增数据
+  'POST /api/protable/proTableDetails': getObj.bind(null, {
+    data: {
+      'id|+1': 1,
+      avatar: "@image('100x100','@color')",
+      title: '@ctitle',
+      datetime: '@datetime',
+      description: '@title',
+      'user_id|+1|1-20': 1,
+      'status|1-3': 1,
+      'type|1-3': 1,
+    },
+    timeout: 1000,
+  }),
 };

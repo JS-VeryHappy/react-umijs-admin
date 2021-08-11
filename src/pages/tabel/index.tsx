@@ -2,9 +2,10 @@ import FromCustom from '@/components/FromCustom';
 import TabelCustom from '@/components/TabelCustom';
 import { useState } from 'react';
 import { columns } from './define';
-import { getProTable, proTableAddRow } from '@/services';
+import { getProTable, proTableAddRow, proTableDetails } from '@/services';
 import { useRequest } from 'umi';
 import { message } from 'antd';
+import type { submitOnDone } from '@/components/TabelCustom/types';
 
 function Tabel() {
   const [visible, setVisible] = useState<boolean>(false);
@@ -17,6 +18,9 @@ function Tabel() {
       console.log('====================================');
       message.success('新增成功');
     },
+  });
+  const { run: onProTableDetails } = useRequest(proTableDetails, {
+    manual: true,
   });
 
   return (
@@ -37,11 +41,21 @@ function Tabel() {
             console.log(3);
           },
           edit: {
-            onClick: onFinish,
             modalConfig: {
               modalType: 'Form',
               config: {
                 title: '新增表单1',
+                submitValuesBefor: (data: any) => {
+                  return { ...data, name: '小周周' };
+                },
+                submitRequest: proTableAddRow,
+                submitOnDone: ({ status, result, params }: submitOnDone) => {
+                  if (status === 'success') {
+                    message.success('新增成功');
+                  } else {
+                    message.success('失败啦');
+                  }
+                },
               },
             },
           },
@@ -61,6 +75,13 @@ function Tabel() {
               modalType: 'Form',
               config: {
                 title: '编辑表单',
+                request: onProTableDetails,
+                params: {
+                  aa: 11,
+                },
+                initialValuesBefor: (data: any) => {
+                  return { ...data, aa: 111 };
+                },
               },
               edit: true,
             },

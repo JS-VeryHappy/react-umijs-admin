@@ -2,6 +2,8 @@ import FromCustom from '@/components/FromCustom';
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import type { ModalPropsType } from '@/components/TabelCustom/types';
+import { useRequest } from 'umi';
+// import { message } from 'antd';
 
 /**
  * 动态插入页面
@@ -48,6 +50,37 @@ export const Form = (props: any) => {
   const [visible, setVisible] = useState<boolean>(true);
   // 解构按钮配置的弹窗配置
   const { config, edit = false } = btnConfig.modalConfig || {};
+  // 表单配置参数
+  const {
+    request,
+    initialValuesBefor,
+    submitValuesBefor,
+    submitRequest,
+    submitOnDone,
+    ...configRest
+  } = config;
+
+  const { run: onSubmitRequest } = useRequest(submitRequest, {
+    manual: true,
+    onSuccess: (result, params) => {
+      if (submitOnDone) {
+        submitOnDone({
+          status: 'success',
+          result,
+          params,
+        });
+      }
+    },
+    onError: (result, params) => {
+      if (submitOnDone) {
+        submitOnDone({
+          status: 'error',
+          result,
+          params,
+        });
+      }
+    },
+  });
 
   let initialValues: any = {};
   const columns: any = [];
@@ -75,7 +108,7 @@ export const Form = (props: any) => {
     columns,
     onFinish: async (values: any) => {
       // 遍历处理默认数据
-      const initialValue: any = {};
+      let initialValue: any = {};
       if (edit) {
         // 如果是编辑默认带上id
         initialValue.id = clickConfig.irecord.id || undefined;
@@ -89,8 +122,31 @@ export const Form = (props: any) => {
       //     }
       //   }
       // });
+      // 数据提交前的钩子函数
+      if (submitValuesBefor) {
+        initialValue = submitValuesBefor(initialValue);
+      }
+      // 如果配置了自动请求
+      if (submitRequest) {
+        return await onSubmitRequest(initialValue);
+      }
 
       return await btnConfig.onClick({ ...initialValue, ...values });
+    },
+    request: async (params: any) => {
+      let values: any = {};
+      // 如果配置了网络请求数据
+      if (request) {
+        values = await request(params);
+      } else {
+        values = initialValues;
+      }
+      // 数据初始化复制前的钩子执行
+      if (initialValuesBefor) {
+        values = initialValuesBefor(values);
+      }
+
+      return values;
     },
     onVisibleChange: (value: any) => {
       if (!value) {
@@ -108,14 +164,7 @@ export const Form = (props: any) => {
     },
   };
 
-  const newConfig = { ...defaultConfig, ...config };
+  const newConfig = { ...defaultConfig, ...configRest };
 
-  return (
-    <FromCustom
-      id={`${btnConfig.key}-from`}
-      key={`${btnConfig.key}-from`}
-      {...newConfig}
-      initialValues={initialValues}
-    />
-  );
+  return <FromCustom id={`${btnConfig.key}-from`} key={`${btnConfig.key}-from`} {...newConfig} />;
 };

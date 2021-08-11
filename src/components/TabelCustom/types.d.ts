@@ -24,6 +24,21 @@ export declare type ProColumnsTypes<T> = ProColumns<T, ValueType> & {
   requestConfig?: requestConfigType;
 };
 
+export declare type submitOnDone = {
+  /**
+   * 请求完成的回调状态
+   */
+  status: 'success' | 'error';
+  /**
+   * 请求的请求数据
+   */
+  params: Record;
+  /**
+   * 请求结果
+   */
+  result: Record;
+};
+
 // 内置弹窗的类型
 export declare type modalType = 'Form';
 // 内置弹窗配置
@@ -45,6 +60,11 @@ export declare type modalPropsType = {
    * 内置的配置
    * @default
    */
+  /**
+   * 是否为编辑模式
+   * @default false
+   */
+  edit: boolean;
   config?: any & {
     /**
      * 弹窗名称设置
@@ -52,10 +72,36 @@ export declare type modalPropsType = {
      */
     title: React.ReactNode | ((props, type, dom) => React.ReactNode);
     /**
-     * 是否为编辑模式
-     * @default false
+     * 提交请求的前数据的钩子
+     * @default
      */
-    edit: boolean;
+    submitValuesBefor: (params: any) => any;
+    /**
+     * 提交请求的Request
+     * @default
+     */
+    submitRequest: (params: any) => Promise<void>;
+    /**
+     * 请求完成成功回调
+     * @default
+     */
+    submitOnDone: (params: submitOnDone) => void;
+    /**
+     * 发起网络请求的参数,与 request 配合使用
+     * @default
+     */
+    params: Record;
+    /**
+     * 发起网络请求的参数,返回值会覆盖给 initialValues
+     * @default
+     */
+    request: (params: any) => Promise<data>;
+
+    /**
+     * 数据初始化复制之前的钩子
+     * @default
+     */
+    initialValuesBefor: (data: any) => any;
   };
 };
 
