@@ -17,6 +17,32 @@ export const waitTime = (time: number = 100) => {
 };
 
 /**
+ * 请求防抖 同步立即执行专用
+ * 注意 同步情况连续点击 在限制内 会返回undefined 注意判断
+ * @param fn
+ * @param time
+ * @param immediate
+ * @returns
+ */
+export const requestDebounce = (fn: any, time: number) => {
+  let timer: any;
+  return function () {
+    if (timer) {
+      return;
+    }
+    const args: any = arguments;
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      timer = null;
+    }, time);
+
+    return fn.call(null, ...args);
+  };
+};
+
+/**
  * 防抖函数
  * @param fn
  * @param time

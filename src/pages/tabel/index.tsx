@@ -3,22 +3,33 @@ import TabelCustom from '@/components/TabelCustom';
 import { useState } from 'react';
 import { columns } from './define';
 import { getProTable, proTableAddRow, proTableDetails } from '@/services';
-import { useRequest } from 'umi';
 import { message } from 'antd';
 import type { submitOnDone } from '@/components/TabelCustom/types';
+import { requestDebounce } from '@/utils';
+
+const debounceProTableAddRow: any = requestDebounce(proTableAddRow, 2000);
 
 function Tabel() {
   const [visible, setVisible] = useState<boolean>(false);
 
-  const { run: onFinish } = useRequest(proTableAddRow, {
-    manual: true,
-    onSuccess: (result, params) => {
+  const onFinish = async (values: any) => {
+    try {
+      // 开启防抖函数后 如果在限制情况 会返回 undefined
+      const data = await debounceProTableAddRow(values);
+      if (!data) {
+        return false;
+      }
       console.log('====================================');
-      console.log(params);
+      console.log(data);
       console.log('====================================');
-      message.success('新增成功');
-    },
-  });
+      return true;
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+      return false;
+    }
+  };
 
   return (
     <>
@@ -42,9 +53,13 @@ function Tabel() {
               modalType: 'Form',
               config: {
                 title: '新增表单1',
+                initialValuesBefor: (data: any) => {
+                  return { ...data, title: 111 };
+                },
                 submitValuesBefor: (data: any) => {
                   return { ...data, name: '小周周' };
                 },
+                // debounceProTableAddRow
                 submitRequest: proTableAddRow,
                 submitOnDone: ({ status, result, params }: submitOnDone) => {
                   if (status === 'success') {
@@ -67,7 +82,13 @@ function Tabel() {
         }}
         operationConfig={{
           edit: {
-            onClick: onFinish,
+            onClick: async (values: any) => {
+              const res = await debounceProTableAddRow(values);
+              console.log('====================================');
+              console.log(res);
+              console.log('====================================');
+              return false;
+            },
             modalConfig: {
               modalType: 'Form',
               config: {
@@ -79,6 +100,7 @@ function Tabel() {
                 initialValuesBefor: (data: any) => {
                   return { ...data, aa: 111 };
                 },
+                // submitRequest: debounceProTableAddRow,
               },
               edit: true,
             },

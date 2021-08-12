@@ -129,8 +129,8 @@ export const Form = (props: any) => {
               params: initialValue,
             });
           }
+          return false;
         }
-        return await submitRequest(initialValue);
       }
 
       return await btnConfig.onClick({ ...initialValue, ...values });
