@@ -50,40 +50,6 @@ export const getSelect = () => getQuery('/api/protable/select');
 export const proTableDetails = (params: any) => postBody('/api/protable/proTableDetails', params);
 
 /**
- * workbench list测试
- */
-export function getListData(data: any) {
-  return postBody('/api/workbench/list', data);
-}
-
-/**
- * workbench chart测试
- */
-export function getChartData(data: any) {
-  return postBody('/api/workbench/chart', data);
-}
-
-/**
- * workbench group测试
- */
-export function getGroupData(data: any) {
-  return postBody('/api/workbench/group', data);
-}
-
-/**
- * meassage list测试
- */
-export function getMessageList(data: any) {
-  return postBody('/api/message/list', data);
-}
-/**
- * board 测试
- */
-export function getDoardData() {
-  return postBody('/api/board/data');
-}
-
-/**
  * 消息中心 通知list
  */
 export const getNoticeNotification = () => postBody('/api/notice/notification');

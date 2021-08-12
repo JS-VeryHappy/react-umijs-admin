@@ -133,9 +133,6 @@ function Tabel() {
         }}
         onFinish={onFinish}
         request={async (params: any) => {
-          console.log('====================================');
-          console.log(params);
-          console.log('====================================');
           return {
             datetime: '2006-02-03 21:30:57',
             description: '确天确年',

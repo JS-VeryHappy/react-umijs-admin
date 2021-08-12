@@ -60,27 +60,12 @@ const routes: IBestAFSRoute[] = [
   },
   {
     path: '/',
-    redirect: '/panel/workbench',
+    redirect: '/tabel',
   },
   {
     component: '@/layouts/index',
     flatMenu: true, //隐藏父级 子集上提
     routes: [
-      {
-        path: '/panel',
-        locale: 'menu.panel',
-        name: '仪表盘',
-        icon: 'DashboardFilled',
-        routes: [
-          {
-            exact: true,
-            locale: 'menu.panel.workbench',
-            path: '/panel/workbench',
-            name: '工作台',
-            component: '@/pages/panel/workbench/index',
-          },
-        ],
-      },
       {
         path: '/tabel',
         locale: 'tabel.list',
