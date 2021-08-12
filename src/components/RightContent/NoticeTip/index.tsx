@@ -19,15 +19,15 @@ const NoticeTip = () => {
   // 可以加入getInitialState
   useEffect(() => {
     getNoticeNotification().then(
-      (res) => setNotification(res.data.list),
+      (res: any) => setNotification(res.data.list),
       // (err) => console.log(err),
     );
     getNoticeMessage().then(
-      (res) => setMessage(res.data.list),
+      (res: any) => setMessage(res.data.list),
       // (err) => console.log(err),
     );
     getNoticeEvent().then(
-      (res) => setEvent(res.data.list),
+      (res: any) => setEvent(res.data.list),
       // (err) => console.log(err),
     );
   }, []);

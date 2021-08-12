@@ -2,14 +2,21 @@ import FromCustom from '@/components/FromCustom';
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import type { ModalPropsType } from '@/components/TabelCustom/types';
-import { useRequest } from 'umi';
 // import { message } from 'antd';
 
+const getModalDom = (key: string) => {
+  return document.getElementById(`${key}-modal`);
+};
 /**
  * 动态插入页面
  */
 const Modal = (props: ModalPropsType) => {
   const { children, btnConfig } = props;
+
+  // 如果弹窗dom存在
+  if (getModalDom(btnConfig.key)) {
+    return;
+  }
   const rootDom = document.body;
   const node = document.createElement('div');
   node.style.display = 'unset';
@@ -18,10 +25,6 @@ const Modal = (props: ModalPropsType) => {
   rootDom.appendChild(node);
 
   ReactDOM.render(children, node);
-};
-
-const getModalDom = (key: string) => {
-  return document.getElementById(`${key}-modal`);
 };
 
 const closeModal = (key: string) => {
@@ -59,28 +62,6 @@ export const Form = (props: any) => {
     submitOnDone,
     ...configRest
   } = config;
-
-  const { run: onSubmitRequest } = useRequest(submitRequest, {
-    manual: true,
-    onSuccess: (result, params) => {
-      if (submitOnDone) {
-        submitOnDone({
-          status: 'success',
-          result,
-          params,
-        });
-      }
-    },
-    onError: (result, params) => {
-      if (submitOnDone) {
-        submitOnDone({
-          status: 'error',
-          result,
-          params,
-        });
-      }
-    },
-  });
 
   let initialValues: any = {};
   const columns: any = [];
@@ -128,7 +109,28 @@ export const Form = (props: any) => {
       }
       // 如果配置了自动请求
       if (submitRequest) {
-        return await onSubmitRequest(initialValue);
+        try {
+          const result = await submitRequest(initialValue);
+          // 如果设置请求回调
+          if (submitOnDone) {
+            submitOnDone({
+              status: 'success',
+              result,
+              params: initialValue,
+            });
+          }
+
+          return result;
+        } catch (error) {
+          if (submitOnDone) {
+            submitOnDone({
+              status: 'error',
+              result: {},
+              params: initialValue,
+            });
+          }
+        }
+        return await submitRequest(initialValue);
       }
 
       return await btnConfig.onClick({ ...initialValue, ...values });
@@ -137,7 +139,14 @@ export const Form = (props: any) => {
       let values: any = {};
       // 如果配置了网络请求数据
       if (request) {
-        values = await request(params);
+        try {
+          const data = await request(params);
+          if (data.code && data.reason && data.data) {
+            values = data.data;
+          } else {
+            values = data;
+          }
+        } catch (error) {}
       } else {
         values = initialValues;
       }

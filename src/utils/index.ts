@@ -15,3 +15,64 @@ export const waitTime = (time: number = 100) => {
     }, time);
   });
 };
+
+/**
+ * 防抖函数
+ * @param fn
+ * @param time
+ * @param immediate 是否启动立即执行 true 是
+ * @returns
+ */
+export const debounce = (fn: any, time: number, immediate: boolean = false) => {
+  let timer: any;
+  return function () {
+    if (immediate) {
+      clearTimeout(timer);
+      const now: any = !timer;
+      timer = setTimeout(() => {
+        timer = null;
+      }, time);
+      if (now) {
+        // @ts-ignore
+        fn.call(this, ...arguments);
+      }
+    } else {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        // @ts-ignore
+        fn.call(this, ...arguments);
+      }, time);
+    }
+  };
+};
+
+/**
+ * 节流函数
+ * @param fn
+ * @param time
+ * @param type 1 时间戳版本 2定时间版本
+ * @returns
+ */
+export const throttle = (fn: any, time: number, type: number) => {
+  let previous: number = 0;
+  let timer: any;
+
+  return function () {
+    if (type === 1) {
+      const now = Date.now();
+      if (now - previous >= time) {
+        // @ts-ignore
+        fn.call(this, ...arguments);
+        previous = now;
+      }
+    } else if (type === 2) {
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          // @ts-ignore
+          fn.call(this, ...arguments);
+        }, time);
+      }
+    }
+  };
+};

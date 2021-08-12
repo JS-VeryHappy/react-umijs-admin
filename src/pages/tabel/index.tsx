@@ -19,9 +19,6 @@ function Tabel() {
       message.success('新增成功');
     },
   });
-  const { run: onProTableDetails } = useRequest(proTableDetails, {
-    manual: true,
-  });
 
   return (
     <>
@@ -75,7 +72,7 @@ function Tabel() {
               modalType: 'Form',
               config: {
                 title: '编辑表单',
-                request: onProTableDetails,
+                request: proTableDetails,
                 params: {
                   aa: 11,
                 },

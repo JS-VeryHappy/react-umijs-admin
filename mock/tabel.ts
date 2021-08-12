@@ -38,9 +38,8 @@ export default {
     mock: false,
     timeout: 1000,
     code: '0',
-    reason: '请求错误',
   }),
-  // 新增数据
+  // 详情数据
   'POST /api/protable/proTableDetails': getObj.bind(null, {
     data: {
       'id|+1': 1,
@@ -53,5 +52,7 @@ export default {
       'type|1-3': 1,
     },
     timeout: 1000,
+    // code: -1,
+    // reason: '请求错误',
   }),
 };
