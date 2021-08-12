@@ -1,5 +1,9 @@
-// eslint-disable
-import type { optionType } from '../../types';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type {
+  OptionType as OptionTypeApi,
+  FormCustomColumnsType as FormCustomColumnsTypeApi,
+} from '../../types';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function OptionType(props: optionType) {}
+export function OptionType(props: OptionTypeApi) {}
+
+export function FormCustomColumnsType(props: FormCustomColumnsTypeApi) {}

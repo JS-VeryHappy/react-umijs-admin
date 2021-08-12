@@ -1,8 +1,9 @@
 import type { ProFormColumnsType, FormFieldType } from '@ant-design/pro-form';
 import type { FormSchema } from '@ant-design/pro-form/lib/components/SchemaForm/index';
 
-// formColumns 子弹类型
-
+/**
+ * formColumns列类型
+ */
 export declare type ValueType =
   | 'text'
   | 'InputTooltipCustom'
@@ -12,8 +13,14 @@ export declare type ValueType =
   | FormFieldType;
 
 // 字典数据类型
-export interface optionType {
+export interface OptionType {
+  /**
+   * 数据显示值
+   */
   label: string;
+  /**
+   * 数据返回值
+   */
   value: any;
 }
 
@@ -21,10 +28,10 @@ export interface optionType {
 export declare type FormCustomColumnsType<T = any> = ProFormColumnsType<T, ValueType>;
 
 // form参数类型
-export declare type FromCustomProps = {
+export declare type FromCustomProps = FormSchema & {
   /**
    * 是否只读模式
    * @default false
    */
   readonly?: boolean;
-} & FormSchema;
+};

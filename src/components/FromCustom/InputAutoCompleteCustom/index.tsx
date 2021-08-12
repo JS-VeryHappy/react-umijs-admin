@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 import { message } from 'antd';
-import type { optionType } from '@/components/FromCustom/types';
+import type { OptionType } from '@/components/FromCustom/types';
 
 interface InputAutoCompleteCustomType {
   /**
@@ -23,7 +23,7 @@ interface InputAutoCompleteCustomType {
      * select选择数据
      * @default []
      */
-    options?: optionType[];
+    options?: OptionType[];
   };
 
   /**

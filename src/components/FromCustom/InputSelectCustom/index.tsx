@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Form, Input, Select } from 'antd';
 import { message } from 'antd';
-import type { optionType } from '@/components/FromCustom/types';
+import type { OptionType } from '@/components/FromCustom/types';
 
 interface InputSelectCustomType {
   /**
@@ -23,7 +23,7 @@ interface InputSelectCustomType {
      * select选择数据
      * @default []
      */
-    options?: optionType[] | undefined;
+    options?: OptionType[] | undefined;
   };
   /**
    * 是否只读模式
