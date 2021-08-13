@@ -186,7 +186,7 @@ export declare type ModalPropsType = {
   /**
    * 关闭整个弹窗函数 调用可关闭弹窗
    */
-  closeModal?: () => void;
+  closeModal?: any;
   /**
    * 表格点击业务位置  例如 header
    *
@@ -195,7 +195,7 @@ export declare type ModalPropsType = {
   /**
    * 渲染的子集
    */
-  children: any;
+  children?: any;
   /**
    * 按钮配置
    */
