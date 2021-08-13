@@ -170,7 +170,7 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
 };
 
 // 动态插入渲染弹窗的参数
-declare type ModalPropsType = {
+export declare type ModalPropsType = {
   /**
    * 保留字段后面用
    */

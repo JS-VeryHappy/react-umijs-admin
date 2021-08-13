@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import type { ModalPropsType } from '@/components/TabelCustom/types';
 import React from 'react';
 
-export { default as Form } from './ModalForm';
+export { default as Form } from './FormModal';
 
 export const getModalDom = (key: string) => {
   return document.getElementById(key);

@@ -122,7 +122,9 @@ function Form(props: ModalPropsType) {
     },
     modalProps: {
       afterClose: () => {
-        closeModal && closeModal();
+        if (closeModal) {
+          closeModal();
+        }
       },
     },
   };
