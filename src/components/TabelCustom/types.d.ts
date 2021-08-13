@@ -172,6 +172,27 @@ export declare type TabelCustomTypes<T> = ProTableProps<T> & {
 // 动态插入渲染弹窗的参数
 declare type ModalPropsType = {
   /**
+   * 保留字段后面用
+   */
+  render?: any;
+  /**
+   * 弹窗方法本身分配的组件唯一值
+   */
+  modelName?: string;
+  /**
+   * 弹窗方法分配 给内容组件唯一值
+   */
+  modelchildName?: string;
+  /**
+   * 关闭整个弹窗函数 调用可关闭弹窗
+   */
+  closeModal?: () => void;
+  /**
+   * 表格点击业务位置  例如 header
+   *
+   */
+  type?: string;
+  /**
    * 渲染的子集
    */
   children: any;
@@ -183,4 +204,8 @@ declare type ModalPropsType = {
    * 按钮点击回调配置和数据
    */
   clickConfig?: any;
+  /**
+   * 表格整个配置信息
+   */
+  tabelProps?: any;
 };

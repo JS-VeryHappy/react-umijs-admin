@@ -1,179 +1,55 @@
-import FromCustom from '@/components/FromCustom';
 import ReactDOM from 'react-dom';
-import { useState } from 'react';
 import type { ModalPropsType } from '@/components/TabelCustom/types';
-// import { message } from 'antd';
+import React from 'react';
 
-const getModalDom = (key: string) => {
-  return document.getElementById(`${key}-modal`);
-};
-/**
- * 动态插入页面
- */
-const Modal = (props: ModalPropsType) => {
-  const { children, btnConfig } = props;
+export { default as Form } from './ModalForm';
 
-  // 如果弹窗dom存在
-  if (getModalDom(btnConfig.key)) {
-    return;
-  }
-  const rootDom = document.body;
-  const node = document.createElement('div');
-  node.style.display = 'unset';
-  node.id = `${btnConfig.key}-modal`;
-  // @ts-ignore
-  rootDom.appendChild(node);
-
-  ReactDOM.render(children, node);
+export const getModalDom = (key: string) => {
+  return document.getElementById(key);
 };
 
-const closeModal = (key: string) => {
+export const closeModal = (key: string) => {
   const node = getModalDom(key);
   if (node) {
     document.body.removeChild(node);
   }
 };
 
-export default Modal;
-
 /**
- * 内置弹窗表单
- * @param props {
- *   render 保留
- *   type 表格点击业务位置
- *   btnConfig   按钮配置数据
- *   tabelProps  表格的props数据
- *   clickConfig  点击回调配置和数据
- * }  表单配置项
- * @returns
+ * 动态插入页面
  */
-export const Form = (props: any) => {
-  const { btnConfig, tabelProps, clickConfig } = props;
-  // 内部显示状态
-  const [visible, setVisible] = useState<boolean>(true);
-  // 解构按钮配置的弹窗配置
-  const { config, edit = false } = btnConfig.modalConfig || {};
-  // 表单配置参数
-  const {
-    request,
-    initialValuesBefor,
-    submitValuesBefor,
-    submitRequest,
-    submitOnDone,
-    ...configRest
-  } = config;
+const Modal = (props: ModalPropsType) => {
+  const { children, btnConfig } = props;
 
-  let initialValues: any = {};
-  const columns: any = [];
-  // 遍历一次去掉索引关系
-  tabelProps.columns.forEach((item: any) => {
-    columns.push({ ...item });
-  });
-  // 如果显示 并且 开启编辑模式
-  if (visible && edit) {
-    initialValues = { ...clickConfig.irecord };
-    columns.forEach((newItem: any) => {
-      if (!newItem.hideInForm) {
-        // 因为编辑的时候已经赋值记录值 删除默认值就不会错误提醒
-        if (newItem.initialValue) {
-          delete newItem.initialValue;
-        }
-      }
-    });
+  const modelName = `${btnConfig.key}-modal`;
+  const modelchildName = `${btnConfig.key}-modal-child`;
+
+  // 如果弹窗dom存在
+  if (getModalDom(modelName)) {
+    return;
   }
-
-  const defaultConfig = {
-    layoutType: 'ModalForm',
-    title: '弹窗表单',
-    visible,
-    columns,
-    onFinish: async (values: any) => {
-      // 遍历处理默认数据
-      let initialValue: any = {};
-      if (edit) {
-        // 如果是编辑默认带上id
-        initialValue.id = clickConfig.irecord.id || undefined;
-      }
-      // tabelProps.columns.forEach((item: any) => {
-      //   if (!item.hideInForm) {
-      //     if (item.initialValue) {
-      //       initialValue[item.dataIndex] = item.initialValue;
-      //     } else {
-      //       initialValue[item.dataIndex] = undefined;
-      //     }
-      //   }
-      // });
-      // 数据提交前的钩子函数
-      if (submitValuesBefor) {
-        initialValue = submitValuesBefor(initialValue);
-      }
-      // 如果配置了自动请求
-      if (submitRequest) {
-        try {
-          const result = await submitRequest(initialValue);
-          // 如果设置请求回调
-          if (submitOnDone) {
-            submitOnDone({
-              status: 'success',
-              result,
-              params: initialValue,
-            });
-          }
-
-          return result;
-        } catch (error) {
-          if (submitOnDone) {
-            submitOnDone({
-              status: 'error',
-              result: {},
-              params: initialValue,
-            });
-          }
-          return false;
-        }
+  // 向组件内添加props属性
+  const newChildren = React.cloneElement(children, {
+    closeModal: () => {
+      const node = document.getElementById(modelchildName);
+      if (node && node.parentNode) {
+        document.body.removeChild(node.parentNode);
       }
 
-      return await btnConfig.onClick({ ...initialValue, ...values });
+      closeModal(modelName);
     },
-    request: async (params: any) => {
-      let values: any = {};
-      // 如果配置了网络请求数据
-      if (request) {
-        try {
-          const data = await request(params);
-          if (data.code && data.reason && data.data) {
-            values = data.data;
-          } else {
-            values = data;
-          }
-        } catch (error) {}
-      } else {
-        values = initialValues;
-      }
-      // 数据初始化复制前的钩子执行
-      if (initialValuesBefor) {
-        values = initialValuesBefor(values);
-      }
+    modelName,
+    modelchildName,
+  });
 
-      return values;
-    },
-    onVisibleChange: (value: any) => {
-      if (!value) {
-        setVisible(value);
-      }
-    },
-    modalProps: {
-      afterClose: () => {
-        closeModal(btnConfig.key);
-        const node = document.getElementById(`${btnConfig.key}-from`);
-        if (node && node.parentNode) {
-          document.body.removeChild(node.parentNode);
-        }
-      },
-    },
-  };
+  const rootDom = document.body;
+  const node = document.createElement('div');
+  node.style.display = 'unset';
+  node.id = modelName;
+  // @ts-ignore
+  rootDom.appendChild(node);
 
-  const newConfig = { ...defaultConfig, ...configRest };
-
-  return <FromCustom id={`${btnConfig.key}-from`} key={`${btnConfig.key}-from`} {...newConfig} />;
+  ReactDOM.render(newChildren, node);
 };
+
+export default Modal;
