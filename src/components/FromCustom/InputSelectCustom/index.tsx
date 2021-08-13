@@ -103,7 +103,7 @@ function InputSelectCustom(Props: InputSelectCustomType) {
         <Input.Group compact>
           <Form.Item noStyle>
             <Select
-              placeholder="请选择"
+              placeholder="请输入"
               onChange={onSelectChange}
               // @ts-ignore
               options={options}

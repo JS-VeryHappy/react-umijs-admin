@@ -72,7 +72,11 @@ function InputTooltipCustom(Props: InputTooltipCustomType) {
 
   return (
     <>
-      {readonly ? value : <Input {...rest} value={inputValue} onChange={onInputChange} />}
+      {readonly ? (
+        value
+      ) : (
+        <Input placeholder="请输入" {...rest} value={inputValue} onChange={onInputChange} />
+      )}
       <Tooltip title={tooltipTitle || '我是提示'}>
         <a onClick={onClick || undefined} style={{ margin: '0 8px' }}>
           {tooltipText || 'Need Help?'}

@@ -28,69 +28,40 @@ group:
 ---
 
 ## 内嵌使用
-<code src="@/components/FromCustom/Example/embed.tsx" 
+<code src="@/components/FromCustom/Example/demo2.tsx" 
       title="登陆例子" 
       desc="自定义按钮样式"
     />
 
 ---
-<!-- 
-## 弹窗使用
-<code src="@/components/ProFormCustom/Example/model.tsx" 
-      desc="我有几种使用弹窗的方式"
-    />
 
----
-
-## 步骤表单使用
-<code src="@/components/ProFormCustom/Example/steps.tsx" 
-        desc="我是特殊的表单类型、我基础普通表单的所以属性操作（配置、弹窗等用法一直）"
-    />
-
----
 
 ## 表单验证
-<code src="@/components/ProFormCustom/Example/verify.tsx" 
-        desc="我可以验证表单、我有多重验证规则的写法"
+<code src="@/components/FromCustom/Example/demo3.tsx" 
+      title="表单验证" 
+      desc="防抖函数防止重复提交+本地赋值默认值"
     />
 
 ---
 
-## 普通使用
-<code src="@/components/ProFormCustom/Example/useForm.tsx" />
-
----
-
-## 联动使用
-<code src="@/components/ProFormCustom/Example/linkage.tsx" 
-        desc="我能是表单联动"
+## 弹窗使用
+<code src="@/components/FromCustom/Example/demo1.tsx" 
+      title="弹窗使用" 
+      desc="点击按钮弹窗+远程请求赋值默认值"
     />
 
 ---
 
-## 无限极嵌套
-<code src="@/components/ProFormCustom/Example/children.tsx" 
-        desc="我可以被无限极的嵌套使用"
+## 使用自定义表单组件
+<code src="@/components/FromCustom/Example/demo4.tsx" 
+        title="使用自定义表单组件" 
+        desc="表单使用自定义基础业务组件"
     />
 
 ---
 
-## 使用自定义组件
-<code src="@/components/ProFormCustom/Example/custom.tsx" 
-        desc="表单只用自定义基础业务组件、动态表单的使用"
-    />
 
----
-
-## 自定义按钮
-<code src="@/components/ProFormCustom/Example/customBtn.tsx" 
-        desc="自定义按钮"
-    />
-
---- -->
-
-
-## FromCustom API
+## FromCustom API 和 更多使用样例
 
 [ProComponents](https://procomponents.ant.design/components/form)
 

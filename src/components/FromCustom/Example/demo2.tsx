@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRequest } from 'umi';
 import { message } from 'antd';
 import FromCustom from '@/components/FromCustom';
 import type { FormCustomColumnsType } from '@/components/FromCustom/types';
@@ -34,19 +33,17 @@ const accountConfig: FormCustomColumnsType[] = [
   },
 ];
 
-function Embed() {
-  const { run: onFinish } = useRequest(
-    async () => {
-      try {
-        message.success('登录成功');
-      } catch (e) {
-        // empty
-      }
-    },
-    {
-      manual: true,
-    },
-  );
+function Demo2() {
+  const onFinish = async (values: any) => {
+    try {
+      message.success('成功');
+      console.log(values);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
 
   return (
     <>
@@ -70,4 +67,4 @@ function Embed() {
   );
 }
 
-export default Embed;
+export default Demo2;

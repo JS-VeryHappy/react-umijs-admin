@@ -7,7 +7,7 @@ import { message } from 'antd';
 import type { submitOnDone } from '@/components/TabelCustom/types';
 import { requestDebounce } from '@/utils';
 
-const debounceProTableAddRow: any = requestDebounce(proTableAddRow, 2000);
+const debounceProTableAddRow: any = requestDebounce(proTableAddRow, 500);
 
 function Tabel() {
   const [visible, setVisible] = useState<boolean>(false);

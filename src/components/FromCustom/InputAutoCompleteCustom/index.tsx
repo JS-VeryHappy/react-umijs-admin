@@ -83,7 +83,7 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
       ) : (
         <AutoComplete
           value={inputValue}
-          placeholder="请选择"
+          placeholder="请输入"
           {...rest}
           options={options}
           // onSelect={onSelect}
