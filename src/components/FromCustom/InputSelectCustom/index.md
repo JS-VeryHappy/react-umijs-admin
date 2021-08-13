@@ -1,5 +1,5 @@
 ---
-title: InputSelect
+title: 子组件-InputSelect
 nav:
   title: 组件
 group:

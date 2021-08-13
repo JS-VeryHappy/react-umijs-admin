@@ -1,5 +1,5 @@
 ---
-title: InputTooltip
+title: 子组件-InputTooltip
 nav:
   title: 组件
 group:
