@@ -142,10 +142,14 @@ export const columns: ProColumnsTypes<any>[] = [
     dataIndex: 'user_id',
     valueType: 'select',
     search: false,
-    requestConfig: {
-      request: getProTableUserList,
-      label: 'name',
-      value: 'id',
+    request: async () => {
+      const res = await getProTableUserList();
+      return res.data.map((val: any) => {
+        return {
+          label: val.name,
+          value: val.id,
+        };
+      });
     },
   },
   // {

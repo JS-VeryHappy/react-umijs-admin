@@ -1,7 +1,7 @@
 import FromCustom from '@/components/FromCustom';
 import type { FormCustomColumnsType } from '@/components/FromCustom/types';
 import { message } from 'antd';
-// import { getProTableUserList } from '@/services';
+import { getProTableUserList } from '@/services';
 
 export const columns: FormCustomColumnsType<any>[] = [
   {
@@ -31,15 +31,18 @@ export const columns: FormCustomColumnsType<any>[] = [
         },
       ],
     },
-    // request: async () => {
-    //   const res = await getProTableUserList();
-    //   return res.data.list.map((val: any) => {
-    //     return {
-    //       label: val.id,
-    //       value: val.name,
-    //     };
-    //   });
-    // },
+    request: async () => {
+      const res = await getProTableUserList();
+      return res.data.map((val: any) => {
+        return {
+          label: val.name,
+          value: val.name,
+        };
+      });
+    },
+    params: {
+      aaa: '小周周',
+    },
   },
 ];
 

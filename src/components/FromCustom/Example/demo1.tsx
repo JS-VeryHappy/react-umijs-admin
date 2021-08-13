@@ -94,7 +94,7 @@ export const columns: FormCustomColumnsType<any>[] = [
     valueType: 'select',
     request: async () => {
       const res = await getProTableUserList();
-      return res.data.list.map((val: any) => {
+      return res.data.map((val: any) => {
         return {
           label: val.name,
           value: val.id,

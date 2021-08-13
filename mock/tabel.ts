@@ -22,14 +22,88 @@ export default {
 
   // list测试
   'POST /api/table/userlist': getObj.bind(null, {
-    data: {
-      'list|20': [
-        {
-          'id|+1': 1,
-          name: '@name',
-        },
-      ],
-    },
+    data: [
+      {
+        id: 1,
+        name: '@name',
+      },
+      {
+        id: 2,
+        name: '@name',
+      },
+      {
+        id: 3,
+        name: '@name',
+      },
+      {
+        id: 4,
+        name: '@name',
+      },
+      {
+        id: 5,
+        name: '@name',
+      },
+      {
+        id: 6,
+        name: '@name',
+      },
+      {
+        id: 7,
+        name: '@name',
+      },
+      {
+        id: 8,
+        name: '@name',
+      },
+      {
+        id: 9,
+        name: '@name',
+      },
+      {
+        id: 10,
+        name: '@name',
+      },
+      {
+        id: 11,
+        name: '@name',
+      },
+      {
+        id: 12,
+        name: '@name',
+      },
+      {
+        id: 13,
+        name: '@name',
+      },
+      {
+        id: 14,
+        name: '@name',
+      },
+      {
+        id: 15,
+        name: '@name',
+      },
+      {
+        id: 16,
+        name: '@name',
+      },
+      {
+        id: 17,
+        name: '@name',
+      },
+      {
+        id: 18,
+        name: '@name',
+      },
+      {
+        id: 19,
+        name: '@name',
+      },
+      {
+        id: 20,
+        name: '@name',
+      },
+    ],
   }),
 
   // 新增数据

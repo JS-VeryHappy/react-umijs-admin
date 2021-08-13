@@ -32,10 +32,20 @@ interface InputAutoCompleteCustomType {
    * @default false
    */
   readonly?: false;
+  /**
+   * 从远程请求网络数据，一般用于选择类组件
+   */
+  request?: (params: any, props: any) => Promise<{ label: any; value: any }[]>;
+  /**
+   * 额外传递给 request 的参数，组件不做处理,但是变化会引起request 重新请求数据
+   */
+  params?: Record<string, any>;
 }
 
 function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
   const [inputValue, setInputValue] = useState<any>(null);
+  const [nowOptions, setNowOptions] = useState<any>(null);
+  const { request, params } = Props;
   const fieldProps = Props.fieldProps || {
     style: {
       width: '200px',
@@ -61,6 +71,18 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
      * 如果父级传有默认值则赋值默认值
      */
     setInputValue(value);
+
+    if (request) {
+      const getOptions = async () => {
+        const data = await request(params, fieldProps);
+        setNowOptions(data);
+      };
+      getOptions();
+    } else {
+      if (options) {
+        setNowOptions(options);
+      }
+    }
   }, []);
 
   /**
@@ -85,7 +107,7 @@ function InputAutoCompleteCustom(Props: InputAutoCompleteCustomType) {
           value={inputValue}
           placeholder="请输入"
           {...rest}
-          options={options}
+          options={nowOptions}
           // onSelect={onSelect}
           // onSearch={onSearch}
           onChange={onInputChange}

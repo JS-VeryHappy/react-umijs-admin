@@ -1,27 +1,9 @@
 import type { ProColumns, ProTableProps } from '@ant-design/pro-table';
 import type { ValueType } from '@/components/FromCustom/types';
 
-export type requestConfigType = {
-  /**
-   * 需要调用的请求
-   * @default
-   */
-  request: () => any;
-  /**
-   * 显示名称的取值key
-   * @default label
-   */
-  label?: string;
-  /**
-   * 值的取值key
-   * @default value
-   */
-  value?: string;
-};
-
 export declare type ProColumnsTypes<T> = ProColumns<T, ValueType> & {
   // 网络发起请求快捷配置 优先级低于 request参数
-  requestConfig?: requestConfigType;
+  // requestConfig?: requestConfigType;
 };
 
 export declare type submitOnDone = {

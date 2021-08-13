@@ -207,28 +207,6 @@ function TabelCustom<T>(Props: TabelCustomTypes<T>) {
         }
       }
 
-      // 处理自定义 request 网络中获取数据
-      if (!item.request && item.requestConfig) {
-        let label = 'label';
-        let value = 'value';
-        if (item.requestConfig.label) {
-          label = item.requestConfig.label;
-        }
-        if (item.requestConfig.value) {
-          value = item.requestConfig.value;
-        }
-        // eslint-disable-next-line no-param-reassign
-        item.request = async () => {
-          const res = await item.requestConfig.request();
-          return res.data.list.map((val: any) => {
-            return {
-              label: val[label],
-              value: val[value],
-            };
-          });
-        };
-      }
-
       customColumns.push(item);
     });
   }
