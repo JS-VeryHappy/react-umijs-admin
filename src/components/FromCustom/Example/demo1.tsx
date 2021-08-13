@@ -2,6 +2,7 @@ import { Button, message } from 'antd';
 import FromCustom from '@/components/FromCustom';
 import type { FormCustomColumnsType } from '@/components/FromCustom/types';
 import { PlusOutlined } from '@ant-design/icons';
+import { getProTableUserList } from '@/services';
 
 export const columns: FormCustomColumnsType<any>[] = [
   {
@@ -85,6 +86,20 @@ export const columns: FormCustomColumnsType<any>[] = [
           value: 3,
         },
       ],
+    },
+  },
+  {
+    title: '用户',
+    dataIndex: 'user_id',
+    valueType: 'select',
+    request: async () => {
+      const res = await getProTableUserList();
+      return res.data.list.map((val: any) => {
+        return {
+          label: val.name,
+          value: val.id,
+        };
+      });
     },
   },
   {

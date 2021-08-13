@@ -25,7 +25,7 @@ export default {
     data: {
       'list|20': [
         {
-          'id|1-20': 1,
+          'id|+1': 1,
           name: '@name',
         },
       ],

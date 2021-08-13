@@ -47,7 +47,7 @@ group:
 ## 弹窗使用
 <code src="@/components/FromCustom/Example/demo1.tsx" 
       title="弹窗使用" 
-      desc="点击按钮弹窗+远程请求赋值默认值"
+      desc="点击按钮弹窗+远程请求赋值默认值+远程请求select options"
     />
 
 ---

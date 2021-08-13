@@ -1,4 +1,5 @@
 import type { ProColumnsTypes } from '@/components/TabelCustom/types';
+import { getProTableUserList } from '@/services';
 
 export const columns: ProColumnsTypes<any>[] = [
   {
@@ -136,17 +137,17 @@ export const columns: ProColumnsTypes<any>[] = [
       ],
     },
   },
-  // {
-  //   title: '用户',
-  //   dataIndex: 'user_id',
-  //   valueType: 'select',
-  //   search: false,
-  //   requestConfig: {
-  //     request: getProTableUserList,
-  //     label: 'name',
-  //     value: 'id',
-  //   },
-  // },
+  {
+    title: '用户',
+    dataIndex: 'user_id',
+    valueType: 'select',
+    search: false,
+    requestConfig: {
+      request: getProTableUserList,
+      label: 'name',
+      value: 'id',
+    },
+  },
   // {
   //   title: '头像',
   //   dataIndex: 'avatar',
